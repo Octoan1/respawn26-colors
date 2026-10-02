@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://l2cyu1a1x0rq"]
 
 [ext_resource type="Script" uid="uid://degd4mq0tca8s" path="res://Entities/Player/player.gd" id="1_mv1ah"]
+[ext_resource type="Script" uid="uid://db8je6wadmfjf" path="res://Components/state_machine.gd" id="2_lu8i8"]
+[ext_resource type="Script" uid="uid://dwqmakkymaxlj" path="res://Entities/Player/base.gd" id="3_tekja"]
+[ext_resource type="Script" uid="uid://cs8dvwww68gmk" path="res://Entities/Player/jump.gd" id="4_tekja"]
+[ext_resource type="Script" uid="uid://bei4dicsadbmf" path="res://Entities/Player/air.gd" id="5_5c2io"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t4wu"]
 
@@ -14,3 +18,18 @@ shape = SubResource("CapsuleShape3D_0t4wu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=100536400]
+
+[node name="StateMachine" type="Node" parent="." unique_id=1226587949 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_lu8i8")
+debug_mode = true
+initial_state = NodePath("BASE")
+metadata/_custom_type_script = "uid://db8je6wadmfjf"
+
+[node name="BASE" type="Node" parent="StateMachine" unique_id=2134732681]
+script = ExtResource("3_tekja")
+
+[node name="JUMP" type="Node" parent="StateMachine" unique_id=1530998249]
+script = ExtResource("4_tekja")
+
+[node name="AIR" type="Node" parent="StateMachine" unique_id=99172797]
+script = ExtResource("5_5c2io")
