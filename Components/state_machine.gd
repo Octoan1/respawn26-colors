@@ -52,7 +52,7 @@ func on_child_transition(state: State, new_state_name: String) -> void:
 		print("State != current_state")
 		return
 		
-	var new_state = states.get(new_state_name.to_lower())
+	var new_state: State = states.get(new_state_name.to_lower())
 	if !new_state: # exists check
 		print("!new_state")
 		return
