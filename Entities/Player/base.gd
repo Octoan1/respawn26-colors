@@ -1,11 +1,7 @@
 extends PlayerState
 
-var coyote_timer: Timer
-
 func setup() -> void:
 	super()
-	coyote_timer = Timer.new()
-	coyote_timer.wait_time = 0.25
 	pass
 
 func enter() -> void: 
@@ -18,7 +14,7 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	if Input.is_action_just_pressed("player_jump") and coyote_timer.is_stopped():
+	if Input.is_action_just_pressed("player_jump") and player.is_on_floor():
 		Transitioned.emit(self, "JUMP")
 	
 	if not player.is_on_floor():
