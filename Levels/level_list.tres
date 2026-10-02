@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="LevelList" format=3 uid="uid://c2qh6vlm3bgnl"]
 
-[ext_resource type="PackedScene" uid="uid://dpvvbsn3hlm2p" path="res://Levels/test_level.tscn" id="1_4ikok"]
+[ext_resource type="PackedScene" uid="uid://c14r1acf4uaap" path="res://Levels/level_1.tscn" id="1_4ikok"]
 [ext_resource type="Script" uid="uid://b3d6cott8dn6n" path="res://Levels/level_list.gd" id="1_kp748"]
+[ext_resource type="PackedScene" uid="uid://ch0gm2u67dgkx" path="res://Levels/level_2.tscn" id="2_kjs1r"]
 
 [resource]
 script = ExtResource("1_kp748")
-levels = Array[PackedScene]([ExtResource("1_4ikok")])
+levels = Array[PackedScene]([ExtResource("1_4ikok"), ExtResource("2_kjs1r")])
 metadata/_custom_type_script = "uid://b3d6cott8dn6n"

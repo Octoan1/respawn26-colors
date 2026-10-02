@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://c8mcfocbl178j"]
 
+[ext_resource type="Script" uid="uid://doix7kmv61ss4" path="res://Game/main.gd" id="1_b0md6"]
 [ext_resource type="PackedScene" uid="uid://dpvvbsn3hlm2p" path="res://Levels/test_level.tscn" id="1_f5lw1"]
 [ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="2_gab3r"]
 
 [node name="Main" type="Node" unique_id=1285304870]
+script = ExtResource("1_b0md6")
 
 [node name="TestLevel" parent="." unique_id=866147153 instance=ExtResource("1_f5lw1")]
 

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cw7fospdday3t"]
+
+[ext_resource type="Script" uid="uid://cq01v0yjkh6na" path="res://Game/goal.gd" id="1_kncha"]
+[ext_resource type="Texture2D" uid="uid://dxn0y7y5uoji8" path="res://icon.svg" id="2_ypsft"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7k2vp"]
+
+[node name="Goal" type="Area3D" unique_id=537695073]
+script = ExtResource("1_kncha")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1670711101]
+shape = SubResource("BoxShape3D_7k2vp")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1476054017]
+texture = ExtResource("2_ypsft")
+
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1851995317]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+texture = ExtResource("2_ypsft")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
