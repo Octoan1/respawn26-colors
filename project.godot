@@ -11,8 +11,21 @@ config_version=5
 [application]
 
 config/name="Respawn_2026_Color"
+run/main_scene="uid://c8mcfocbl178j"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "green",
+"res://Autoloads/": "pink",
+"res://Components/": "gray",
+"res://Entities/": "yellow",
+"res://Game/": "purple",
+"res://Levels/": "red",
+"res://UI/": "teal"
+}
 
 [physics]
 
