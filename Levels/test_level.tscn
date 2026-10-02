@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dpvvbsn3hlm2p"]
 
 [ext_resource type="Shader" uid="uid://c5ewvbyyvsufs" path="res://Levels/checkerboard.gdshader" id="1_ormqy"]
+[ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="2_00vsl"]
 
 [sub_resource type="Environment" id="Environment_g4v7s"]
 
@@ -53,3 +54,6 @@ material = SubResource("ShaderMaterial_lqoj1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4500002, 0.6, -2.15)
 use_collision = true
 material = SubResource("ShaderMaterial_ormqy")
+
+[node name="Player" parent="." unique_id=493457226 instance=ExtResource("2_00vsl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53914356, 0)
