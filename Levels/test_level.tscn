@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dpvvbsn3hlm2p"]
+
+[ext_resource type="Shader" uid="uid://c5ewvbyyvsufs" path="res://Levels/checkerboard.gdshader" id="1_ormqy"]
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+render_priority = 0
+shader = ExtResource("1_ormqy")
+
+[node name="TestLevel" type="Node3D" unique_id=866147153]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=63956922]
+environment = SubResource("Environment_g4v7s")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=840066526]
+transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, -1.0500001, 0.14999928, 3.8743018e-08)
+size = Vector3(20, 1, 20)
+material = SubResource("ShaderMaterial_g4v7s")
