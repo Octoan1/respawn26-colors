@@ -88,23 +88,46 @@ use_collision = true
 size = Vector3(20, 3, 1)
 material = ExtResource("1_00vsl")
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1070184295]
+[node name="SmallStairs" type="CSGCombiner3D" parent="." unique_id=1070184295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.499999, 0, 12.5)
 use_collision = true
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=760470344]
+[node name="45deg" type="CSGPolygon3D" parent="SmallStairs" unique_id=760470344]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, 0)
 polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 2, 0)
 depth = 2.0
 material = ExtResource("1_00vsl")
 
-[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=884971683]
+[node name="33deg" type="CSGPolygon3D" parent="SmallStairs" unique_id=884971683]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, -2)
 polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 2.5, 0)
 depth = 2.0
 material = ExtResource("1_00vsl")
 
-[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1447058452]
+[node name="26deg" type="CSGPolygon3D" parent="SmallStairs" unique_id=1447058452]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, -4)
 polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 3, 0)
+depth = 2.0
+material = ExtResource("1_00vsl")
+
+[node name="BigStairs" type="CSGCombiner3D" parent="." unique_id=270710466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.499999, 0, 6.5)
+use_collision = true
+
+[node name="45deg" type="CSGPolygon3D" parent="BigStairs" unique_id=1934594037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, 0)
+polygon = PackedVector2Array(0, 0, 3, 0, 0, 3)
+depth = 2.0
+material = ExtResource("1_00vsl")
+
+[node name="33deg" type="CSGPolygon3D" parent="BigStairs" unique_id=1678332055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, -2)
+polygon = PackedVector2Array(0, 0, 4.5, 0, 0, 3)
+depth = 2.0
+material = ExtResource("1_00vsl")
+
+[node name="26deg" type="CSGPolygon3D" parent="BigStairs" unique_id=550216728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, -4)
+polygon = PackedVector2Array(0, 0, 6, 0, 0, 3)
 depth = 2.0
 material = ExtResource("1_00vsl")
