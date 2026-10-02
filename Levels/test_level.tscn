@@ -8,14 +8,24 @@
 render_priority = 0
 shader = ExtResource("1_ormqy")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqoj1"]
+render_priority = 0
+shader = ExtResource("1_ormqy")
+
 [node name="TestLevel" type="Node3D" unique_id=866147153]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=63956922]
 environment = SubResource("Environment_g4v7s")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=840066526]
+[node name="Floor" type="CSGBox3D" parent="." unique_id=840066526]
 transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, 0.34999782, 0.14999814, 0.8000014)
 use_collision = true
-size = Vector3(17.2, 1, 21.6)
+size = Vector3(50, 1, 50)
 material = SubResource("ShaderMaterial_3158n")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=1341001961]
+transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, 0.34999782, 0.14999814, 0.8000014)
+radius = 3.0
+height = 10.0
+material = SubResource("ShaderMaterial_lqoj1")
