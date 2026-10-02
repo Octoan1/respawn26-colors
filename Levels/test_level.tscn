@@ -1,55 +1,109 @@
 [gd_scene format=3 uid="uid://dpvvbsn3hlm2p"]
 
-[ext_resource type="Shader" uid="uid://c5ewvbyyvsufs" path="res://Levels/checkerboard.gdshader" id="1_ormqy"]
+[ext_resource type="Material" uid="uid://blvx7nuocbrm6" path="res://Assets/Materials/greybox_lightgrey_mat.tres" id="1_00vsl"]
 
-[sub_resource type="Environment" id="Environment_g4v7s"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_00vsl"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3158n"]
-render_priority = 0
-shader = ExtResource("1_ormqy")
+[sub_resource type="Sky" id="Sky_4k50d"]
+sky_material = SubResource("ProceduralSkyMaterial_00vsl")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqoj1"]
-render_priority = 0
-shader = ExtResource("1_ormqy")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ormqy"]
-render_priority = 0
-shader = ExtResource("1_ormqy")
+[sub_resource type="Environment" id="Environment_i4ak4"]
+background_mode = 2
+sky = SubResource("Sky_4k50d")
+glow_enabled = true
 
 [node name="TestLevel" type="Node3D" unique_id=866147153]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=63956922]
-environment = SubResource("Environment_g4v7s")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1413001438]
+environment = SubResource("Environment_i4ak4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1174647861]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
 
 [node name="Floor" type="CSGBox3D" parent="." unique_id=840066526]
-transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, 0.34999782, 0.14999814, 0.8000014)
+transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, 0, 0, 0)
 use_collision = true
 size = Vector3(50, 0, 50)
-material = SubResource("ShaderMaterial_3158n")
+material = ExtResource("1_00vsl")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=1341001961]
-transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, 15.349996, 0.14999814, -9.699999)
+[node name="Cylinders" type="CSGCombiner3D" parent="." unique_id=825946067]
+use_collision = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Cylinders" unique_id=1341001961]
+transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, 15, 0, -9.7)
 use_collision = true
 radius = 3.0
 height = 10.0
-material = SubResource("ShaderMaterial_lqoj1")
+material = ExtResource("1_00vsl")
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=29202129]
-transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, 15.349996, -2.5500019, -5.099999)
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Cylinders" unique_id=29202129]
+transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, 15, 0, -6)
 use_collision = true
 radius = 3.0
-height = 10.0
-material = SubResource("ShaderMaterial_lqoj1")
+height = 1.0
+material = ExtResource("1_00vsl")
 
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="." unique_id=893002519]
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Cylinders" unique_id=893002519]
 transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, 15.349996, 1.4499981, -14.799999)
 use_collision = true
 radius = 3.0
 height = 10.0
-material = SubResource("ShaderMaterial_lqoj1")
+material = ExtResource("1_00vsl")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1389694213]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4500002, 0.6, -2.15)
+[node name="Stair" type="CSGCombiner3D" parent="." unique_id=1485079113]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.899999, 0, 4.7)
 use_collision = true
-material = SubResource("ShaderMaterial_ormqy")
+
+[node name="h1" type="CSGBox3D" parent="Stair" unique_id=440564923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.25, 0)
+use_collision = true
+size = Vector3(1, 0.5, 2)
+material = ExtResource("1_00vsl")
+
+[node name="h2" type="CSGBox3D" parent="Stair" unique_id=1389694213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+use_collision = true
+size = Vector3(1, 1, 2)
+material = ExtResource("1_00vsl")
+
+[node name="h3" type="CSGBox3D" parent="Stair" unique_id=1471622623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.75, 0)
+use_collision = true
+size = Vector3(1, 1.5, 2)
+material = ExtResource("1_00vsl")
+
+[node name="h4" type="CSGBox3D" parent="Stair" unique_id=1548650856]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999998, 1, 0)
+use_collision = true
+size = Vector3(1, 2, 2)
+material = ExtResource("1_00vsl")
+
+[node name="Wall" type="CSGBox3D" parent="." unique_id=2069567957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.353862, 1.5, -11.008642)
+size = Vector3(20, 3, 1)
+material = ExtResource("1_00vsl")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1070184295]
+use_collision = true
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=760470344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, 0)
+polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 2, 0)
+depth = 2.0
+material = ExtResource("1_00vsl")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=884971683]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, -2)
+polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 2.5, 0)
+depth = 2.0
+material = ExtResource("1_00vsl")
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="CSGCombiner3D" unique_id=1447058452]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, -4)
+polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 3, 0)
+depth = 2.0
+material = ExtResource("1_00vsl")
