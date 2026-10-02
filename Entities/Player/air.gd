@@ -18,6 +18,16 @@ func physics_update(delta: float) -> void:
 		player.velocity += player.get_gravity() * delta
 	else:
 		Transitioned.emit(self, "BASE")
+		return
+		
+	if Input.is_action_just_pressed("player_jump") and not player.coyote_timer.is_stopped():
+		player.coyote_timer.stop()
+		Transitioned.emit(self,"JUMP")
+		return
+	
+	if player.is_on_wall():
+		Transitioned.emit(self, "WALL_RIDING")
+		return
 	
 	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
 	var direction := (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

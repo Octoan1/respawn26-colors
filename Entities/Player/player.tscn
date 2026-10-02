@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://dwqmakkymaxlj" path="res://Entities/Player/base.gd" id="3_tekja"]
 [ext_resource type="Script" uid="uid://cs8dvwww68gmk" path="res://Entities/Player/jump.gd" id="4_tekja"]
 [ext_resource type="Script" uid="uid://bei4dicsadbmf" path="res://Entities/Player/air.gd" id="5_5c2io"]
+[ext_resource type="Script" uid="uid://b7m30eoriqxd" path="res://Entities/Player/wall_riding.gd" id="6_4wf4l"]
+[ext_resource type="Script" uid="uid://dqviqt5hnpsuc" path="res://Entities/Player/wall_jump.gd" id="7_01a4e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t4wu"]
 
@@ -21,7 +23,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="StateMachine" type="Node" parent="." unique_id=1226587949 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_lu8i8")
-debug_mode = true
 initial_state = NodePath("BASE")
 metadata/_custom_type_script = "uid://db8je6wadmfjf"
 
@@ -33,3 +34,9 @@ script = ExtResource("4_tekja")
 
 [node name="AIR" type="Node" parent="StateMachine" unique_id=99172797]
 script = ExtResource("5_5c2io")
+
+[node name="WALL_RIDING" type="Node" parent="StateMachine" unique_id=1187141283]
+script = ExtResource("6_4wf4l")
+
+[node name="WALL_JUMP" type="Node" parent="StateMachine" unique_id=395958755]
+script = ExtResource("7_01a4e")

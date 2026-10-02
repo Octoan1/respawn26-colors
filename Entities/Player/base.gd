@@ -18,7 +18,9 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "JUMP")
 	
 	if not player.is_on_floor():
+		player.coyote_timer.start()
 		Transitioned.emit(self, "AIR")
+		return
 	
 	
 	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
