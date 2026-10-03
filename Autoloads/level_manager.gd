@@ -1,18 +1,25 @@
 extends Node
 const LEVEL_LIST: LevelList = preload("res://levels/level_list.tres")
-const TITLE = preload("uid://cad2mj4oauw32")
-const MAIN = preload("uid://c8mcfocbl178j")
+
+var main: Node
 
 var current_index: int = 0
+"""
+TO ADD A LEVEL:
+Add the level scene to the level_list.tres
+"""
+
+func _ready() -> void:
+	for child in get_tree().root.get_children():
+		if child.name == "Main":
+			main = child
+			break
 
 ## Starts a fresh run from the first level.
 func start_game() -> void:
 	go_to_level(0)
 
-func go_to_title() -> void:
-	var scene: PackedScene = TITLE
-	var title_screen: Node = scene.instantiate()
-	get_tree().root.add_child(title_screen)
+
 
 ## Loads the level at [param index] in the list, refusing indices that don't exist.
 func go_to_level(index: int) -> void:
@@ -27,10 +34,6 @@ func go_to_level(index: int) -> void:
 		return
 	var level: Node = scene.instantiate()
 	
-	print(get_tree().root)
-	print(get_tree().root.get_children())
-	
-	var main: Node = get_tree().root.get_child(2)
 	main.add_child(level)
 	remove_level(current_index - 1)
 
@@ -42,8 +45,9 @@ func complete_level() -> void:
 	else:
 		remove_level(current_index)
 		current_index = 0
-		go_to_title()
+		UiManager.go_to_title()
 
+## Frees the previous level from the scene tree
 func remove_level(index: int) -> void:
 	if not _is_valid_index(index):
 		#push_error("LevelManager: no level at index %d" % index)
@@ -52,7 +56,6 @@ func remove_level(index: int) -> void:
 	var level_name: String = "Level" + str(level_num)
 	#print(level_name)
 	
-	var main: Node = get_tree().root.get_child(2)
 	for child in main.get_children():
 		#print(child.name)
 		if child.name == level_name:

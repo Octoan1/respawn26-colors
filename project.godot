@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 LevelManager="*uid://dlej84bfjwh10"
 SceneManager="*uid://do5hro5hfqbwa"
+UiManager="*uid://delk213ruhhe6"
 
 [debug]
 
