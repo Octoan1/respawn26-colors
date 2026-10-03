@@ -12,8 +12,8 @@ class_name Player
 @export var push_off_wall_force:float = 2.0
 
 @onready var head:Node3D = $Head
-@onready var debug_velocity: Label3D = $DebugVelocity
-@onready var debug_state: Label3D = $DebugState
+@onready var debug_velocity: Label3D = $Head/DebugVelocity
+@onready var debug_state: Label3D = $Head/DebugState
 
 var coyote_timer: Timer
 var wall_grab_timer: Timer
@@ -30,7 +30,7 @@ func _ready() -> void:
 	
 	wall_grab_timer = Timer.new()
 	wall_grab_timer.one_shot = true
-	wall_grab_timer.wait_time = 0.1
+	wall_grab_timer.wait_time = 0.2
 	add_child(wall_grab_timer)
 
 func _unhandled_input(event: InputEvent) -> void:

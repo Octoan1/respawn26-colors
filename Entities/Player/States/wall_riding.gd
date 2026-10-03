@@ -21,6 +21,8 @@ func physics_update(delta: float) -> void:
 	if player.get_wall_normal().dot(player.wall_normal) < 0.9:
 		Transitioned.emit(self, "PUSH_OFF_WALL")
 		return
+	else:
+		player.wall_normal = player.get_wall_normal()
 	
 	if Input.is_action_just_pressed("player_jump"):
 		player.coyote_timer.stop()
