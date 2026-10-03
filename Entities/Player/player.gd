@@ -5,6 +5,7 @@ class_name Player
 @export var run_speed:float = 8.0
 @export var jump_velocity:float = 4.5
 @export var acceleration:float = 25.0
+@export var air_acceleration:float = 10.0
 @export var mouse_sensitivity:float = 0.002
 @export var stick_force:float = 5
 

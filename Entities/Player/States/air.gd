@@ -32,14 +32,16 @@ func physics_update(delta: float) -> void:
 	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
 	var direction := (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		# carry momentum in air
-		player.velocity.x = move_toward(player.velocity.x, direction.x * player.walk_speed * 0.5, player.acceleration * delta)
-		player.velocity.z = move_toward(player.velocity.z, direction.z * player.walk_speed * 0.5, player.acceleration * delta)
-		pass
-	else:
-		# carry momentum in air
-		#player.velocity.x = move_toward(player.velocity.x, 0, player.acceleration * delta)
-		#player.velocity.z = move_toward(player.velocity.z, 0, player.acceleration * delta)
-		pass
+		# Keep existing momentum and slightly influence it with input
+		player.velocity.x += direction.x * player.air_acceleration * delta
+		player.velocity.z += direction.z * player.air_acceleration * delta
+
+		# Limit horizontal speed
+		var horizontal_velocity := Vector2(player.velocity.x, player.velocity.z)
+
+		if horizontal_velocity.length() > player.run_speed:
+			horizontal_velocity = horizontal_velocity.normalized() * player.walk_speed
+			player.velocity.x = horizontal_velocity.x
+			player.velocity.z = horizontal_velocity.y
 	
 	player.move_and_slide()
