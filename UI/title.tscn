@@ -28,4 +28,13 @@ offset_right = 663.0
 offset_bottom = 474.0
 text = "START"
 
+[node name="LevelSelect" type="Button" parent="." unique_id=1718504403]
+layout_mode = 0
+offset_left = 494.0
+offset_top = 492.0
+offset_right = 663.0
+offset_bottom = 568.0
+text = "Level Select"
+
 [connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="LevelSelect" to="." method="_on_level_select_pressed"]

@@ -7,3 +7,9 @@ func _ready():
 
 func _on_start_game_pressed():
 	LevelManager.start_game()
+	queue_free()
+
+
+func _on_level_select_pressed():
+	UiManager.go_to_level_select()
+	queue_free()
