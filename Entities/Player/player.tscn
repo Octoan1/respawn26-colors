@@ -76,7 +76,7 @@ _data = {
 [node name="Player" type="CharacterBody3D" unique_id=493457226]
 script = ExtResource("1_mv1ah")
 
-[node name="PlayerMovement" type="Node" parent="." unique_id=1839494748]
+[node name="Movement" type="Node" parent="." unique_id=1839494748]
 script = ExtResource("2_xr8lj")
 metadata/_custom_type_script = "uid://4q3nmwc6tlho"
 

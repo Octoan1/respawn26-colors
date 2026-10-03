@@ -1,37 +1,50 @@
 extends PlayerState
+## Posible State Transitions
+# IDLE -> JUMP
+# IDLE -> WALK
+# IDLE -> AIR
 
 func setup() -> void:
 	super()
+
+
+func enter() -> void:
 	pass
 
-func enter() -> void: 
+
+func exit() -> void:
 	pass
-	
-func exit() -> void: 
-	pass
-	
+
+
 func update(_delta: float) -> void:
 	pass
 
+
 func physics_update(delta: float) -> void:
-	# player jumps
+	# Jump
 	if Input.is_action_just_pressed("player_jump") and player.is_on_floor():
 		Transitioned.emit(self, "JUMP")
+		return
 	
-	# player starts falling (could be pushed off edge)
+	# Player left the ground
 	if not player.is_on_floor():
 		player.coyote_timer.start()
 		Transitioned.emit(self, "AIR")
 		return
 	
-	# movement input -> switch to walk
-	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
-	if input_dir: 
-		Transitioned.emit(self,"WALK")
+	# Movement input -> switch to walk
+	var input_dir := Input.get_vector(
+		"player_left",
+		"player_right",
+		"player_forwards",
+		"player_backwards"
+	)
 	
-	# slow player to a standstill
-	if player.velocity:
-		player.velocity.x = move_toward(player.velocity.x, 0, player.acceleration * delta)
-		player.velocity.z = move_toward(player.velocity.z, 0, player.acceleration * delta)
+	if input_dir:
+		Transitioned.emit(self, "WALK")
+		return
+	
+	# Slow player to a stop
+	player.movement.decelerate(delta)
 	
 	player.move_and_slide()

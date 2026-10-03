@@ -19,6 +19,7 @@ class_name Player
 @export var push_off_wall_force:float = 2.0
 
 @onready var head:Node3D = $Head
+@onready var movement: PlayerMovement = $Movement
 @onready var debug_velocity: Label = $Debug/DebugVelocity
 @onready var debug_state: Label = $Debug/DebugState
 
