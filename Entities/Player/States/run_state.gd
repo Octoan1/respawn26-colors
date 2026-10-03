@@ -24,9 +24,15 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "AIR")
 		return
 	
+	# slide pressed
+	if Input.is_action_just_pressed("player_slide"):
+		if player.horizonal_velocity.length() > 6:
+			Transitioned.emit(self,"SLIDE")
+	
 	# sprint released -> walk
 	if Input.is_action_just_released("player_sprint"):
 		Transitioned.emit(self,"WALK")
+	
 	
 	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
 	var direction := (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

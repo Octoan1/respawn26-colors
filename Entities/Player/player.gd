@@ -4,15 +4,19 @@ class_name Player
 @export var walk_speed:float = 5.0
 @export var run_speed:float = 8.0
 @export var jump_velocity:float = 4.5
-@export var acceleration:float = 25.0
+@export var acceleration:float = 15.0
 @export var air_acceleration:float = 10.0
 @export var mouse_sensitivity:float = 0.002
 @export var stick_force:float = 5
+@export var slide_spd_req:float = 7
 
 @onready var head:Node3D = $Head
 @onready var debug_velocity: Label3D = $DebugVelocity
+@onready var debug_state: Label3D = $DebugState
 
 var coyote_timer: Timer
+## this is a helper value for checking horizontal velocity, it doesn't change players horizontal velocity
+var horizonal_velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	coyote_timer = Timer.new()
@@ -37,5 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 func _process(_delta: float) -> void:
-	debug_velocity.text = "Vel: %.2f" % velocity.length()
+	horizonal_velocity = Vector2(velocity.x, velocity.z)
 	
+	debug_velocity.text = "Vel: %.2f" % velocity.length()
+	debug_state.text = $StateMachine.current_state.name
