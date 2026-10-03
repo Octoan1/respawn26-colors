@@ -73,7 +73,7 @@ func get_current_level() -> PackedScene:
 	if not _is_valid_index(current_index):
 		push_error("LevelManager: no level at index %d" % current_index)
 		return null
-	return LEVEL_LIST.levels[current_index]
+	return LEVEL_LIST.levels[current_index].scene
 
 
 ## Whether [param index] points at a filled slot in the level list.
