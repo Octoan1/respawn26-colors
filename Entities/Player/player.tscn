@@ -31,14 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 unique_name_in_owner = true
 cull_mask = 1048573
 script = ExtResource("2_x1y6q")
-
-[node name="DebugVelocity" type="Label3D" parent="Head" unique_id=336715397]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.799733, 3.5719242, -5.461578)
-text = "Vel: 0"
-
-[node name="DebugState" type="Label3D" parent="Head" unique_id=700631333]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.794367, 3.374153, -5.463619)
-text = "State:"
+enable_dyamic_fov = false
 
 [node name="StateMachine" type="Node" parent="." unique_id=1226587949 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_lu8i8")
@@ -76,3 +69,21 @@ script = ExtResource("12_iplt1")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=125584598]
 layers = 2
 mesh = SubResource("CapsuleMesh_g4v7s")
+
+[node name="Debug" type="CanvasLayer" parent="." unique_id=1850901123]
+
+[node name="DebugVelocity" type="Label" parent="Debug" unique_id=2049311721]
+offset_left = 8.0
+offset_top = 2.0
+offset_right = 50.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 32
+text = "Vel: 0"
+
+[node name="DebugState" type="Label" parent="Debug" unique_id=1284742170]
+offset_left = 8.0
+offset_top = 53.0
+offset_right = 48.0
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 32
+text = "none"

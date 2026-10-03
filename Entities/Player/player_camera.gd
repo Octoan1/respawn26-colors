@@ -1,5 +1,7 @@
 extends Camera3D
 
+@export var enable_dyamic_fov: bool = true
+
 @export var max_fov: float = 100
 ## Controls how much the FOV increases with speed.
 @export var fov_multiplier: float = 3.0
@@ -20,6 +22,9 @@ func _process(delta: float) -> void:
 	update_fov(delta)
 	
 func update_fov(delta: float) -> void:
+	if not enable_dyamic_fov:
+		return
+	
 	# Get the player's speed in the direction the camera is facing
 	var forward_speed: float = player.velocity.dot(-%Head.global_transform.basis.z)
 	
