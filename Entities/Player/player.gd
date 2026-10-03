@@ -1,19 +1,26 @@
 extends CharacterBody3D
 class_name Player
 
+# Player Settings
+@export var mouse_sensitivity:float = 0.002
+
+# Ground movement settings
 @export var walk_speed:float = 5.0
 @export var run_speed:float = 8.0
-@export var jump_velocity:float = 4.5
 @export var acceleration:float = 15.0
-@export var air_acceleration:float = 10.0
-@export var mouse_sensitivity:float = 0.002
-@export var stick_force:float = 2.0
 @export var slide_spd_req:float = 7.0
+
+# Air movement settings
+@export var jump_velocity:float = 4.5
+@export var air_acceleration:float = 10.0
+
+# Wall movement settings
+@export var stick_force:float = 2.0
 @export var push_off_wall_force:float = 4.0
 
 @onready var head:Node3D = $Head
-@onready var debug_velocity: Label3D = $Head/DebugVelocity
-@onready var debug_state: Label3D = $Head/DebugState
+@onready var debug_velocity: Label = $Debug/DebugVelocity
+@onready var debug_state: Label = $Debug/DebugState
 
 var coyote_timer: Timer
 var wall_grab_timer: Timer

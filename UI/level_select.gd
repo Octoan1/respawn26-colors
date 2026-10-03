@@ -1,14 +1,14 @@
 extends Control
-@onready var level_columns = $ScrollContainer/LevelColumns
+@onready var level_columns: Control = $ScrollContainer/LevelColumns
 @export var buttons_per_row: int = 4
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	populate_button_data()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta: float) -> void:
 	pass
 
 func populate_button_data() -> void:
@@ -25,7 +25,7 @@ func populate_button_data() -> void:
 		button.text = "Level " + str(level_num+1)
 		
 		# add the button to the most recent hbox
-		var hbox_index = level_columns.get_children().size()-1
+		var hbox_index: int = level_columns.get_children().size()-1
 		level_columns.get_child(hbox_index).add_child(button)
 		
 
