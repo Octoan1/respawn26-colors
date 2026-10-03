@@ -60,3 +60,7 @@ script = ExtResource("7_01a4e")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=125584598]
 layers = 2
 mesh = SubResource("CapsuleMesh_g4v7s")
+
+[node name="DebugVelocity" type="Label3D" parent="." unique_id=336715397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0990615, 0.90116143, -1.4164456)
+text = "Vel: 0"

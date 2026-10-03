@@ -9,6 +9,7 @@ class_name Player
 @export var stick_force:float = 5
 
 @onready var head:Node3D = $Head
+@onready var debug_velocity: Label3D = $DebugVelocity
 
 var coyote_timer: Timer
 
@@ -35,4 +36,5 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 func _process(_delta: float) -> void:
-	pass
+	debug_velocity.text = "Vel: %.2f" % velocity.length()
+	
