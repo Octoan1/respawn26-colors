@@ -19,7 +19,7 @@ func physics_update(delta: float) -> void:
 	if not player.is_on_floor():
 		player.velocity += player.get_gravity() * delta
 	else:
-		Transitioned.emit(self, "IDLE")
+		Transitioned.emit(self, "LANDING")
 		return
 		
 	if Input.is_action_just_pressed("player_jump") and not player.coyote_timer.is_stopped():

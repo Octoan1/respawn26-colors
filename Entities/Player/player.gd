@@ -8,7 +8,7 @@ class_name Player
 @export var walk_speed:float = 5.0
 @export var run_speed:float = 8.0
 @export var acceleration:float = 15.0
-@export var slide_spd_req:float = 7.0
+@export var slide_spd_req:float = 5.1
 
 # Air movement settings
 @export var jump_velocity:float = 4.5

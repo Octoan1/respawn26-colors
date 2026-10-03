@@ -26,7 +26,7 @@ func physics_update(delta: float) -> void:
 	
 	# slide pressed
 	if Input.is_action_just_pressed("player_slide"):
-		if player.horizonal_velocity.length() > 6:
+		if player.horizonal_velocity.length() > player.slide_spd_req:
 			Transitioned.emit(self,"SLIDE")
 	
 	# sprint released -> walk
