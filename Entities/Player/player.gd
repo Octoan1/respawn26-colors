@@ -9,7 +9,7 @@ class_name Player
 @export var mouse_sensitivity:float = 0.002
 @export var stick_force:float = 2.0
 @export var slide_spd_req:float = 7.0
-@export var push_off_wall_force:float = 2.0
+@export var push_off_wall_force:float = 4.0
 
 @onready var head:Node3D = $Head
 @onready var debug_velocity: Label3D = $Head/DebugVelocity
