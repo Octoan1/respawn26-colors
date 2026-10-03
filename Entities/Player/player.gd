@@ -1,7 +1,8 @@
 extends CharacterBody3D
 class_name Player
 
-@export var speed:float = 5.0
+@export var walk_speed:float = 5.0
+@export var run_speed:float = 8.0
 @export var jump_velocity:float = 4.5
 @export var acceleration:float = 25.0
 @export var mouse_sensitivity:float = 0.002
@@ -34,5 +35,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 func _process(_delta: float) -> void:
-	if is_on_wall():
-		print("Hey I'm on a wall")
+	pass

@@ -2,13 +2,18 @@
 
 [ext_resource type="Script" uid="uid://degd4mq0tca8s" path="res://Entities/Player/player.gd" id="1_mv1ah"]
 [ext_resource type="Script" uid="uid://db8je6wadmfjf" path="res://Components/state_machine.gd" id="2_lu8i8"]
-[ext_resource type="Script" uid="uid://dwqmakkymaxlj" path="res://Entities/Player/base.gd" id="3_tekja"]
-[ext_resource type="Script" uid="uid://cs8dvwww68gmk" path="res://Entities/Player/jump.gd" id="4_tekja"]
-[ext_resource type="Script" uid="uid://bei4dicsadbmf" path="res://Entities/Player/air.gd" id="5_5c2io"]
-[ext_resource type="Script" uid="uid://b7m30eoriqxd" path="res://Entities/Player/wall_riding.gd" id="6_4wf4l"]
-[ext_resource type="Script" uid="uid://dqviqt5hnpsuc" path="res://Entities/Player/wall_jump.gd" id="7_01a4e"]
+[ext_resource type="Script" uid="uid://dgysd5kft553j" path="res://Entities/Player/player_camera.gd" id="2_x1y6q"]
+[ext_resource type="Script" uid="uid://ocobi86ia54a" path="res://Entities/Player/States/idle_state.gd" id="3_lub02"]
+[ext_resource type="Script" uid="uid://dwqmakkymaxlj" path="res://Entities/Player/States/walk_state.gd" id="3_tekja"]
+[ext_resource type="Script" uid="uid://b2yq8oy70aiv4" path="res://Entities/Player/States/run_state.gd" id="4_7a1se"]
+[ext_resource type="Script" uid="uid://cs8dvwww68gmk" path="res://Entities/Player/States/jump.gd" id="4_tekja"]
+[ext_resource type="Script" uid="uid://bei4dicsadbmf" path="res://Entities/Player/States/air.gd" id="5_5c2io"]
+[ext_resource type="Script" uid="uid://b7m30eoriqxd" path="res://Entities/Player/States/wall_riding.gd" id="6_4wf4l"]
+[ext_resource type="Script" uid="uid://dqviqt5hnpsuc" path="res://Entities/Player/States/wall_jump.gd" id="7_01a4e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t4wu"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 
 [node name="Player" type="CharacterBody3D" unique_id=493457226]
 script = ExtResource("1_mv1ah")
@@ -17,17 +22,28 @@ script = ExtResource("1_mv1ah")
 shape = SubResource("CapsuleShape3D_0t4wu")
 
 [node name="Head" type="Node3D" parent="." unique_id=730821380]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=100536400]
+unique_name_in_owner = true
+cull_mask = 1048573
+script = ExtResource("2_x1y6q")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1226587949 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_lu8i8")
-initial_state = NodePath("BASE")
+debug_mode = true
+initial_state = NodePath("IDLE")
 metadata/_custom_type_script = "uid://db8je6wadmfjf"
 
-[node name="BASE" type="Node" parent="StateMachine" unique_id=2134732681]
+[node name="IDLE" type="Node" parent="StateMachine" unique_id=964276831]
+script = ExtResource("3_lub02")
+
+[node name="WALK" type="Node" parent="StateMachine" unique_id=2134732681]
 script = ExtResource("3_tekja")
+
+[node name="RUN" type="Node" parent="StateMachine" unique_id=1461442331]
+script = ExtResource("4_7a1se")
 
 [node name="JUMP" type="Node" parent="StateMachine" unique_id=1530998249]
 script = ExtResource("4_tekja")
@@ -40,3 +56,7 @@ script = ExtResource("6_4wf4l")
 
 [node name="WALL_JUMP" type="Node" parent="StateMachine" unique_id=395958755]
 script = ExtResource("7_01a4e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=125584598]
+layers = 2
+mesh = SubResource("CapsuleMesh_g4v7s")
