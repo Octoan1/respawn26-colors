@@ -7,22 +7,31 @@ class_name Player
 @export var acceleration:float = 15.0
 @export var air_acceleration:float = 10.0
 @export var mouse_sensitivity:float = 0.002
-@export var stick_force:float = 5
-@export var slide_spd_req:float = 7
+@export var stick_force:float = 2.0
+@export var slide_spd_req:float = 7.0
+@export var push_off_wall_force:float = 2.0
 
 @onready var head:Node3D = $Head
 @onready var debug_velocity: Label3D = $DebugVelocity
 @onready var debug_state: Label3D = $DebugState
 
 var coyote_timer: Timer
+var wall_grab_timer: Timer
+
 ## this is a helper value for checking horizontal velocity, it doesn't change players horizontal velocity
 var horizonal_velocity: Vector2 = Vector2.ZERO
+var wall_normal: Vector3
 
 func _ready() -> void:
 	coyote_timer = Timer.new()
 	coyote_timer.one_shot = true
 	coyote_timer.wait_time = 0.25
 	add_child(coyote_timer)
+	
+	wall_grab_timer = Timer.new()
+	wall_grab_timer.one_shot = true
+	wall_grab_timer.wait_time = 0.1
+	add_child(wall_grab_timer)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# recapture mouse 
