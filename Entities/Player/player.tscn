@@ -29,9 +29,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=100536400]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.7929144)
 cull_mask = 1048573
 script = ExtResource("2_x1y6q")
+
+[node name="DebugVelocity" type="Label3D" parent="Head" unique_id=336715397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.799733, 3.5719242, -5.461578)
+text = "Vel: 0"
+
+[node name="DebugState" type="Label3D" parent="Head" unique_id=700631333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.794367, 3.374153, -5.463619)
+text = "State:"
 
 [node name="StateMachine" type="Node" parent="." unique_id=1226587949 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_lu8i8")
@@ -69,11 +76,3 @@ script = ExtResource("12_iplt1")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=125584598]
 layers = 2
 mesh = SubResource("CapsuleMesh_g4v7s")
-
-[node name="DebugVelocity" type="Label3D" parent="." unique_id=336715397]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0990615, 0.90116143, 1.1563038)
-text = "Vel: 0"
-
-[node name="DebugState" type="Label3D" parent="." unique_id=700631333]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0990615, 0.68161035, 1.1289998)
-text = "State:"
