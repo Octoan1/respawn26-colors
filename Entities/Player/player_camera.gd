@@ -5,6 +5,8 @@ extends Camera3D
 @export var fov_multiplier: float = 3.0
 ## Controls how quickly the FOV changes.
 @export var fov_smoothing: float = 5.0
+## Controls the speed before fov starts increasing
+@export var fov_start_speed: float = 8.0
 
 @onready var player: Player = $"../.."
 var base_fov: float
@@ -23,6 +25,12 @@ func update_fov(delta: float) -> void:
 	
 	# Ignore movement that is backwards
 	forward_speed = max(forward_speed, 0.0)
+	
+	# Set a minimum forward speed
+	if forward_speed < fov_start_speed:
+		forward_speed = 0.0
+	else:
+		forward_speed -= fov_start_speed
 
 	# Increase the FOV based on the player's forward speed
 	var target_fov: float = base_fov + forward_speed * fov_multiplier
