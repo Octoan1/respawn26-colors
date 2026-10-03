@@ -15,3 +15,4 @@ func go_to_level_select() -> void:
 	var level_select_screen: Node = scene.instantiate()
 	
 	LevelManager.main.add_child(level_select_screen)
+	
