@@ -5,6 +5,8 @@ func setup() -> void:
 	pass
 
 func enter() -> void: 
+	if not player.wall_grab_timer.timeout.is_connected(_wall_grab_timeout):
+		player.wall_grab_timer.timeout.connect(_wall_grab_timeout)
 	pass
 	
 func exit() -> void: 
@@ -25,9 +27,8 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self,"JUMP")
 		return
 	
-	if player.is_on_wall():
-		Transitioned.emit(self, "WALL_RIDING")
-		return
+	if player.is_on_wall() and player.wall_grab_timer.is_stopped():
+		player.wall_grab_timer.start()
 	
 	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
 	var direction := (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -45,3 +46,8 @@ func physics_update(delta: float) -> void:
 			player.velocity.z = horizontal_velocity.y
 	
 	player.move_and_slide()
+
+
+func _wall_grab_timeout() -> void:
+	if player.is_on_wall():
+		Transitioned.emit(self, "WALL_RIDING")
