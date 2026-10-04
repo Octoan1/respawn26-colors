@@ -32,19 +32,11 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "AIR")
 		return
 	
-	# Movement input -> switch to walk
-	var input_dir := Input.get_vector(
-		"player_left",
-		"player_right",
-		"player_forwards",
-		"player_backwards"
-	)
-	
-	if input_dir:
+	var direction := player.get_movement_direction()
+
+	if direction != Vector3.ZERO:
 		Transitioned.emit(self, "WALK")
 		return
-	
-	# Slow player to a stop
-	player.movement.decelerate(delta)
-	
+
+	player.movement.apply_ground_friction(delta)
 	player.move_and_slide()

@@ -9,6 +9,7 @@ class_name Player
 @onready var debug_state: Label = $Debug/DebugState
 
 var coyote_timer: Timer
+var jump_buffer_timer: Timer
 var wall_grab_timer: Timer
 
 var wall_normal: Vector3
@@ -24,6 +25,11 @@ func _ready() -> void:
 	wall_grab_timer.one_shot = true
 	wall_grab_timer.wait_time = 0.2
 	add_child(wall_grab_timer)
+	
+	jump_buffer_timer = Timer.new()
+	jump_buffer_timer.one_shot = true
+	jump_buffer_timer.wait_time = 0.1
+	add_child(jump_buffer_timer)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -61,10 +67,12 @@ func get_movement_direction() -> Vector3:
 		"player_backwards"
 	)
 
-	var direction := Vector3(input_dir.x, 0.0, input_dir.y)
-
-	# Convert input from local space to world space
-	direction = global_transform.basis * direction
+	var direction := transform.basis * Vector3(
+		input_dir.x,
+		0.0,
+		input_dir.y
+	)
 
 	direction.y = 0.0
+
 	return direction.normalized()

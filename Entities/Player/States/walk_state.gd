@@ -38,15 +38,16 @@ func physics_update(delta: float) -> void:
 	
 	var direction := player.get_movement_direction()
 
-	if direction:
-		player.movement.accelerate(
-			direction,
-			player.movement.walk_speed,
-			delta
-		)
-	else:
-		# No direction -> transition to idle
+	if direction == Vector3.ZERO:
 		Transitioned.emit(self, "IDLE")
 		return
+
+	player.movement.apply_ground_friction(delta)
+
+	player.movement.accelerate_ground(
+		direction,
+		player.movement.walk_speed,
+		delta
+	)
 		
 	player.move_and_slide()

@@ -20,11 +20,15 @@ func physics_update(delta: float) -> void:
 		return
 	
 	# Coyote-time jump
-	if Input.is_action_just_pressed("player_jump") \
-			and not player.coyote_timer.is_stopped():
+	if Input.is_action_just_pressed("player_jump") and not player.coyote_timer.is_stopped():
 		player.coyote_timer.stop()
 		Transitioned.emit(self, "JUMP")
 		return
+		
+	# Jump-buffer start 
+	if Input.is_action_just_pressed("player_jump"):
+		player.jump_buffer_timer.start()
+
 	
 	# Start wall-grab timer
 	if player.is_on_wall() and player.wall_grab_timer.is_stopped():
@@ -32,7 +36,7 @@ func physics_update(delta: float) -> void:
 	
 	# Air movement
 	var direction := player.get_movement_direction()
-	player.movement.air_control(direction, delta)
+	player.movement.accelerate_air(direction, delta)
 	player.movement.apply_gravity(delta)
 	
 	player.move_and_slide()

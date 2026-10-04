@@ -15,6 +15,9 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(_delta: float) -> void:
+	if not player.jump_buffer_timer.is_stopped() or (Input.is_action_pressed("player_jump") and player.movement.auto_bhop):
+		Transitioned.emit(self, "JUMP")
+	
 	# slide pressed
 	if Input.is_action_pressed("player_slide"):
 		if player.horizonal_velocity.length() > player.slide_spd_req:
