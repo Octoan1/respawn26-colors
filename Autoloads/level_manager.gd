@@ -52,13 +52,11 @@ func go_to_level(index: int) -> void:
 func complete_level() -> void:
 	stopwatch_on = false
 	var level: LevelData = LEVEL_LIST.levels[current_index]
-	
-	
 	level.is_complete = true
 	
 	## display level_report ui here
 	UiManager.show_level_report()
-	
+	SaveManager.save_game()
 
 func next_level() -> void:
 	if _is_valid_index(current_index + 1):
