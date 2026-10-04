@@ -32,6 +32,7 @@ theme_override_font_sizes/font_size = 80
 text = "FinishTime"
 
 [node name="NewBestTime" type="Label" parent="." unique_id=212989002]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -48,3 +49,4 @@ theme_override_font_sizes/font_size = 40
 text = "New Best!"
 
 [connection signal="free_ui" from="LevelReport" to="." method="_on_level_report_free_ui"]
+[connection signal="new_best" from="LevelReport" to="." method="_on_level_report_new_best"]

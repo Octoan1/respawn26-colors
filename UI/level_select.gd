@@ -24,6 +24,12 @@ func populate_button_data() -> void:
 		button.pressed.connect(go_to_level.bind(level_num))
 		button.text = "Level " + str(level_num+1)
 		
+		if level_num != 0:
+			if LevelManager.LEVEL_LIST.levels[level_num-1].is_complete == false:
+				button.disabled = true
+		
+		
+		
 		# add the button to the most recent hbox
 		var hbox_index: int = level_columns.get_children().size()-1
 		level_columns.get_child(hbox_index).add_child(button)

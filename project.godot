@@ -21,6 +21,7 @@ LevelManager="*uid://dlej84bfjwh10"
 SceneManager="*uid://do5hro5hfqbwa"
 UiManager="*uid://delk213ruhhe6"
 DebugManager="*uid://bs5fgahe5i6do"
+SaveManager="*uid://c0sl3trrfiygb"
 
 [debug]
 

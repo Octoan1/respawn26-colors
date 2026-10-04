@@ -1,6 +1,7 @@
 extends Control
 
 signal free_ui
+signal new_best
 
 ## UI POPULATION VARS
 @onready var level_name: Label = $LevelName
@@ -129,7 +130,7 @@ func populate_report() -> void:
 	
 	# update rank text + threshold text + next rank text
 	var rank_index: int = 0
-	var ranks: Array[String] = ["S", "A", "B", "C", "D"]
+	var ranks: Array[String] = ["S", "A", "B", "C", "D", "F"]
 	
 	# traverse the level data, rank_times ordered from S -> D.
 	# So, index 0 = rank S, index 1 = rank A, and so on.
@@ -143,6 +144,17 @@ func populate_report() -> void:
 			
 			rank_text.text = ranks[rank_index]
 			threshold_text.text = "%.2f" %time
+			
+			# check if this rank is an improvement, and update the level data
+			var original_rank: int = ranks.find(level_data.rank)
+			if rank_index < original_rank:
+				level_data.rank = ranks[rank_index]
+			
+			# check if this new time is better than the old time
+			if LevelManager.player_time < level_data.best_time:
+				level_data.best_time = LevelManager.player_time
+				new_best.emit()
+			
 			break
 		rank_index += 1
 	

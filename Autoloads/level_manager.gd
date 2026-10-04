@@ -41,7 +41,6 @@ func go_to_level(index: int) -> void:
 	
 	cleanup_main()
 	main.add_child(level)
-	#remove_level(current_index - 1)
 	
 	# handle time vars
 	player_time = 0
@@ -52,6 +51,11 @@ func go_to_level(index: int) -> void:
 ## rework this block so it instead opens up the level_finish ui.
 func complete_level() -> void:
 	stopwatch_on = false
+	var level: LevelData = LEVEL_LIST.levels[current_index]
+	
+	
+	level.is_complete = true
+	
 	## display level_report ui here
 	UiManager.show_level_report()
 	
@@ -60,25 +64,9 @@ func next_level() -> void:
 	if _is_valid_index(current_index + 1):
 		go_to_level(current_index + 1)
 	else:
-		#remove_level(current_index)
 		cleanup_main()
 		current_index = 0
 		UiManager.go_to_title()
-
-## Frees the previous level from the scene tree
-func remove_level(index: int) -> void:
-	if not _is_valid_index(index):
-		#push_error("LevelManager: no level at index %d" % index)
-		return
-	var level_num: int = index + 1
-	var level_name: String = "Level" + str(level_num)
-	#print(level_name)
-	
-	for child in main.get_children():
-		#print(child.name)
-		if child.name == level_name:
-			#print("level found.")
-			child.queue_free()
 
 ## Reloads the current level from scratch.
 func restart_level() -> void:
