@@ -32,6 +32,15 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "AIR")
 		return
 	
+	# SLIDE and CROUCH state transition
+	if Input.is_action_just_pressed("player_slide"):
+		if player.movement.get_horizontal_velocity().length() >= player.movement.min_speed_for_slide:
+			Transitioned.emit(self, "SLIDE")
+			return
+		else:
+			Transitioned.emit(self, "CROUCH")
+			return
+	
 	var direction := player.get_movement_direction()
 
 	if direction != Vector3.ZERO:

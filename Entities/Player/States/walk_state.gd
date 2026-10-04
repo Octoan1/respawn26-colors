@@ -26,14 +26,17 @@ func physics_update(delta: float) -> void:
 		return
 	
 	# RUN state transition
-	if Input.is_action_just_pressed("player_sprint"):
+	if Input.is_action_pressed("player_sprint"):
 		Transitioned.emit(self, "RUN")
 		return
 		
 	# SLIDE state transition
 	if Input.is_action_just_pressed("player_slide"):
-		if player.horizonal_velocity.length() > player.movement.slide_spd_req:
+		if player.movement.get_horizontal_velocity().length() >= player.movement.min_speed_for_slide:
 			Transitioned.emit(self, "SLIDE")
+			return
+		else:
+			Transitioned.emit(self, "CROUCH")
 			return
 	
 	var direction := player.get_movement_direction()

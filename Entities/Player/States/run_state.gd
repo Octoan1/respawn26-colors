@@ -1,5 +1,9 @@
 extends PlayerState
 
+const HEADBOB_MOVE_AMOUNT = 0.06
+const HEADBOB_FREQUENCY = 2.4
+var headbob_time := 0.0
+
 func setup() -> void:
 	super()
 
@@ -9,8 +13,13 @@ func enter() -> void:
 func exit() -> void:
 	pass
 	
-func update(_delta: float) -> void:
-	pass
+func update(delta: float) -> void:
+	headbob_time += delta * player.velocity.length()
+	%Camera3D.transform.origin = Vector3(
+		cos(headbob_time * HEADBOB_FREQUENCY * 0.5) * HEADBOB_MOVE_AMOUNT,
+		sin(headbob_time * HEADBOB_FREQUENCY) * HEADBOB_MOVE_AMOUNT,
+		0
+	)
 
 func physics_update(delta: float) -> void:
 	# Handle jump
@@ -26,8 +35,11 @@ func physics_update(delta: float) -> void:
 	
 	# Slide pressed
 	if Input.is_action_just_pressed("player_slide"):
-		if player.horizonal_velocity.length() > player.movement.slide_speed_requirement:
+		if player.movement.get_horizontal_velocity().length() >= player.movement.min_speed_for_slide:
 			Transitioned.emit(self, "SLIDE")
+			return
+		else:
+			Transitioned.emit(self, "CROUCH")
 			return
 	
 	# Sprint released -> walk

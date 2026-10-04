@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b7m30eoriqxd" path="res://Entities/Player/States/wall_riding.gd" id="6_4wf4l"]
 [ext_resource type="Script" uid="uid://dqviqt5hnpsuc" path="res://Entities/Player/States/wall_jump.gd" id="7_01a4e"]
 [ext_resource type="Script" uid="uid://b4o0syihug2u2" path="res://Entities/Player/States/slide_state.gd" id="7_ap3xn"]
+[ext_resource type="Script" uid="uid://ca4hkabplsyfi" path="res://Entities/Player/States/crouch_state.gd" id="8_r8fok"]
 [ext_resource type="Script" uid="uid://c46mxkgb0dg1e" path="res://Entities/Player/States/landing_state.gd" id="9_owvpp"]
 [ext_resource type="Script" uid="uid://6wd36mbo3304" path="res://Entities/Player/push_off_wall.gd" id="12_iplt1"]
 
@@ -108,6 +109,9 @@ script = ExtResource("3_tekja")
 
 [node name="RUN" type="Node" parent="StateMachine" unique_id=1461442331]
 script = ExtResource("4_7a1se")
+
+[node name="CROUCH" type="Node" parent="StateMachine" unique_id=552830620]
+script = ExtResource("8_r8fok")
 
 [node name="SLIDE" type="Node" parent="StateMachine" unique_id=532242521]
 script = ExtResource("7_ap3xn")

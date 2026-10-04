@@ -4,8 +4,14 @@ class_name PlayerMovement
 @export_category("Ground Movement")
 @export var walk_speed: float = 5.0
 @export var run_speed: float = 8.0
-@export var ground_acceleration: float = 14.0
+@export var crouch_speed: float = 3.0
+@export var ground_acceleration: float = 6.0
 @export var ground_friction: float = 6.0
+
+@export_category("Slide")
+@export var slide_speed: float = 14.0
+@export var slide_friction: float = 1.0
+@export var min_speed_for_slide: float = 5.0
 
 @export_category("Air Movement")
 @export var air_acceleration: float = 800.0
@@ -65,6 +71,32 @@ func apply_ground_friction(delta: float) -> void:
 
 	player.velocity.x = horizontal_velocity.x
 	player.velocity.z = horizontal_velocity.z
+
+
+func start_slide(direction: Vector3) -> void:
+	var current_speed: float = get_horizontal_speed()
+	
+	var speed: float = max(current_speed, slide_speed)
+	
+	player.velocity.x = direction.x * speed
+	player.velocity.z = direction.z * speed
+
+
+func apply_slide_friction(delta: float) -> void:
+	var horizontal_velocity: Vector2 = get_horizontal_velocity()
+
+	var speed: float = horizontal_velocity.length()
+
+	if speed <= 0.0:
+		return
+
+	var drop: float = speed * slide_friction * delta
+	var new_speed: float = max(speed - drop, 0.0)
+
+	horizontal_velocity = horizontal_velocity.normalized() * new_speed
+
+	player.velocity.x = horizontal_velocity.x
+	player.velocity.z = horizontal_velocity.y
 
 
 func accelerate_air(direction: Vector3, delta: float) -> void:

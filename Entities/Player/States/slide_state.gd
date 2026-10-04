@@ -9,7 +9,18 @@ func setup() -> void:
 func enter() -> void: 
 	# shrink head
 	animation_player.play("start_slide")
-	player.velocity *= Vector3(1.5,0,1.5)
+	
+	var direction: Vector3 = player.get_movement_direction()
+
+	# If there is no input, slide in the direction we're already moving
+	if direction == Vector3.ZERO:
+		direction = Vector3(
+			player.velocity.x,
+			0.0,
+			player.velocity.z
+		).normalized()
+
+	player.movement.start_slide(direction)
 	
 func exit() -> void: 
 	# restore head
@@ -32,13 +43,10 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_just_released("player_slide"):
 		Transitioned.emit(self,"LANDING")
-		
-	if player.velocity:
-		player.velocity.x = move_toward(player.velocity.x, 0, 0.25* player.acceleration * delta)
-		player.velocity.z = move_toward(player.velocity.z, 0, 0.25*player.acceleration * delta)
 	
 	
-	if player.horizonal_velocity.length() < 3:
+	if player.movement.get_horizontal_velocity().length() < player.movement.min_speed_for_slide:
 		Transitioned.emit(self,"IDLE")
 	
+	player.movement.apply_slide_friction(delta)
 	player.move_and_slide()

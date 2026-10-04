@@ -15,6 +15,7 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(_delta: float) -> void:
+	player.movement.apply_gravity(_delta)
 	player.move_and_slide()
 	
 	# Jump is only the initial launch
