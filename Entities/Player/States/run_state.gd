@@ -1,10 +1,14 @@
 extends PlayerState
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../Debug/AnimatedSprite2D"
+var origin: Vector2
+
 const HEADBOB_MOVE_AMOUNT = 0.06
 const HEADBOB_FREQUENCY = 2.4
 var headbob_time := 0.0
 
 func setup() -> void:
+	origin = animated_sprite_2d.transform.origin + Vector2(0,20)
 	super()
 
 func enter() -> void:
@@ -20,6 +24,7 @@ func update(delta: float) -> void:
 		sin(headbob_time * HEADBOB_FREQUENCY) * HEADBOB_MOVE_AMOUNT,
 		0
 	)
+	animated_sprite_2d.global_position = origin - Vector2(0, 10 * sin(headbob_time * HEADBOB_FREQUENCY))
 
 func physics_update(delta: float) -> void:
 	# Handle jump

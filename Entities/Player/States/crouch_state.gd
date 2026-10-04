@@ -22,7 +22,7 @@ func physics_update(delta: float) -> void:
 	var direction := player.get_movement_direction()
 	
 	# no direction -> no input -> transition idle
-	if direction == Vector3.ZERO:
+	if Input.is_action_just_released("player_slide"):
 		Transitioned.emit(self, "IDLE")
 		return
 
