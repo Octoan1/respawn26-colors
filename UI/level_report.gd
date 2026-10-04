@@ -76,7 +76,7 @@ func _on_main_menu_mouse_exited() -> void:
 	close_button(main_menu)
 
 func expand_button(button: Button) -> void:
-	# Retrieve or kill this specific button's active tween
+	# cancel tween early if there is one
 	if button.has_meta("active_tween"):
 		var old_tween: Tween = button.get_meta("active_tween") as Tween
 		if old_tween and old_tween.is_valid():
@@ -99,7 +99,7 @@ func expand_button(button: Button) -> void:
 	new_tween.tween_property(button, "size:x", target_size_x, TWEEN_DURATION)
 
 func close_button(button: Button) -> void:
-	# Retrieve or kill this specific button's active tween
+	# cancel tween early if there is one
 	if button.has_meta("active_tween"):
 		var old_tween: Tween = button.get_meta("active_tween") as Tween
 		if old_tween and old_tween.is_valid():
@@ -158,4 +158,4 @@ func populate_report() -> void:
 			break
 		rank_index += 1
 	
-	print("testing!!!")
+	SaveManager.save_game()

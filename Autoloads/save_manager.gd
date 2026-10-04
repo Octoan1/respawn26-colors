@@ -13,6 +13,7 @@ func _ready() -> void:
 	load_game()
 
 func save_game() -> void:
+	#print("saving game")
 	# Create a temporary container for the data we want to save
 	var save_data: SaveData = SaveData.new()
 	
@@ -41,7 +42,6 @@ func load_game() -> void:
 		
 	# Distribute the saved data back into LevelManager resources
 	for i in range(save_data.level_progress_list.size()):
-		# Safety check to avoid out-of-bounds errors if your level list changed
 		if i >= LevelManager.LEVEL_LIST.levels.size():
 			break
 			
@@ -51,3 +51,24 @@ func load_game() -> void:
 		level_data.best_time = progress.best_time
 		level_data.is_complete = progress.is_complete
 		level_data.rank = progress.rank
+		
+		#print(level_data)
+		#print(level_data.best_time)
+		#print(level_data.is_complete)
+		#print(level_data.rank)
+
+func clear_save_data() -> void:
+	# Create a temporary container for the data we want to save
+	var save_data: SaveData = SaveData.new()
+	
+	# Loop through each level in your main list and extract the progress
+	for level_data in LevelManager.LEVEL_LIST.levels:
+		var progress: LevelProgress = LevelProgress.new()
+		progress.best_time = 99999.0
+		progress.is_complete = false
+		progress.rank = "F"
+		
+		save_data.level_progress_list.append(progress)
+	
+	# Write the data to the user's disk
+	ResourceSaver.save(save_data, SAVE_PATH)
