@@ -4,6 +4,7 @@ extends Resource
 @export var scene: PackedScene
 @export var name: String
 @export var color: String
+@export var target_info: String
 
 @export_group("Rank Times")
 @export var s_rank_time: float

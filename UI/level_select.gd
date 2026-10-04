@@ -36,5 +36,6 @@ func populate_button_data() -> void:
 		
 
 func go_to_level(level_num: int) -> void:
-	LevelManager.go_to_level(level_num)
+	UiManager.go_to_level_brief(level_num)
+	#LevelManager.go_to_level(level_num)
 	queue_free()
