@@ -14,30 +14,40 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
+	# JUMP state transition
 	if Input.is_action_just_pressed("player_jump") and player.is_on_floor():
 		Transitioned.emit(self, "JUMP")
+		return
 	
+	# AIR state transition
 	if not player.is_on_floor():
 		player.coyote_timer.start()
 		Transitioned.emit(self, "AIR")
 		return
 	
-	# sprint pressed -> run
-	if Input.is_action_just_pressed("player_sprint"):
-		Transitioned.emit(self,"RUN")
+	# RUN state transition
+	if Input.is_action_pressed("player_sprint"):
+		Transitioned.emit(self, "RUN")
+		return
 		
-	# slide pressed
-	if Input.is_action_just_pressed("player_slide"):
-		if player.horizonal_velocity.length() > 6:
-			Transitioned.emit(self,"SLIDE")
+	# CROUCH state transition
+	if Input.is_action_just_pressed("player_crouch"):
+		Transitioned.emit(self, "CROUCH")
+		player.animation_player.play("Crouch")
+		return
 	
-	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
-	var direction := (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		player.velocity.x = move_toward(player.velocity.x, direction.x * player.walk_speed, player.acceleration * delta)
-		player.velocity.z = move_toward(player.velocity.z, direction.z * player.walk_speed, player.acceleration * delta)
-	else:
-		# no direction -> transition idle to decelerate
+	var direction := player.get_movement_direction()
+
+	if direction == Vector3.ZERO:
 		Transitioned.emit(self, "IDLE")
+		return
+
+	player.movement.apply_ground_friction(delta)
+
+	player.movement.accelerate_ground(
+		direction,
+		player.movement.walk_speed,
+		delta
+	)
 		
 	player.move_and_slide()
