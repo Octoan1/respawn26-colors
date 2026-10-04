@@ -5,13 +5,16 @@ func setup() -> void:
 	pass
 
 func enter() -> void: 
-	player.velocity = (Vector3.UP * player.jump_velocity) + (player.wall_normal * player.push_off_wall_force)
+	player.velocity += (Vector3.UP * player.movement.jump_velocity) + (player.wall_normal * player.movement.push_off_wall_force)
 	
 func exit() -> void: 
 	pass
 	
 func update(_delta: float) -> void:
-	Transitioned.emit(self, "AIR")
+	pass
 
 func physics_update(_delta: float) -> void:
-	pass
+	player.movement.apply_gravity(_delta)
+	player.move_and_slide()
+	
+	Transitioned.emit(self, "AIR")
