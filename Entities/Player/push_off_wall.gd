@@ -5,7 +5,7 @@ func setup() -> void:
 	pass
 
 func enter() -> void: 
-	player.velocity += player.wall_normal * player.push_off_wall_force
+	player.velocity += player.wall_normal * player.movement.push_off_wall_force
 	
 func exit() -> void: 
 	pass

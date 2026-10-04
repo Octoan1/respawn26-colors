@@ -24,7 +24,7 @@ func _ready() -> void:
 	
 	wall_grab_timer = Timer.new()
 	wall_grab_timer.one_shot = true
-	wall_grab_timer.wait_time = 0.2
+	wall_grab_timer.wait_time = 0.1
 	add_child(wall_grab_timer)
 	
 	jump_buffer_timer = Timer.new()

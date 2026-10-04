@@ -6,8 +6,10 @@ func setup() -> void:
 func enter() -> void:
 	if not player.wall_grab_timer.timeout.is_connected(_wall_grab_timeout):
 		player.wall_grab_timer.timeout.connect(_wall_grab_timeout)
+	player.wall_grab_timer.start()
 
 func exit() -> void:
+	player.movement.can_grab_wall = false
 	pass
 
 func update(_delta: float) -> void:
@@ -19,6 +21,10 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "LANDING")
 		return
 	
+	if player.is_on_wall() and player.movement.can_grab_wall:
+		Transitioned.emit(self, "WALL_RIDING")
+		return
+	
 	# Coyote-time jump
 	if Input.is_action_just_pressed("player_jump") and not player.coyote_timer.is_stopped():
 		player.coyote_timer.stop()
@@ -28,11 +34,6 @@ func physics_update(delta: float) -> void:
 	# Jump-buffer start 
 	if Input.is_action_just_pressed("player_jump"):
 		player.jump_buffer_timer.start()
-
-	
-	# Start wall-grab timer
-	if player.is_on_wall() and player.wall_grab_timer.is_stopped():
-		player.wall_grab_timer.start()
 	
 	# Air movement
 	var direction := player.get_movement_direction()
@@ -43,5 +44,4 @@ func physics_update(delta: float) -> void:
 
 
 func _wall_grab_timeout() -> void:
-	if player.is_on_wall():
-		Transitioned.emit(self, "WALL_RIDING")
+	player.movement.can_grab_wall = true

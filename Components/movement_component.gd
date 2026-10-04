@@ -22,6 +22,13 @@ class_name PlayerMovement
 @export_category("Jump")
 @export var jump_velocity: float = 4.5
 
+@export_category("Wall Movement")
+@export var stick_force: float = 2.0
+@export var push_off_wall_force: float = 5.0
+@export var wall_speed: float = 12.0
+@export var wall_acceleration: float = 12.0
+@export var can_grab_wall: bool = false
+
 @onready var player: Player = get_parent()
 
 
@@ -119,6 +126,32 @@ func accelerate_air(direction: Vector3, delta: float) -> void:
 	acceleration_speed = min(acceleration_speed, add_speed)
 
 	player.velocity += acceleration_speed * direction
+
+func accelerate_wall(
+	direction: Vector3,
+	speed: float,
+	delta: float
+) -> void:
+	if direction == Vector3.ZERO:
+		return
+
+	# How fast we are already moving in the desired direction
+	var current_speed := player.velocity.dot(direction)
+
+	# How much speed we can still add
+	var add_speed := speed - current_speed
+
+	if add_speed <= 0.0:
+		return
+
+	# Accelerate toward the desired speed
+	var acceleration_speed := wall_acceleration * delta * speed
+	acceleration_speed = min(acceleration_speed, add_speed)
+
+	player.velocity += direction * acceleration_speed
+	
+	player.velocity += -player.wall_normal.normalized() * player.movement.stick_force
+	player.velocity.y = 0
 
 
 func jump() -> void:
