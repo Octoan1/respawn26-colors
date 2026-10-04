@@ -6,6 +6,7 @@ extends Control
 @onready var rank_text: Label = $FullBrief/RankText
 @onready var best_time_text: Label = $FullBrief/BestTimeText
 @onready var death_x: Label = $FullBrief/DeathX
+@onready var target_image = $FullBrief/TargetImage
 
 
 ## BUTTON TWEENING VARS
@@ -34,6 +35,7 @@ func populate_brief(level: LevelData) -> void:
 	if level.is_complete:
 		#death_x.visible = true
 		pass
+	target_image.texture = level.target_image
 	
 
 func _on_begin_button_mouse_entered() -> void:

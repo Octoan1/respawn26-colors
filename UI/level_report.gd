@@ -9,6 +9,8 @@ signal new_best
 @onready var rank_text: Label = $RankText
 @onready var threshold_text: Label = $ThresholdText
 @onready var next_rank: Label = $NextRank
+@onready var target_image = $TargetImage
+
 
 ## BUTTON TWEENING VARS
 @onready var next_level: Button = $NextLevel
@@ -157,5 +159,7 @@ func populate_report() -> void:
 			
 			break
 		rank_index += 1
+	
+	target_image.texture = level_data.target_image
 	
 	SaveManager.save_game()

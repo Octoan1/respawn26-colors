@@ -1,10 +1,12 @@
 class_name LevelData
 extends Resource
 
+@export_group("Level Info")
 @export var scene: PackedScene
 @export var name: String
 @export var color: String
 @export var target_info: String
+@export var target_image: Texture2D = preload("uid://dxn0y7y5uoji8")
 
 @export_group("Rank Times")
 @export var s_rank_time: float

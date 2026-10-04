@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cmjf4x1s7t6j7"]
 
 [ext_resource type="Script" uid="uid://iyw5ibxvylro" path="res://UI/level_report.gd" id="1_ocora"]
-[ext_resource type="Texture2D" uid="uid://dxn0y7y5uoji8" path="res://icon.svg" id="2_et546"]
 
 [node name="LevelReport" type="Control" unique_id=530919330]
 layout_mode = 3
@@ -148,7 +147,6 @@ offset_left = 295.0
 offset_top = 73.0
 offset_right = 423.0
 offset_bottom = 201.0
-texture = ExtResource("2_et546")
 
 [node name="DeathX" type="Label" parent="." unique_id=775867774]
 layout_mode = 0
