@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://d4mtaab55ng0s"]
+
+[ext_resource type="Script" uid="uid://of7uetyps83t" path="res://Levels/LevelData/level_data.gd" id="1_kuhn7"]
+[ext_resource type="PackedScene" uid="uid://c14r1acf4uaap" path="res://Levels/level_1.tscn" id="1_xup6f"]
+
+[resource]
+script = ExtResource("1_kuhn7")
+scene = ExtResource("1_xup6f")
+name = "Level 1"
+color = "Orange"
+s_rank_time = 5.0
+a_rank_time = 10.0
+b_rank_time = 15.0
+c_rank_time = 20.0
+d_rank_time = 25.0
+metadata/_custom_type_script = "uid://of7uetyps83t"

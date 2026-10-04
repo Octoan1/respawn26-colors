@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cad2mj4oauw32"]
 
 [ext_resource type="Script" uid="uid://clete1wqwp4en" path="res://UI/title_ui.gd" id="1_2itqh"]
+[ext_resource type="FontFile" uid="uid://3aswnqx4h2bk" path="res://Assets/fonts/Y224.otf" id="2_pa5mj"]
 
 [node name="Title" type="Control" unique_id=1249127804]
 layout_mode = 3
@@ -15,6 +16,7 @@ script = ExtResource("1_2itqh")
 layout_mode = 0
 offset_right = 1163.0
 offset_bottom = 651.0
+theme_override_fonts/font = ExtResource("2_pa5mj")
 theme_override_font_sizes/font_size = 72
 text = "COLORS"
 horizontal_alignment = 1
