@@ -89,5 +89,9 @@ func _process(delta: float) -> void:
 	
 
 func cleanup_main() -> void:
-	for child in main.get_children():
+	for child in LevelManager.main.get_children():
+		if child.name == "CanvasLayer":
+			for grandchild in child.get_children():
+				grandchild.queue_free()
+			continue
 		child.queue_free()

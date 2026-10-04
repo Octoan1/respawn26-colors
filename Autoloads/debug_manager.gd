@@ -20,4 +20,8 @@ func go_to_debug_map() -> void:
 
 func cleanup_main() -> void:
 	for child in LevelManager.main.get_children():
+		if child.name == "CanvasLayer":
+			for grandchild in child.get_children():
+				grandchild.queue_free()
+			continue
 		child.queue_free()

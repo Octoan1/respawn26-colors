@@ -4,30 +4,39 @@ const LEVEL_SELECT = preload("uid://b4bgodk2ydk3r")
 const LEVEL_FINISH = preload("uid://1mvsvkkyyb8e")
 const LEVEL_BRIEF = preload("uid://cwequt0alhfgo")
 
+var main_canvas: CanvasLayer
 
 ## Instantiates the title scene
 func go_to_title() -> void:
+	get_canvas_layer()
+	
 	var scene: PackedScene = TITLE
 	var title_screen: Node = scene.instantiate()
 	LevelManager.cleanup_main()
 	
-	LevelManager.main.add_child(title_screen)
+	main_canvas.add_child(title_screen)
 
 ## Instantiates the level select scene
 func go_to_level_select() -> void:
+	get_canvas_layer()
+	
 	var scene: PackedScene = LEVEL_SELECT
 	var level_select_screen: Node = scene.instantiate()
 	LevelManager.cleanup_main()
 	
-	LevelManager.main.add_child(level_select_screen)
+	main_canvas.add_child(level_select_screen)
 
 func show_level_report() -> void:
+	get_canvas_layer()
+	
 	var scene: PackedScene = LEVEL_FINISH
 	var level_report_screen: Node = scene.instantiate()
 	
-	LevelManager.main.add_child(level_report_screen)
+	main_canvas.add_child(level_report_screen)
 
 func go_to_level_brief(level_num: int) -> void:
+	get_canvas_layer()
+	
 	var scene: PackedScene = LEVEL_BRIEF
 	var level_brief_screen: Node = scene.instantiate()
 	
@@ -43,5 +52,8 @@ func go_to_level_brief(level_num: int) -> void:
 							baby.pressed.connect(go_to_level_select)
 	
 	var level_data: LevelData = LevelManager.LEVEL_LIST.levels[level_num]
-	LevelManager.main.add_child(level_brief_screen)
+	main_canvas.add_child(level_brief_screen)
 	level_brief_screen.populate_brief(level_data)
+
+func get_canvas_layer() -> void:
+	main_canvas = LevelManager.main.get_child(0)
