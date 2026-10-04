@@ -10,10 +10,11 @@ class_name PlayerMovement
 
 @export_category("Air Movement")
 @export var air_acceleration: float = 10.0
+@export var air_speed: float = 8.0
 
 @export_category("Vertical Movement")
 @export var gravity: float = 20.0
-@export var jump_velocity: float = 4.5
+@export var jump_velocity: float = 6.0
 
 @export_category("Wall Movement")
 @export var stick_force:float = 2.0
@@ -54,9 +55,21 @@ func decelerate(delta: float) -> void:
 
 
 func air_control(direction: Vector3, delta: float) -> void:
-	# Slightly change horizontal momentum while in the air
-	player.velocity.x += direction.x * air_acceleration * delta
-	player.velocity.z += direction.z * air_acceleration * delta
+	# Target direction based on input
+	var target_velocity := direction * run_speed
+	
+	# Gradually steer existing momentum toward the target
+	player.velocity.x = move_toward(
+		player.velocity.x,
+		target_velocity.x,
+		air_acceleration * delta
+	)
+	
+	player.velocity.z = move_toward(
+		player.velocity.z,
+		target_velocity.z,
+		air_acceleration * delta
+	)
 
 
 func apply_gravity(delta: float) -> void:

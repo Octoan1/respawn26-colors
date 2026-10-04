@@ -14,30 +14,39 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
+	# JUMP state transition
 	if Input.is_action_just_pressed("player_jump") and player.is_on_floor():
 		Transitioned.emit(self, "JUMP")
+		return
 	
+	# AIR state transition
 	if not player.is_on_floor():
 		player.coyote_timer.start()
 		Transitioned.emit(self, "AIR")
 		return
 	
-	# sprint pressed -> run
+	# RUN state transition
 	if Input.is_action_just_pressed("player_sprint"):
-		Transitioned.emit(self,"RUN")
+		Transitioned.emit(self, "RUN")
+		return
 		
-	# slide pressed
+	# SLIDE state transition
 	if Input.is_action_just_pressed("player_slide"):
-		if player.horizonal_velocity.length() > 6:
-			Transitioned.emit(self,"SLIDE")
+		if player.horizonal_velocity.length() > player.movement.slide_spd_req:
+			Transitioned.emit(self, "SLIDE")
+			return
 	
-	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
-	var direction := (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction := player.get_movement_direction()
+
 	if direction:
-		player.velocity.x = move_toward(player.velocity.x, direction.x * player.walk_speed, player.acceleration * delta)
-		player.velocity.z = move_toward(player.velocity.z, direction.z * player.walk_speed, player.acceleration * delta)
+		player.movement.accelerate(
+			direction,
+			player.movement.walk_speed,
+			delta
+		)
 	else:
-		# no direction -> transition idle to decelerate
+		# No direction -> transition to idle
 		Transitioned.emit(self, "IDLE")
+		return
 		
 	player.move_and_slide()
