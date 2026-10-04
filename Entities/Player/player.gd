@@ -5,6 +5,7 @@ class_name Player
 
 @onready var head: Node3D = $Head
 @onready var movement: PlayerMovement = $Movement
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var debug_velocity: Label = $Debug/DebugVelocity
 @onready var debug_state: Label = $Debug/DebugState
 
@@ -55,6 +56,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
+	print(animation_player.current_animation)
 	debug_velocity.text = "Vel: %.2f" % velocity.length()
 	debug_state.text = $StateMachine.current_state.name
 	

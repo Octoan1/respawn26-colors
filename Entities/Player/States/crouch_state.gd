@@ -1,18 +1,15 @@
 extends PlayerState
 
-@onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 
 func setup() -> void:
 	super()
 	pass
 
 func enter() -> void: 
-	# shrink head
-	animation_player.play("start_slide")
+	if player.movement.get_horizontal_velocity().length() >= player.movement.min_speed_for_slide:
+		Transitioned.emit(self, "SLIDE")
 	
 func exit() -> void: 
-	# restore head
-	animation_player.play("end_slide")
 	pass
 	
 func update(_delta: float) -> void:
@@ -21,9 +18,9 @@ func update(_delta: float) -> void:
 func physics_update(delta: float) -> void:
 	var direction := player.get_movement_direction()
 	
-	# no direction -> no input -> transition idle
-	if Input.is_action_just_released("player_slide"):
+	if Input.is_action_just_released("player_crouch"):
 		Transitioned.emit(self, "IDLE")
+		player.animation_player.play_backwards("Crouch")
 		return
 
 	player.movement.apply_ground_friction(delta)
