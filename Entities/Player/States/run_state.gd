@@ -1,46 +1,67 @@
 extends PlayerState
 
-func setup() -> void:
-	super()
-	pass
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../Debug/AnimatedSprite2D"
+var origin: Vector2
 
-func enter() -> void: 
+const HEADBOB_MOVE_AMOUNT = 0.06
+const HEADBOB_FREQUENCY = 2.4
+var headbob_time := 0.0
+
+func setup() -> void:
+	origin = animated_sprite_2d.transform.origin + Vector2(0,20)
+	super()
+
+func enter() -> void:
 	pass
 	
-func exit() -> void: 
+func exit() -> void:
 	pass
 	
-func update(_delta: float) -> void:
-	pass
+func update(delta: float) -> void:
+	headbob_time += delta * player.velocity.length()
+	%Camera3D.transform.origin = Vector3(
+		cos(headbob_time * HEADBOB_FREQUENCY * 0.5) * HEADBOB_MOVE_AMOUNT,
+		sin(headbob_time * HEADBOB_FREQUENCY) * HEADBOB_MOVE_AMOUNT,
+		0
+	)
+	animated_sprite_2d.global_position = origin - Vector2(0, 10 * sin(headbob_time * HEADBOB_FREQUENCY))
 
 func physics_update(delta: float) -> void:
-	# handle jump
+	# Handle jump
 	if Input.is_action_just_pressed("player_jump") and player.is_on_floor():
 		Transitioned.emit(self, "JUMP")
+		return
 	
-	# handle fall
+	# Handle falling
 	if not player.is_on_floor():
 		player.coyote_timer.start()
 		Transitioned.emit(self, "AIR")
 		return
 	
-	# slide pressed
-	if Input.is_action_just_pressed("player_slide"):
-		if player.horizonal_velocity.length() > 6:
-			Transitioned.emit(self,"SLIDE")
+	# Slide pressed
+	if Input.is_action_just_pressed("player_crouch"):
+		Transitioned.emit(self, "CROUCH")
+		player.animation_player.play("Crouch")
+
 	
-	# sprint released -> walk
+	# Sprint released -> walk
 	if Input.is_action_just_released("player_sprint"):
-		Transitioned.emit(self,"WALK")
+		Transitioned.emit(self, "WALK")
+		return
 	
+	var direction := player.get_movement_direction()
 	
-	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
-	var direction := (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		player.velocity.x = move_toward(player.velocity.x, direction.x * player.run_speed, 2 * player.acceleration * delta)
-		player.velocity.z = move_toward(player.velocity.z, direction.z * player.run_speed, 2 * player.acceleration * delta)
-	else:
-		# no direction -> transition idle to decelerate
+	# no direction -> no input -> transition idle
+	if direction == Vector3.ZERO:
 		Transitioned.emit(self, "IDLE")
-		
+		return
+
+	player.movement.apply_ground_friction(delta)
+
+	player.movement.accelerate_ground(
+		direction,
+		player.movement.run_speed,
+		delta
+	)
+	
 	player.move_and_slide()
