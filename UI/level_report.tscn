@@ -93,12 +93,26 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -225.0
+offset_top = -200.0
 offset_right = 300.0
 offset_bottom = -150.0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 30
 text = "Next Mission"
+alignment = 0
+
+[node name="RetryButton" type="Button" parent="." unique_id=1931802112]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = -100.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Retry Mission"
 alignment = 0
 
 [node name="LevelSelect" type="Button" parent="." unique_id=1637361229]
@@ -107,11 +121,11 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -150.0
+offset_top = -100.0
 offset_right = 300.0
-offset_bottom = -75.0
+offset_bottom = -50.0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 30
 text = "Level Select"
 alignment = 0
 
@@ -121,26 +135,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -75.0
+offset_top = -50.0
 offset_right = 300.0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "Main Menu"
-alignment = 0
-
-[node name="RetryButton" type="Button" parent="." unique_id=1931802112]
-visible = false
-custom_minimum_size = Vector2(300, 75)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 21.0
-offset_top = 27.0
-offset_right = 321.0
-offset_bottom = 102.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 30
 text = "Main Menu"
 alignment = 0
 
@@ -167,6 +165,9 @@ text = "X"
 [connection signal="mouse_entered" from="NextLevel" to="." method="_on_next_level_mouse_entered"]
 [connection signal="mouse_exited" from="NextLevel" to="." method="_on_next_level_mouse_exited"]
 [connection signal="pressed" from="NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="mouse_entered" from="RetryButton" to="." method="_on_retry_button_mouse_entered"]
+[connection signal="mouse_exited" from="RetryButton" to="." method="_on_retry_button_mouse_exited"]
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="mouse_entered" from="LevelSelect" to="." method="_on_level_select_mouse_entered"]
 [connection signal="mouse_exited" from="LevelSelect" to="." method="_on_level_select_mouse_exited"]
 [connection signal="pressed" from="LevelSelect" to="." method="_on_level_select_pressed"]

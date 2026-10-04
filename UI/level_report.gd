@@ -13,10 +13,13 @@ signal free_ui
 @onready var next_level: Button = $NextLevel
 @onready var level_select: Button = $LevelSelect
 @onready var main_menu: Button = $MainMenu
+@onready var retry_button: Button = $RetryButton
+
 
 @onready var next_level_size: Vector2 = next_level.size
 @onready var level_select_size: Vector2 = level_select.size
 @onready var main_menu_size: Vector2 = main_menu.size
+@onready var retry_button_size: Vector2 = retry_button.size
 
 const HOVER_WIDTH_EXTENSION: float = 100.0
 const TWEEN_DURATION: float = 0.2
@@ -25,10 +28,9 @@ func _ready() -> void:
 	next_level.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	level_select.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	main_menu.grow_horizontal = Control.GROW_DIRECTION_BEGIN
-	
-	#populate_report()
+	retry_button.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 
-# NEXT LEVEL
+## NEXT LEVEL
 func _on_next_level_pressed() -> void:
 	LevelManager.next_level()
 	free_ui.emit()
@@ -38,6 +40,17 @@ func _on_next_level_mouse_entered() -> void:
 
 func _on_next_level_mouse_exited() -> void:
 	close_button(next_level)
+
+## RETRY LEVEL
+func _on_retry_button_pressed() -> void:
+	LevelManager.restart_level()
+	free_ui.emit()
+
+func _on_retry_button_mouse_entered() -> void:
+	expand_button(retry_button)
+
+func _on_retry_button_mouse_exited() -> void:
+	close_button(retry_button)
 
 ## LEVEL SELECT
 func _on_level_select_pressed() -> void:
@@ -79,6 +92,8 @@ func expand_button(button: Button) -> void:
 		target_size_x = level_select_size.x + HOVER_WIDTH_EXTENSION
 	elif button.name == "MainMenu":
 		target_size_x = main_menu_size.x + HOVER_WIDTH_EXTENSION
+	elif button.name == "RetryButton":
+		target_size_x = retry_button_size.x + HOVER_WIDTH_EXTENSION
 	
 	new_tween.tween_property(button, "size:x", target_size_x, TWEEN_DURATION)
 
@@ -100,6 +115,8 @@ func close_button(button: Button) -> void:
 		target_size_x = level_select_size.x
 	elif button.name == "MainMenu":
 		target_size_x = main_menu_size.x
+	elif button.name == "RetryButton":
+		target_size_x = retry_button_size.x
 	
 	new_tween.tween_property(button, "size:x", target_size_x, TWEEN_DURATION)
 

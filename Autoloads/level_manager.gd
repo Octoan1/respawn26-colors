@@ -39,8 +39,9 @@ func go_to_level(index: int) -> void:
 		return
 	var level: Node = scene.instantiate()
 	
+	cleanup_main()
 	main.add_child(level)
-	remove_level(current_index - 1)
+	#remove_level(current_index - 1)
 	
 	# handle time vars
 	player_time = 0
@@ -59,7 +60,8 @@ func next_level() -> void:
 	if _is_valid_index(current_index + 1):
 		go_to_level(current_index + 1)
 	else:
-		remove_level(current_index)
+		#remove_level(current_index)
+		cleanup_main()
 		current_index = 0
 		UiManager.go_to_title()
 
