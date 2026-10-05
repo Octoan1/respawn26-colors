@@ -28,11 +28,12 @@ class_name PlayerMovement
 @export var wall_speed: float = 12.0
 @export var wall_acceleration: float = 12.0
 @export var can_grab_wall: bool = false
-@export var wall_min_entry_speed: float = 4.0
+@export var wall_min_entry_speed: float = 0.0
 @export var wall_run_time: float = 2.5       # seconds before you lose the wall
 @export var wall_slip_gravity: float = 14.0  # downward accel at the end of the run
 @export var wall_friction: float = 1.0       # m/s² bled off ONLY above wall_speed
 @export var wall_cooldown: float = 0.3       # re-attach delay after leaving a wall
+@export var wall_probe_distance := 0.3
 
 @export_category("Wall Camera")
 @export var wall_camera_tilt_deg: float = 12.0

@@ -77,11 +77,9 @@ func start_wall_cooldown() -> void:
 
 
 func can_wall_run() -> bool:
-	if is_on_floor() or not is_on_wall() or wall_cooldown_timer > 0.0:
+	if is_on_floor() or wall_cooldown_timer > 0.0:
 		return false
-	if absf(get_wall_normal().y) > 0.1:   # only near-vertical walls
-		return false
-	return movement.get_horizontal_speed() >= movement.wall_min_entry_speed
+	return find_wall_normal() != Vector3.ZERO
 
 func get_movement_direction() -> Vector3:
 	var input_dir := Input.get_vector(
@@ -100,3 +98,21 @@ func get_movement_direction() -> Vector3:
 	direction.y = 0.0
 
 	return direction.normalized()
+
+func find_wall_normal() -> Vector3:
+	# Test for a wall just beside/in front of us, without needing to be pressed into it
+	var dirs: Array[Vector3] = [
+		get_movement_direction(),
+		-global_transform.basis.z,
+		global_transform.basis.x,
+		-global_transform.basis.x,
+	]
+	for d in dirs:
+		if d == Vector3.ZERO:
+			continue
+		var col := KinematicCollision3D.new()
+		if test_move(global_transform, d.normalized() * movement.wall_probe_distance, col):
+			var n := col.get_normal()
+			if absf(n.y) <= 0.1:   # near-vertical surfaces only
+				return n
+	return Vector3.ZERO
