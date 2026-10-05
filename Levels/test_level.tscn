@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dpvvbsn3hlm2p"]
 
 [ext_resource type="Material" uid="uid://blvx7nuocbrm6" path="res://Assets/Materials/greybox_lightgrey_mat.tres" id="1_00vsl"]
+[ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="2_00vsl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_00vsl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -38,57 +39,58 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="Cylinders" type="CSGCombiner3D" parent="Objs" unique_id=825946067]
 use_collision = true
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Cylinders" unique_id=1341001961]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Objs/Cylinders" unique_id=1341001961]
 transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, 15, 0, -9.7)
 use_collision = true
 radius = 3.0
 height = 10.0
 material = ExtResource("1_00vsl")
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Cylinders" unique_id=29202129]
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Objs/Cylinders" unique_id=29202129]
 transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, 15, 0, -6)
 use_collision = true
 radius = 3.0
 height = 1.0
 material = ExtResource("1_00vsl")
 
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Cylinders" unique_id=893002519]
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Objs/Cylinders" unique_id=893002519]
 transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, 15.349996, 1.4499981, -14.799999)
 use_collision = true
 radius = 3.0
 height = 10.0
 material = ExtResource("1_00vsl")
 
-[node name="Stair" type="CSGCombiner3D" parent="." unique_id=1485079113]
+[node name="Stair" type="CSGCombiner3D" parent="Objs" unique_id=1485079113]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.899999, 0, 4.7)
 use_collision = true
 
-[node name="h1" type="CSGBox3D" parent="Stair" unique_id=440564923]
+[node name="h1" type="CSGBox3D" parent="Objs/Stair" unique_id=440564923]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.25, 0)
 use_collision = true
 size = Vector3(1, 0.5, 2)
 material = ExtResource("1_00vsl")
 
-[node name="h2" type="CSGBox3D" parent="Stair" unique_id=1389694213]
+[node name="h2" type="CSGBox3D" parent="Objs/Stair" unique_id=1389694213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 use_collision = true
 size = Vector3(1, 1, 2)
 material = ExtResource("1_00vsl")
 
-[node name="h3" type="CSGBox3D" parent="Stair" unique_id=1471622623]
+[node name="h3" type="CSGBox3D" parent="Objs/Stair" unique_id=1471622623]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.75, 0)
 use_collision = true
 size = Vector3(1, 1.5, 2)
 material = ExtResource("1_00vsl")
 
-[node name="h4" type="CSGBox3D" parent="Stair" unique_id=1548650856]
+[node name="h4" type="CSGBox3D" parent="Objs/Stair" unique_id=1548650856]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999998, 1, 0)
 use_collision = true
 size = Vector3(1, 2, 2)
 material = ExtResource("1_00vsl")
 
-[node name="Wall" type="CSGBox3D" parent="." unique_id=2069567957]
+[node name="Wall" type="CSGBox3D" parent="Objs" unique_id=2069567957]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.353862, 1.5, -11.008642)
+use_collision = true
 size = Vector3(20, 3, 1)
 material = ExtResource("1_00vsl")
 
@@ -111,41 +113,41 @@ material = ExtResource("1_00vsl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.499999, 0, 12.5)
 use_collision = true
 
-[node name="45deg" type="CSGPolygon3D" parent="SmallStairs" unique_id=760470344]
+[node name="45deg" type="CSGPolygon3D" parent="Objs/SmallStairs" unique_id=760470344]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, 0)
 polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 2, 0)
 depth = 2.0
 material = ExtResource("1_00vsl")
 
-[node name="33deg" type="CSGPolygon3D" parent="SmallStairs" unique_id=884971683]
+[node name="33deg" type="CSGPolygon3D" parent="Objs/SmallStairs" unique_id=884971683]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, -2)
 polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 2.5, 0)
 depth = 2.0
 material = ExtResource("1_00vsl")
 
-[node name="26deg" type="CSGPolygon3D" parent="SmallStairs" unique_id=1447058452]
+[node name="26deg" type="CSGPolygon3D" parent="Objs/SmallStairs" unique_id=1447058452]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, -4)
 polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 3, 0)
 depth = 2.0
 material = ExtResource("1_00vsl")
 
-[node name="BigStairs" type="CSGCombiner3D" parent="." unique_id=270710466]
+[node name="BigStairs" type="CSGCombiner3D" parent="Objs" unique_id=270710466]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.499999, 0, 6.5)
 use_collision = true
 
-[node name="45deg" type="CSGPolygon3D" parent="BigStairs" unique_id=1934594037]
+[node name="45deg" type="CSGPolygon3D" parent="Objs/BigStairs" unique_id=1934594037]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, 0)
 polygon = PackedVector2Array(0, 0, 3, 0, 0, 3)
 depth = 2.0
 material = ExtResource("1_00vsl")
 
-[node name="33deg" type="CSGPolygon3D" parent="BigStairs" unique_id=1678332055]
+[node name="33deg" type="CSGPolygon3D" parent="Objs/BigStairs" unique_id=1678332055]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, -2)
 polygon = PackedVector2Array(0, 0, 4.5, 0, 0, 3)
 depth = 2.0
 material = ExtResource("1_00vsl")
 
-[node name="26deg" type="CSGPolygon3D" parent="BigStairs" unique_id=550216728]
+[node name="26deg" type="CSGPolygon3D" parent="Objs/BigStairs" unique_id=550216728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999994, 0, -4)
 polygon = PackedVector2Array(0, 0, 6, 0, 0, 3)
 depth = 2.0

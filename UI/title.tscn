@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cad2mj4oauw32"]
+
+[ext_resource type="Script" uid="uid://clete1wqwp4en" path="res://UI/title_ui.gd" id="1_2itqh"]
+[ext_resource type="FontFile" uid="uid://3aswnqx4h2bk" path="res://Assets/fonts/Y224.otf" id="2_pa5mj"]
+
+[node name="Title" type="Control" unique_id=1249127804]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2itqh")
+
+[node name="GameTitle" type="Label" parent="." unique_id=559757465]
+layout_mode = 0
+offset_right = 1163.0
+offset_bottom = 651.0
+theme_override_fonts/font = ExtResource("2_pa5mj")
+theme_override_font_sizes/font_size = 72
+text = "COLORS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartGame" type="Button" parent="." unique_id=1093372369]
+layout_mode = 0
+offset_left = 494.0
+offset_top = 398.0
+offset_right = 663.0
+offset_bottom = 474.0
+text = "START"
+
+[node name="LevelSelect" type="Button" parent="." unique_id=1718504403]
+layout_mode = 0
+offset_left = 494.0
+offset_top = 492.0
+offset_right = 663.0
+offset_bottom = 568.0
+text = "Level Select"
+
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="LevelSelect" to="." method="_on_level_select_pressed"]

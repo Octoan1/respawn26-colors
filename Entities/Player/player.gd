@@ -1,50 +1,102 @@
 extends CharacterBody3D
 class_name Player
 
-@export var speed:float = 5.0
-@export var jump_velocity:float = 4.5
-@export var acceleration:float = 50.0
-@export var mouse_sensitivity:float = 0.002
+@export var mouse_sensitivity: float = 0.002
 
-@onready var head:Node3D = $Head
+@onready var head: Node3D = $Head
+@onready var movement: PlayerMovement = $Movement
+@onready var camera: Camera3D = $Head/Camera3D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var debug_velocity: Label = $Debug/DebugVelocity
+@onready var debug_state: Label = $Debug/DebugState
+
+var coyote_timer: Timer
+var jump_buffer_timer: Timer
+var wall_grab_timer: Timer
+
+var wall_normal: Vector3
+
+var wall_cooldown_timer: float = 0.0
+var camera_roll_target: float = 0.0
+var camera_fov_boost: float = 0.0
+var base_fov: float = 75.0
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	base_fov = camera.fov
+	
+	coyote_timer = Timer.new()
+	coyote_timer.one_shot = true
+	coyote_timer.wait_time = 0.25
+	add_child(coyote_timer)
+	
+	wall_grab_timer = Timer.new()
+	wall_grab_timer.one_shot = true
+	wall_grab_timer.wait_time = 0.1
+	add_child(wall_grab_timer)
+	
+	jump_buffer_timer = Timer.new()
+	jump_buffer_timer.one_shot = true
+	jump_buffer_timer.wait_time = 0.1
+	add_child(jump_buffer_timer)
+
 
 func _unhandled_input(event: InputEvent) -> void:
-	# recapture mouse 
+	# Recapture mouse
 	if event is InputEventMouseButton:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	# allow releasing mouse	
+	# Release mouse
 	if event.is_action_pressed("escape"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	if event is InputEventMouseMotion:
-		if not Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			return
+		
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		head.rotate_x(-event.relative.y * mouse_sensitivity)
-		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+		head.rotation.x = clamp(
+			head.rotation.x,
+			deg_to_rad(-89),
+			deg_to_rad(89)
+		)
 
-#func _physics_process(delta: float) -> void:
-	## Add the gravity.
-	#if not is_on_floor():
-		#velocity += get_gravity() * delta
-#
-	## Handle jump.
-	#if Input.is_action_just_pressed("player_jump") and is_on_floor():
-		#velocity.y = jump_velocity
-#
-	## Get the input direction and handle the movement/deceleration.
-	## As good practice, you should replace UI actions with custom gameplay actions.
-	#var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
-	#var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	#if direction:
-		#velocity.x = move_toward(velocity.x, direction.x * speed, acceleration * delta)
-		#velocity.z = move_toward(velocity.z, direction.z * speed, acceleration * delta)
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, acceleration * delta)
-		#velocity.z = move_toward(velocity.z, 0, acceleration * delta)
-#
-	#move_and_slide()
+func _physics_process(delta: float) -> void:
+	wall_cooldown_timer = maxf(wall_cooldown_timer - delta, 0.0)
+
+func _process(delta: float) -> void:
+	debug_velocity.text = "Vel: %.2f" % velocity.length()
+	debug_state.text = $StateMachine.current_state.name
+	
+	var w := 1.0 - exp(-movement.wall_tilt_speed * delta)
+	camera.rotation.z = lerp_angle(camera.rotation.z, camera_roll_target, w)
+	camera.fov = lerpf(camera.fov, base_fov + camera_fov_boost, w)
+
+func start_wall_cooldown() -> void:
+	wall_cooldown_timer = movement.wall_cooldown
+
+
+func can_wall_run() -> bool:
+	if is_on_floor() or not is_on_wall() or wall_cooldown_timer > 0.0:
+		return false
+	if absf(get_wall_normal().y) > 0.1:   # only near-vertical walls
+		return false
+	return movement.get_horizontal_speed() >= movement.wall_min_entry_speed
+
+func get_movement_direction() -> Vector3:
+	var input_dir := Input.get_vector(
+		"player_left",
+		"player_right",
+		"player_forwards",
+		"player_backwards"
+	)
+
+	var direction := transform.basis * Vector3(
+		input_dir.x,
+		0.0,
+		input_dir.y
+	)
+
+	direction.y = 0.0
+
+	return direction.normalized()
