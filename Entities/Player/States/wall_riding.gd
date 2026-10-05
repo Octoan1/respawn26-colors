@@ -3,14 +3,21 @@ extends PlayerState
 @export var look_into_wall_threshold := 0.3
 @export var wall_turn_speed := 8.0
 @export var max_turn_per_frame := 0.12
+@export var look_away_threshold := 0.3      # forward.dot(normal): above this = looking away from the wall
+@export var hold_into_wall_threshold := 0.3 # input.dot(-normal): above this = pushing into the wall
+@export var detach_grace := 0.15            # seconds you can look away before dropping
+
+var detach_timer := 0.0
 
 var wall_run_dir := Vector3.ZERO
 var run_time := 0.0
+var contact_lost_time := 0.0
 
 
 func enter() -> void:
 	var m := player.movement
-	player.wall_normal = player.get_wall_normal()
+	var n := player.find_wall_normal()
+	player.wall_normal = n if n != Vector3.ZERO else player.get_wall_normal()
 	var normal := _flat(player.wall_normal)
 
 	var along := normal.cross(Vector3.UP).normalized()
@@ -34,6 +41,9 @@ func enter() -> void:
 	var wall_side := -signf(normal.dot(player.global_transform.basis.x))
 	player.camera_roll_target = deg_to_rad(m.wall_camera_tilt_deg) * wall_side
 	player.camera_fov_boost = m.wall_fov_boost
+	
+	detach_timer = 0.0
+	contact_lost_time = 0.0
 
 
 func exit() -> void:
@@ -49,12 +59,15 @@ func physics_update(delta: float) -> void:
 	if player.is_on_floor():
 		Transitioned.emit(self, "IDLE"); return
 
-	if not player.is_on_wall():
-		Transitioned.emit(self, "AIR"); return
-
-	if player.get_wall_normal().dot(player.wall_normal) < 0.8:
-		Transitioned.emit(self, "PUSH_OFF_WALL"); return
-	player.wall_normal = player.get_wall_normal()
+	if player.is_on_wall():
+		contact_lost_time = 0.0
+		if player.get_wall_normal().dot(player.wall_normal) < 0.8:
+			Transitioned.emit(self, "PUSH_OFF_WALL"); return
+		player.wall_normal = player.get_wall_normal()
+	else:
+		contact_lost_time += delta
+		if contact_lost_time > 0.1:
+			Transitioned.emit(self, "AIR"); return
 
 	if Input.is_action_just_pressed("player_jump"):
 		player.coyote_timer.stop()
@@ -63,7 +76,7 @@ func physics_update(delta: float) -> void:
 	run_time += delta
 	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
 
-	if input_dir.y > 0.5 or run_time >= m.wall_run_time or m.get_horizontal_speed() < m.wall_min_entry_speed:
+	if _should_detach(delta) or run_time >= m.wall_run_time or m.get_horizontal_speed() < m.wall_min_entry_speed:
 		Transitioned.emit(self, "AIR"); return
 
 	# Movement is along the wall, independent of where the camera points
@@ -97,3 +110,17 @@ func _align_to_wall(delta: float) -> void:
 func _flat(v: Vector3) -> Vector3:
 	v.y = 0
 	return v.normalized()
+
+func _should_detach(delta: float) -> bool:
+	var normal := _flat(player.wall_normal)
+	var forward := _flat(-player.global_transform.basis.z)
+
+	var looking_away := forward.dot(normal) > look_away_threshold
+	var holding_into_wall := player.get_movement_direction().dot(-normal) > hold_into_wall_threshold
+
+	if looking_away and not holding_into_wall:
+		detach_timer += delta
+	else:
+		detach_timer = 0.0
+
+	return detach_timer >= detach_grace
