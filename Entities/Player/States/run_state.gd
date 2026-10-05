@@ -19,11 +19,13 @@ func exit() -> void:
 	
 func update(delta: float) -> void:
 	headbob_time += delta * player.velocity.length()
-	%Camera3D.transform.origin = Vector3(
-		cos(headbob_time * HEADBOB_FREQUENCY * 0.5) * HEADBOB_MOVE_AMOUNT,
-		sin(headbob_time * HEADBOB_FREQUENCY) * HEADBOB_MOVE_AMOUNT,
-		0
-	)
+	
+	if false:
+		%Camera3D.transform.origin = Vector3(
+			cos(headbob_time * HEADBOB_FREQUENCY * 0.5) * HEADBOB_MOVE_AMOUNT,
+			sin(headbob_time * HEADBOB_FREQUENCY) * HEADBOB_MOVE_AMOUNT,
+			0
+		)
 	animated_sprite_2d.global_position = origin - Vector2(0, 10 * sin(headbob_time * HEADBOB_FREQUENCY))
 
 func physics_update(delta: float) -> void:
