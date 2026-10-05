@@ -55,3 +55,21 @@ grow_horizontal = 2
 theme = ExtResource("2_qgm14")
 theme_override_font_sizes/font_size = 64
 text = "Mission Select"
+
+[node name="MenuButton" type="Button" parent="." unique_id=2111619610]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -55.0
+offset_right = 100.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_qgm14")
+text = "Main Menu"
+
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

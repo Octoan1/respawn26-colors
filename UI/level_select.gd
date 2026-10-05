@@ -43,7 +43,13 @@ func populate_button_data() -> void:
 		level_columns.get_child(hbox_index).add_child(button)
 		
 
+
+
 func go_to_level(level_num: int) -> void:
 	UiManager.go_to_level_brief(level_num)
 	#LevelManager.go_to_level(level_num)
 	queue_free()
+
+
+func _on_menu_button_pressed() -> void:
+	UiManager.go_to_title()

@@ -99,52 +99,51 @@ offset_right = 228.5
 offset_bottom = -203.0
 grow_horizontal = 2
 theme = ExtResource("2_reudq")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 64
 text = "Mission Brief"
 horizontal_alignment = 1
 
 [node name="TimeRecord" type="Label" parent="FullBrief" unique_id=1133876086]
 layout_mode = 0
-offset_left = -71.0
+offset_left = 15.0
 offset_top = 14.0
-offset_right = 246.0
-offset_bottom = 49.0
+offset_right = 215.0
+offset_bottom = 39.0
 theme = ExtResource("2_reudq")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "best time"
-horizontal_alignment = 1
+horizontal_alignment = 2
 
 [node name="RankLabel" type="Label" parent="FullBrief" unique_id=1559893491]
 layout_mode = 0
-offset_left = -213.0
-offset_top = -21.0
-offset_right = -53.0
-offset_bottom = 14.0
+offset_left = -228.0
+offset_top = -17.0
+offset_right = -68.0
+offset_bottom = 18.0
 theme = ExtResource("2_reudq")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "grade"
 horizontal_alignment = 1
 
 [node name="LevelName" type="Label" parent="FullBrief" unique_id=1150055262]
 layout_mode = 0
 offset_left = -219.0
-offset_top = -227.0
-offset_right = -110.0
-offset_bottom = -193.0
+offset_top = -217.0
+offset_right = 181.0
+offset_bottom = -183.0
 theme = ExtResource("2_reudq")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 text = "Mission 1: Name here"
-horizontal_alignment = 1
 
 [node name="TargetInfo" type="Label" parent="FullBrief" unique_id=1192420568]
 custom_minimum_size = Vector2(200, 150)
 layout_mode = 0
 offset_left = -219.0
-offset_top = -191.0
+offset_top = -183.0
 offset_right = 33.0
-offset_bottom = -157.0
+offset_bottom = -33.0
 theme = ExtResource("2_reudq")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "target info here"
 autowrap_mode = 3
 
@@ -155,27 +154,27 @@ offset_top = 15.0
 offset_right = 41.0
 offset_bottom = 218.0
 theme = ExtResource("2_reudq")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 140
 text = "?"
 horizontal_alignment = 1
 
 [node name="BestTimeText" type="Label" parent="FullBrief" unique_id=10525224]
 layout_mode = 0
-offset_left = -156.0
-offset_top = 57.0
-offset_right = 228.0
-offset_bottom = 156.0
+offset_left = 19.0
+offset_top = 55.0
+offset_right = 219.0
+offset_bottom = 116.0
 theme = ExtResource("2_reudq")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 80
 text = "??.??"
 horizontal_alignment = 2
 
 [node name="TargetImage" type="TextureRect" parent="FullBrief" unique_id=1933451376]
 layout_mode = 0
-offset_left = 65.0
-offset_top = -186.0
-offset_right = 193.0
-offset_bottom = -58.0
+offset_left = 52.0
+offset_top = -175.0
+offset_right = 180.0
+offset_bottom = -47.0
 
 [node name="DeathX" type="Label" parent="FullBrief" unique_id=1522466802]
 visible = false

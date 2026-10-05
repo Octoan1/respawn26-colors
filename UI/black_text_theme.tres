@@ -1,5 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://cm882kskewj27"]
 
+[ext_resource type="FontFile" uid="uid://dlq41mtdhgxb7" path="res://Assets/fonts/Atyan Dsegh regular.ttf" id="1_dfei1"]
 [ext_resource type="FontFile" uid="uid://3aswnqx4h2bk" path="res://Assets/fonts/Y224.otf" id="1_ff54d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jrb8"]
@@ -17,10 +18,10 @@ bg_color = Color(0, 0, 0, 0)
 [resource]
 default_font = ExtResource("1_ff54d")
 Button/colors/font_color = Color(0, 0, 0, 1)
-Button/fonts/font = ExtResource("1_ff54d")
+Button/fonts/font = ExtResource("1_dfei1")
 Button/styles/disabled = SubResource("StyleBoxFlat_6jrb8")
 Button/styles/focus = SubResource("StyleBoxFlat_au8t7")
 Button/styles/hover = SubResource("StyleBoxFlat_dfei1")
 Button/styles/normal = SubResource("StyleBoxFlat_ff54d")
 Label/colors/font_color = Color(0, 0, 0, 1)
-Label/fonts/font = ExtResource("1_ff54d")
+Label/fonts/font = ExtResource("1_dfei1")
