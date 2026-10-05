@@ -5,6 +5,7 @@ class_name Player
 
 @onready var head: Node3D = $Head
 @onready var movement: PlayerMovement = $Movement
+@onready var camera: Camera3D = $Head/Camera3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var debug_velocity: Label = $Debug/DebugVelocity
 @onready var debug_state: Label = $Debug/DebugState
@@ -15,8 +16,14 @@ var wall_grab_timer: Timer
 
 var wall_normal: Vector3
 
+var wall_cooldown_timer: float = 0.0
+var camera_roll_target: float = 0.0
+var camera_fov_boost: float = 0.0
+var base_fov: float = 75.0
 
 func _ready() -> void:
+	base_fov = camera.fov
+	
 	coyote_timer = Timer.new()
 	coyote_timer.one_shot = true
 	coyote_timer.wait_time = 0.25
@@ -54,11 +61,27 @@ func _unhandled_input(event: InputEvent) -> void:
 			deg_to_rad(89)
 		)
 
+func _physics_process(delta: float) -> void:
+	wall_cooldown_timer = maxf(wall_cooldown_timer - delta, 0.0)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	debug_velocity.text = "Vel: %.2f" % velocity.length()
 	debug_state.text = $StateMachine.current_state.name
 	
+	var w := 1.0 - exp(-movement.wall_tilt_speed * delta)
+	camera.rotation.z = lerp_angle(camera.rotation.z, camera_roll_target, w)
+	camera.fov = lerpf(camera.fov, base_fov + camera_fov_boost, w)
+
+func start_wall_cooldown() -> void:
+	wall_cooldown_timer = movement.wall_cooldown
+
+
+func can_wall_run() -> bool:
+	if is_on_floor() or not is_on_wall() or wall_cooldown_timer > 0.0:
+		return false
+	if absf(get_wall_normal().y) > 0.1:   # only near-vertical walls
+		return false
+	return movement.get_horizontal_speed() >= movement.wall_min_entry_speed
 
 func get_movement_direction() -> Vector3:
 	var input_dir := Input.get_vector(

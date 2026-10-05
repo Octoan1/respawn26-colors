@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://of7uetyps83t" path="res://Levels/LevelData/level_data.gd" id="1_7a54s"]
 [ext_resource type="PackedScene" uid="uid://ch0gm2u67dgkx" path="res://Levels/level_2.tscn" id="1_uo1x3"]
+[ext_resource type="Texture2D" uid="uid://dxn0y7y5uoji8" path="res://icon.svg" id="3_7ws4d"]
 
 [resource]
 script = ExtResource("1_7a54s")

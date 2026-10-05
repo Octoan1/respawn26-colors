@@ -5,7 +5,23 @@ func setup() -> void:
 	pass
 
 func enter() -> void: 
-	player.velocity += (Vector3.UP * player.movement.jump_velocity) + (player.wall_normal * player.movement.push_off_wall_force)
+	var m := player.movement
+
+	var normal := player.wall_normal
+	normal.y = 0.0
+	normal = normal.normalized()
+
+	# Remove the "pressed into the wall" component left over from the wall stick,
+	# otherwise it eats into the push-off
+	var into := player.velocity.dot(normal)
+	if into < 0.0:
+		player.velocity -= normal * into
+
+	# Kick away from the wall, keep the speed along it
+	player.velocity += normal * m.push_off_wall_force
+
+	# Set (not add) vertical speed so a slipping, falling run still gives a full jump
+	player.velocity.y = m.jump_velocity
 	
 func exit() -> void: 
 	pass

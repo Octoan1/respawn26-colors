@@ -21,9 +21,8 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "LANDING")
 		return
 	
-	if player.is_on_wall() and player.movement.can_grab_wall:
-		Transitioned.emit(self, "WALL_RIDING")
-		return
+	if Input.is_action_pressed("player_forwards") and player.can_wall_run():
+		Transitioned.emit(self, "WALL_RIDING"); return
 	
 	# Coyote-time jump
 	if Input.is_action_just_pressed("player_jump") and not player.coyote_timer.is_stopped():
