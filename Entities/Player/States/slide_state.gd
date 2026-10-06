@@ -15,6 +15,7 @@ var _air_time := 0.0
 func enter() -> void:
 	_air_time = 0.0
 	camera_3d.enable_dyamic_fov = true
+	camera_3d.fov += 5
 	player.movement.start_slide()
 
 func exit() -> void:
