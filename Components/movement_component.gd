@@ -9,9 +9,19 @@ class_name PlayerMovement
 @export var ground_friction: float = 6.0
 
 @export_category("Slide")
-@export var slide_speed: float = 14.0
-@export var slide_friction: float = 1.0
-@export var min_speed_for_slide: float = 5.0
+@export var min_speed_for_slide: float = 6.5   # entry gate; run_speed is 8, so you must be running
+@export var slide_entry_boost: float = 2.0     # small burst on entry, not a snap to max
+@export var slide_speed: float = 14.0          # hard cap (downhill can approach this)
+@export var slide_friction: float = 3.0        # m/s^2 lost on flat ground (lower = longer slide)
+@export var slide_slope_gain: float = 1.5      # how strongly slopes add/remove speed
+@export var slide_steer_deg: float = 35.0      # max turn rate in deg/sec
+@export var slide_end_speed: float = 3.5       # slide ends below this
+@export var slide_cooldown: float = 0.8        # seconds after a slide before you can slide again
+@export var slide_floor_stick: float = 2.0     # keeps the capsule attached while sliding
+
+var slide_direction: Vector3 = Vector3.FORWARD
+var slide_current_speed: float = 0.0
+var _slide_ended_at: float = -999.0
 
 @export_category("Air Movement")
 @export var air_acceleration: float = 800.0
@@ -91,31 +101,65 @@ func apply_ground_friction(delta: float) -> void:
 	player.velocity.z = horizontal_velocity.z
 
 
-func start_slide(direction: Vector3) -> void:
-	var current_speed: float = get_horizontal_speed()
-	
-	var speed: float = max(current_speed, slide_speed)
-	
-	player.velocity.x = direction.x * speed
-	player.velocity.z = direction.z * speed
+func can_slide() -> bool:
+	var off_cooldown := _now() - _slide_ended_at >= slide_cooldown
+	return player.is_on_floor() and off_cooldown and get_horizontal_speed() >= min_speed_for_slide
 
 
-func apply_slide_friction(delta: float) -> void:
-	var horizontal_velocity: Vector2 = get_horizontal_velocity()
+func start_slide() -> void:
+	var h := get_horizontal_velocity()
+	slide_direction = Vector3(h.x, 0.0, h.y).normalized()
+	slide_current_speed = minf(h.length() + slide_entry_boost, slide_speed)
+	player.velocity.y = 0.0
 
-	var speed: float = horizontal_velocity.length()
 
-	if speed <= 0.0:
-		return
+func end_slide() -> void:
+	_slide_ended_at = _now()
 
-	var drop: float = speed * slide_friction * delta
-	var new_speed: float = max(speed - drop, 0.0)
 
-	horizontal_velocity = horizontal_velocity.normalized() * new_speed
+func update_slide(input_dir: Vector3, delta: float) -> void:
+	var n := player.get_floor_normal()
+	if n == Vector3.ZERO:
+		n = Vector3.UP
 
-	player.velocity.x = horizontal_velocity.x
-	player.velocity.z = horizontal_velocity.y
+	# Keep the momentum direction on the floor. Steering turns the existing
+	# velocity instead of replacing it, so a slide cannot instantly reverse.
+	var floor_direction := slide_direction.slide(n).normalized()
+	if floor_direction == Vector3.ZERO:
+		floor_direction = Vector3.FORWARD.slide(n).normalized()
+	slide_direction = floor_direction
 
+	if input_dir != Vector3.ZERO:
+		var target_direction := input_dir.slide(n).normalized()
+		if target_direction != Vector3.ZERO:
+			var turn := slide_direction.signed_angle_to(target_direction, n)
+			var max_turn := deg_to_rad(slide_steer_deg) * delta
+			slide_direction = slide_direction.rotated(
+				n,
+				clampf(turn, -max_turn, max_turn)
+			).normalized()
+
+	# Gravity projected onto the floor carries weight downhill and removes
+	# momentum uphill. Friction is always applied opposite the motion.
+	var gravity_along_slide := player.get_gravity().slide(n).dot(slide_direction)
+	slide_current_speed += gravity_along_slide * slide_slope_gain * delta
+	slide_current_speed -= slide_friction * delta
+	slide_current_speed = clampf(slide_current_speed, 0.0, slide_speed)
+
+	# The tangent velocity follows the slope naturally; the small normal
+	# component prevents physics seams from launching the player.
+	player.velocity = slide_direction * slide_current_speed - n * slide_floor_stick
+
+
+func sync_slide_speed() -> void:
+	# Call after move_and_slide(): walls and obstacles can remove momentum.
+	var floor_velocity := player.velocity.slide(player.get_floor_normal())
+	var carried_speed := maxf(floor_velocity.dot(slide_direction), 0.0)
+	slide_current_speed = minf(slide_current_speed, carried_speed)
+
+
+func _now() -> float:
+	return Time.get_ticks_msec() / 1000.0
 
 func accelerate_air(direction: Vector3, delta: float) -> void:
 	if direction == Vector3.ZERO:
