@@ -21,7 +21,7 @@ func physics_update(_delta: float) -> void:
 	# slide pressed
 	if Input.is_action_pressed("player_crouch"):
 		Transitioned.emit(self,"CROUCH")
-		player.animation_player.play("Crouch")
+		player.set_crouch_animation(true)
 	
 	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
 	var direction := (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

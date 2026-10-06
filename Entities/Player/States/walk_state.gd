@@ -33,7 +33,7 @@ func physics_update(delta: float) -> void:
 	# CROUCH state transition
 	if Input.is_action_just_pressed("player_crouch"):
 		Transitioned.emit(self, "CROUCH")
-		player.animation_player.play("Crouch")
+		player.set_crouch_animation(true)
 		return
 	
 	var direction := player.get_movement_direction()
