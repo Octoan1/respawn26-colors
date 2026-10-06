@@ -46,7 +46,7 @@ func physics_update(delta: float) -> void:
 
 	player.movement.accelerate_ground(
 		direction,
-		player.movement.walk_speed,
+		player.movement.run_speed if player.movement.sprint_momentum_active() else player.movement.walk_speed,
 		delta
 	)
 		

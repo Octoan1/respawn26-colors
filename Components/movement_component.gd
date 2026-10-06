@@ -6,10 +6,10 @@ class_name PlayerMovement
 @export var run_speed: float = 8.0
 @export var crouch_speed: float = 3.0
 @export var ground_acceleration: float = 6.0
-@export var ground_friction: float = 6.0
+@export var ground_friction: float = 5.0
 
 @export_category("Slide")
-@export var min_speed_for_slide: float = 6.5   # entry gate; run_speed is 8, so you must be running
+@export var min_speed_for_slide: float = 5.1   # entry gate; run_speed is 8, so you must be running
 @export var slide_entry_boost: float = 2.0     # small burst on entry, not a snap to max
 @export var slide_speed: float = 14.0          # hard cap (downhill can approach this)
 @export var slide_friction: float = 4.0        # m/s^2 lost on flat ground
@@ -18,12 +18,15 @@ class_name PlayerMovement
 @export var slide_end_speed: float = 3.5       # slide ends below this
 @export var slide_cooldown: float = 0.8        # seconds after a slide before you can slide again
 @export var slide_floor_stick: float = 2.0     # keeps the capsule attached while sliding
+@export var sprint_slide_grace: float = 0.25   # time to press crouch after sprint release
+@export var sprint_momentum_duration: float = 0.5 # keep sprint speed after release
 
 var slide_direction: Vector3 = Vector3.FORWARD
 var slide_current_speed: float = 0.0
 var slide_velocity: Vector3 = Vector3.ZERO
 var slide_floor_normal: Vector3 = Vector3.UP
 var _slide_ended_at: float = -999.0
+var _sprint_released_at: float = -999.0
 
 @export_category("Air Movement")
 @export var air_acceleration: float = 800.0
@@ -105,7 +108,17 @@ func apply_ground_friction(delta: float) -> void:
 
 func can_slide() -> bool:
 	var off_cooldown := _now() - _slide_ended_at >= slide_cooldown
-	return player.is_on_floor() and off_cooldown and get_horizontal_speed() >= min_speed_for_slide
+	var sprint_grace_active := _now() - _sprint_released_at <= sprint_slide_grace
+	var has_entry_speed := get_horizontal_speed() >= min_speed_for_slide
+	return player.is_on_floor() and off_cooldown and (has_entry_speed or sprint_grace_active)
+
+
+func remember_sprint_release() -> void:
+	_sprint_released_at = _now()
+
+
+func sprint_momentum_active() -> bool:
+	return _now() - _sprint_released_at <= sprint_momentum_duration
 
 
 func start_slide() -> void:
