@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://c46mxkgb0dg1e" path="res://Entities/Player/States/landing_state.gd" id="9_owvpp"]
 [ext_resource type="Script" uid="uid://6wd36mbo3304" path="res://Entities/Player/push_off_wall.gd" id="12_iplt1"]
 [ext_resource type="Texture2D" uid="uid://dps3uscid2nle" path="res://Assets/RedHandsIdleLessFrames.png" id="16_nhbkt"]
+[ext_resource type="Script" uid="uid://b64aox346y560" path="res://Entities/Player/glide.gd" id="16_vskfa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t4wu"]
 
@@ -200,6 +201,9 @@ script = ExtResource("7_01a4e")
 
 [node name="PUSH_OFF_WALL" type="Node" parent="StateMachine" unique_id=1425482450]
 script = ExtResource("12_iplt1")
+
+[node name="GLIDE" type="Node" parent="StateMachine" unique_id=1068120126]
+script = ExtResource("16_vskfa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=650415297]
 libraries/ = SubResource("AnimationLibrary_r8fok")

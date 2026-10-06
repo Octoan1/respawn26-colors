@@ -24,6 +24,16 @@ var base_fov: float = 75.0
 # conner added this, sorry if it breaks something
 var freeze_control: bool = false
 
+enum Ability_Color {
+	BASE,
+	RED,
+	GREEN,
+	BLUE
+}
+var abilities: Array[Ability_Color]
+var ability_index: int
+var curr_ability: Ability_Color
+
 func _ready() -> void:
 	base_fov = camera.fov
 	
@@ -41,6 +51,10 @@ func _ready() -> void:
 	jump_buffer_timer.one_shot = true
 	jump_buffer_timer.wait_time = 0.1
 	add_child(jump_buffer_timer)
+	
+	curr_ability = Ability_Color.BASE
+	abilities = []
+	ability_index = -1
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -66,6 +80,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			deg_to_rad(-89),
 			deg_to_rad(89)
 		)
+	
+	if event is InputEventKey:
+		change_ability(event)
 
 func _physics_process(delta: float) -> void:
 	wall_cooldown_timer = maxf(wall_cooldown_timer - delta, 0.0)
@@ -122,3 +139,33 @@ func find_wall_normal() -> Vector3:
 			if absf(n.y) <= 0.1:   # near-vertical surfaces only
 				return n
 	return Vector3.ZERO
+
+func change_ability(event: InputEvent) -> void:
+	if abilities.is_empty():
+		return
+	if event.is_action_pressed("cycle_ability_left"):
+		ability_index = (ability_index - 1) % abilities.size()
+		curr_ability = abilities[ability_index]
+		return
+	if event.is_action_pressed("cycle_ability_right"):
+		ability_index = (ability_index + 1) % abilities.size()
+		curr_ability = abilities[ability_index]
+		return
+	if event.is_action_pressed("change_ability_r"):
+		var index := abilities.find(Ability_Color.RED)
+		if index != -1:
+			ability_index = index
+			curr_ability = Ability_Color.RED
+		return
+	if event.is_action_pressed("change_ability_g"):
+		var index := abilities.find(Ability_Color.GREEN)
+		if index != -1:
+			ability_index = index
+			curr_ability = Ability_Color.GREEN
+		return
+	if event.is_action_pressed("change_ability_b"):
+		var index := abilities.find(Ability_Color.BLUE)
+		if index != -1:
+			ability_index = index
+			curr_ability = Ability_Color.BLUE
+		return
