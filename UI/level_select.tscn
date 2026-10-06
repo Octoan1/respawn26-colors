@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://b4bgodk2ydk3r"]
 
 [ext_resource type="Script" uid="uid://cgh82hqqoo643" path="res://UI/level_select.gd" id="1_r4dbv"]
+[ext_resource type="Theme" uid="uid://biqu4o348eq17" path="res://UI/white_text_theme.tres" id="2_qgm14"]
+[ext_resource type="FontFile" uid="uid://3aswnqx4h2bk" path="res://Assets/fonts/Y224.otf" id="3_q0b5w"]
 
 [node name="LevelSelect" type="Control" unique_id=193318194]
 layout_mode = 3
@@ -11,8 +13,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r4dbv")
 
+[node name="Background" type="ColorRect" parent="." unique_id=53945079]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1736286136]
-custom_minimum_size = Vector2(1000, 600)
+custom_minimum_size = Vector2(1000, 400)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -20,12 +32,48 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -500.0
-offset_top = -300.0
+offset_top = -165.0
 offset_right = 500.0
-offset_bottom = 300.0
+offset_bottom = 235.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LevelColumns" type="VBoxContainer" parent="ScrollContainer" unique_id=1225115151]
-custom_minimum_size = Vector2(1000, 600)
+custom_minimum_size = Vector2(1000, 400)
 layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="Header" type="Label" parent="." unique_id=343543860]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -493.0
+offset_top = 60.0
+offset_right = 493.0
+offset_bottom = 125.0
+grow_horizontal = 2
+theme = ExtResource("2_qgm14")
+theme_override_fonts/font = ExtResource("3_q0b5w")
+theme_override_font_sizes/font_size = 64
+text = "Mission Select"
+horizontal_alignment = 1
+
+[node name="MenuButton" type="Button" parent="." unique_id=2111619610]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -64.0
+offset_right = 100.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_qgm14")
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
+
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

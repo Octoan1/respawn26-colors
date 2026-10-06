@@ -6,7 +6,8 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _on_start_game_pressed() -> void:
-	LevelManager.start_game()
+	UiManager.go_to_level_brief(0, "menu")
+	#LevelManager.start_game()
 	queue_free()
 
 

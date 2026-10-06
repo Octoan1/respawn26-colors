@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cmjf4x1s7t6j7"]
 
 [ext_resource type="Script" uid="uid://iyw5ibxvylro" path="res://UI/level_report.gd" id="1_ocora"]
+[ext_resource type="Theme" uid="uid://cm882kskewj27" path="res://UI/black_text_theme.tres" id="2_et546"]
 
 [node name="LevelReport" type="Control" unique_id=530919330]
 layout_mode = 3
@@ -14,7 +15,23 @@ offset_bottom = 280.0
 grow_vertical = 2
 script = ExtResource("1_ocora")
 
+[node name="BriefBG" type="ColorRect" parent="." unique_id=401925786]
+custom_minimum_size = Vector2(460, 560)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -280.0
+offset_right = 230.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="DebugPanel" type="Panel" parent="." unique_id=1252519761]
+visible = false
 custom_minimum_size = Vector2(460, 560)
 layout_mode = 0
 offset_right = 40.0
@@ -22,44 +39,48 @@ offset_bottom = 40.0
 
 [node name="FlavorText" type="Label" parent="." unique_id=1955262675]
 layout_mode = 0
-offset_left = -35.999996
-offset_top = 95.0
-offset_right = 348.0
-offset_bottom = 162.0
+offset_left = -20.999998
+offset_top = 97.0
+offset_right = 363.0
+offset_bottom = 164.0
 rotation = -0.2617994
-theme_override_font_sizes/font_size = 36
-text = "Target Absorbed"
+theme = ExtResource("2_et546")
+theme_override_font_sizes/font_size = 64
+text = "Color Liberated"
 horizontal_alignment = 1
 
 [node name="RankLabel" type="Label" parent="." unique_id=1360781295]
 layout_mode = 0
-offset_left = 97.0
-offset_top = 151.0
-offset_right = 206.0
-offset_bottom = 185.0
+offset_left = 75.0
+offset_top = 169.0
+offset_right = 184.0
+offset_bottom = 203.0
 rotation = 0.46914017
-theme_override_font_sizes/font_size = 24
+theme = ExtResource("2_et546")
+theme_override_font_sizes/font_size = 32
 text = "grade"
 horizontal_alignment = 1
 
 [node name="LevelName" type="Label" parent="." unique_id=768762528]
 layout_mode = 0
-offset_left = 110.0
-offset_top = 106.0
-offset_right = 219.0
-offset_bottom = 140.0
+offset_left = 117.0
+offset_top = 118.0
+offset_right = 226.0
+offset_bottom = 152.0
 rotation = -0.2617994
-theme_override_font_sizes/font_size = 24
+theme = ExtResource("2_et546")
+theme_override_font_sizes/font_size = 32
 text = "Mission 1"
 horizontal_alignment = 1
 
 [node name="RankText" type="Label" parent="." unique_id=652060935]
 layout_mode = 0
 offset_left = -109.0
-offset_top = 149.0
+offset_top = 219.0
 offset_right = 275.0
-offset_bottom = 352.0
-theme_override_font_sizes/font_size = 148
+offset_bottom = 422.0
+theme = ExtResource("2_et546")
+theme_override_font_sizes/font_size = 160
 text = "S"
 horizontal_alignment = 1
 
@@ -70,6 +91,7 @@ offset_left = 97.0
 offset_top = 154.0
 offset_right = 481.0
 offset_bottom = 253.0
+theme = ExtResource("2_et546")
 theme_override_font_sizes/font_size = 72
 text = "XX.X"
 horizontal_alignment = 1
@@ -77,12 +99,13 @@ horizontal_alignment = 1
 [node name="NextRank" type="Label" parent="." unique_id=1354464404]
 visible = false
 layout_mode = 0
-offset_left = 93.0
-offset_top = 266.00003
-offset_right = 477.0
-offset_bottom = 354.00003
+offset_left = 43.0
+offset_top = 304.0
+offset_right = 427.0
+offset_bottom = 392.0
 rotation = 0.07837686
-theme_override_font_sizes/font_size = 24
+theme = ExtResource("2_et546")
+theme_override_font_sizes/font_size = 32
 text = "Next rank: TimeHere"
 horizontal_alignment = 1
 
@@ -96,6 +119,7 @@ offset_top = -200.0
 offset_right = 300.0
 offset_bottom = -150.0
 grow_vertical = 0
+theme = ExtResource("2_et546")
 theme_override_font_sizes/font_size = 30
 text = "Next Mission"
 alignment = 0
@@ -110,6 +134,7 @@ offset_top = -150.0
 offset_right = 300.0
 offset_bottom = -100.0
 grow_vertical = 0
+theme = ExtResource("2_et546")
 theme_override_font_sizes/font_size = 30
 text = "Retry Mission"
 alignment = 0
@@ -124,8 +149,9 @@ offset_top = -100.0
 offset_right = 300.0
 offset_bottom = -50.0
 grow_vertical = 0
+theme = ExtResource("2_et546")
 theme_override_font_sizes/font_size = 30
-text = "Level Select"
+text = "Mission Select"
 alignment = 0
 
 [node name="MainMenu" type="Button" parent="." unique_id=651776748]
@@ -137,24 +163,25 @@ anchor_bottom = 1.0
 offset_top = -50.0
 offset_right = 300.0
 grow_vertical = 0
+theme = ExtResource("2_et546")
 theme_override_font_sizes/font_size = 30
 text = "Main Menu"
 alignment = 0
 
 [node name="TargetImage" type="TextureRect" parent="." unique_id=1432798266]
 layout_mode = 0
-offset_left = 295.0
-offset_top = 73.0
-offset_right = 423.0
-offset_bottom = 201.0
+offset_left = 270.0
+offset_top = 82.0
+offset_right = 398.0
+offset_bottom = 210.0
 
 [node name="DeathX" type="Label" parent="." unique_id=775867774]
 layout_mode = 0
-offset_left = 319.00003
-offset_top = -16.999996
-offset_right = 430.00003
-offset_bottom = 227.0
-rotation = 0.3739528
+offset_left = 189.00002
+offset_top = 120.0
+offset_right = 300.0
+offset_bottom = 364.0
+rotation = -0.72250795
 scale = Vector2(1.75, 1)
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 178
