@@ -92,6 +92,31 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			current.Transitioned.emit(current, "GOD_MODE")
 		return
+	
+	if event.is_action_pressed("toggle_r"):
+		if abilities.find(Ability_Color.RED) != -1:
+			remove_ability(Ability_Color.RED)
+		else:
+			gain_ability(Ability_Color.RED)
+		print("Abilities: ", abilities)
+		print("Curr_Ability: ", curr_ability)
+		print("Ability_Index: ", ability_index)
+	if event.is_action_pressed("toggle_g"):
+		if abilities.find(Ability_Color.GREEN) != -1:
+			remove_ability(Ability_Color.GREEN)
+		else:
+			gain_ability(Ability_Color.GREEN)
+		print("Abilities: ", abilities)
+		print("Curr_Ability: ", curr_ability)
+		print("Ability_Index: ", ability_index)
+	if event.is_action_pressed("toggle_b"):
+		if abilities.find(Ability_Color.BLUE) != -1:
+			remove_ability(Ability_Color.BLUE)
+		else:
+			gain_ability(Ability_Color.BLUE)
+		print("Abilities: ", abilities)
+		print("Curr_Ability: ", curr_ability)
+		print("Ability_Index: ", ability_index)
 
 func _physics_process(delta: float) -> void:
 	wall_cooldown_timer = maxf(wall_cooldown_timer - delta, 0.0)
@@ -149,16 +174,39 @@ func find_wall_normal() -> Vector3:
 				return n
 	return Vector3.ZERO
 
+func remove_ability(color: Ability_Color) -> void:
+	if abilities.find(color) != -1:
+		abilities.remove_at(abilities.find(color))
+		if abilities.is_empty():
+			ability_index = -1
+			curr_ability = Ability_Color.BASE
+		else:
+			ability_index = 0
+			curr_ability = abilities[ability_index]
+
+func gain_ability(color: Ability_Color) -> void:
+	if abilities.find(color) == -1:
+		abilities.append(color)
+	if curr_ability == Ability_Color.BASE:
+		ability_index = 0
+		curr_ability = abilities[ability_index]
+
 func change_ability(event: InputEvent) -> void:
 	if abilities.is_empty():
 		return
 	if event.is_action_pressed("cycle_ability_left"):
 		ability_index = (ability_index - 1) % abilities.size()
 		curr_ability = abilities[ability_index]
+		print("Abilities: ", abilities)
+		print("Curr_Ability: ", curr_ability)
+		print("Ability_Index: ", ability_index)
 		return
 	if event.is_action_pressed("cycle_ability_right"):
 		ability_index = (ability_index + 1) % abilities.size()
 		curr_ability = abilities[ability_index]
+		print("Abilities: ", abilities)
+		print("Curr_Ability: ", curr_ability)
+		print("Ability_Index: ", ability_index)
 		return
 	if event.is_action_pressed("change_ability_r"):
 		var index := abilities.find(Ability_Color.RED)
