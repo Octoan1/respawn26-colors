@@ -1,6 +1,7 @@
 extends PlayerState
 
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var camera_3d: Camera3D = %Camera3D
 
 var _cancelled := false
 
@@ -13,13 +14,20 @@ var _air_time := 0.0
 
 func enter() -> void:
 	_air_time = 0.0
+	camera_3d.enable_dyamic_fov = true
 	player.movement.start_slide()
 
 func exit() -> void:
 	player.movement.end_slide()
 
 func physics_update(delta: float) -> void:
-	# ... jump check stays first ...
+	camera_3d.enable_dyamic_fov = false
+	camera_3d.fov = camera_3d.base_fov
+	
+	if Input.is_action_just_pressed("player_jump") and player.is_on_floor():
+		Transitioned.emit(self, "JUMP")
+		player.animation_player.play_backwards("Crouch")
+		return
 
 	if player.is_on_floor():
 		_air_time = 0.0
