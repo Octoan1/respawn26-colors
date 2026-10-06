@@ -83,6 +83,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event is InputEventKey:
 		change_ability(event)
+	
+	if event.is_action_pressed("GOD_MODE"):
+		var sm := $StateMachine
+		var current = sm.current_state
+		if current.name == "GOD_MODE":
+			current.Transitioned.emit(current, "AIR")
+		else:
+			current.Transitioned.emit(current, "GOD_MODE")
+		return
 
 func _physics_process(delta: float) -> void:
 	wall_cooldown_timer = maxf(wall_cooldown_timer - delta, 0.0)
