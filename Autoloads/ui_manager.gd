@@ -34,7 +34,7 @@ func show_level_report() -> void:
 	
 	main_canvas.add_child(level_report_screen)
 
-func go_to_level_brief(level_num: int) -> void:
+func go_to_level_brief(level_num: int, from: String) -> void:
 	get_canvas_layer()
 	
 	var scene: PackedScene = LEVEL_BRIEF
@@ -49,7 +49,10 @@ func go_to_level_brief(level_num: int) -> void:
 						if baby.name == "BeginButton":
 							baby.pressed.connect(LevelManager.go_to_level.bind(level_num))
 						elif baby.name == "BackButton":
-							baby.pressed.connect(go_to_level_select)
+							if from == "menu":
+								baby.pressed.connect(go_to_title)
+							elif from == "level_select":
+								baby.pressed.connect(go_to_level_select)
 	
 	var level_data: LevelData = LevelManager.LEVEL_LIST.levels[level_num]
 	main_canvas.add_child(level_brief_screen)

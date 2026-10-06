@@ -28,7 +28,8 @@ func populate_button_data() -> void:
 		var button: Button = Button.new()
 		button.pressed.connect(go_to_level.bind(level_num))
 		button.text = "Mission " + str(level_num+1)
-		button.add_theme_font_size_override("font_size", 20)
+		#button.add_theme_font_size_override("font_size", 20)
+		button.add_theme_font_size_override("font_size", 52)
 		button.theme = WHITE_TEXT_THEME
 		button.custom_minimum_size = Vector2(200, 80)
 		
@@ -46,7 +47,7 @@ func populate_button_data() -> void:
 
 
 func go_to_level(level_num: int) -> void:
-	UiManager.go_to_level_brief(level_num)
+	UiManager.go_to_level_brief(level_num, "level_select")
 	#LevelManager.go_to_level(level_num)
 	queue_free()
 
