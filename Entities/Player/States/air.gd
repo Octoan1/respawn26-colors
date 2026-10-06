@@ -21,7 +21,14 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "LANDING")
 		return
 	
-	if Input.is_action_pressed("player_forwards") and player.can_wall_run():
+	#var input_dir := Input.get_vector(
+		#"player_left",
+		#"player_right",
+		#"player_forwards",
+		#"player_backwards"
+	#)
+	#if input_dir.dot(Vector2(player.get_wall_normal().x, player.get_wall_normal().z)) < 0 and player.can_wall_run():
+	if player.can_wall_run():
 		Transitioned.emit(self, "WALL_RIDING"); return
 	
 	# Coyote-time jump
