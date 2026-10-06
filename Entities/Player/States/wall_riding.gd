@@ -31,7 +31,7 @@ func enter() -> void:
 	wall_run_dir = along
 
 	# Redirect all horizontal momentum along the wall, with a speed floor
-	var speed := maxf(h.length(), m.wall_speed)
+	var speed := h.length()
 	player.velocity.x = wall_run_dir.x * speed
 	player.velocity.z = wall_run_dir.z * speed
 	player.velocity.y = clampf(player.velocity.y, -2.0, 3.0)
