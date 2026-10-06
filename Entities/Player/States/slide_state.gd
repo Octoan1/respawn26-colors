@@ -37,17 +37,10 @@ func physics_update(delta: float) -> void:
 		player.animation_player.play_backwards("Crouch")
 		return
 
-	if player.movement.slide_current_speed < player.movement.slide_end_speed:
-		if Input.is_action_pressed("player_crouch"):
-			Transitioned.emit(self, "CROUCH")
-		elif player.get_movement_direction() != Vector3.ZERO:
-			Transitioned.emit(self, "WALK")
-			player.animation_player.play_backwards("Crouch")
-		else:
-			Transitioned.emit(self, "IDLE")
-			player.animation_player.play_backwards("Crouch")
-		return
-
 	player.movement.update_slide(player.get_movement_direction(), delta)
 	player.move_and_slide()
 	player.movement.sync_slide_speed()
+
+	# Stay in the slide while crouch is held, even after losing speed. This
+	# lets a downhill section restart the slide instead of bouncing through
+	# CROUCH and repeatedly re-entering SLIDE.
