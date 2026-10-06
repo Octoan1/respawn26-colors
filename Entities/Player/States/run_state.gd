@@ -48,6 +48,7 @@ func physics_update(delta: float) -> void:
 	
 	# Sprint released -> walk
 	if Input.is_action_just_released("player_sprint"):
+		player.movement.remember_sprint_release()
 		Transitioned.emit(self, "WALK")
 		return
 	
