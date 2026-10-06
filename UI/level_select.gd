@@ -49,7 +49,7 @@ func populate_button_data() -> void:
 func go_to_level(level_num: int) -> void:
 	UiManager.go_to_level_brief(level_num, "level_select")
 	#LevelManager.go_to_level(level_num)
-	queue_free()
+	#queue_free()
 
 
 func _on_menu_button_pressed() -> void:

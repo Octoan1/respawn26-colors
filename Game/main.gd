@@ -2,4 +2,4 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	UiManager.go_to_title()
+	UiManager.go_to_title(true)

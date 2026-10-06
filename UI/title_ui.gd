@@ -8,9 +8,9 @@ func _ready() -> void:
 func _on_start_game_pressed() -> void:
 	UiManager.go_to_level_brief(0, "menu")
 	#LevelManager.start_game()
-	queue_free()
+	#queue_free()
 
 
 func _on_level_select_pressed() -> void:
 	UiManager.go_to_level_select()
-	queue_free()
+	#queue_free()
