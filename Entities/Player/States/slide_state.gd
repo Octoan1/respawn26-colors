@@ -27,7 +27,7 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("player_jump") and player.is_on_floor():
 		Transitioned.emit(self, "JUMP")
-		player.animation_player.play_backwards("Crouch")
+		player.set_crouch_animation(false)
 		return
 
 	if player.is_on_floor():
@@ -38,12 +38,12 @@ func physics_update(delta: float) -> void:
 	if _air_time > 0.1:
 		player.coyote_timer.start()
 		Transitioned.emit(self, "AIR")
-		player.animation_player.play_backwards("Crouch")
+		player.set_crouch_animation(false)
 		return
 
 	if Input.is_action_just_released("player_crouch"):
 		Transitioned.emit(self, "LANDING")
-		player.animation_player.play_backwards("Crouch")
+		player.set_crouch_animation(false)
 		return
 
 	player.movement.update_slide(player.get_movement_direction(), delta)

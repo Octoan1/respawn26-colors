@@ -20,7 +20,12 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_just_released("player_crouch"):
 		Transitioned.emit(self, "IDLE")
-		player.animation_player.play_backwards("Crouch")
+		player.set_crouch_animation(false)
+		return
+		
+	if not player.is_on_floor():
+		player.coyote_timer.start()
+		Transitioned.emit(self, "AIR")
 		return
 
 	player.movement.apply_ground_friction(delta)

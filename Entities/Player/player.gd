@@ -20,6 +20,7 @@ var wall_cooldown_timer: float = 0.0
 var camera_roll_target: float = 0.0
 var camera_fov_boost: float = 0.0
 var base_fov: float = 75.0
+var _crouch_animation_target := false
 
 func _ready() -> void:
 	base_fov = camera.fov
@@ -74,6 +75,17 @@ func _process(delta: float) -> void:
 
 func start_wall_cooldown() -> void:
 	wall_cooldown_timer = movement.wall_cooldown
+
+
+func set_crouch_animation(crouched: bool) -> void:
+	if _crouch_animation_target == crouched and animation_player.is_playing():
+		return
+
+	_crouch_animation_target = crouched
+	if crouched:
+		animation_player.play("Crouch")
+	else:
+		animation_player.play_backwards("Crouch")
 
 
 func can_wall_run() -> bool:
