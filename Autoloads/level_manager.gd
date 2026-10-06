@@ -3,8 +3,12 @@ const LEVEL_LIST: LevelList = preload("res://levels/level_list.tres")
 
 var player_time: float
 var stopwatch_on: bool = false
+var player_freeze: bool = false
 
 var main: Node
+var player: Node3D
+var goal: Area3D
+var state_machine: StateMachine
 
 var current_index: int = 0
 """
@@ -28,6 +32,7 @@ func start_game() -> void:
 
 ## Loads the level at [param index] in the list, refusing indices that don't exist.
 func go_to_level(index: int) -> void:
+	player_freeze = false
 	if not _is_valid_index(index):
 		push_error("LevelManager: no level at index %d" % index)
 		return
@@ -44,6 +49,9 @@ func go_to_level(index: int) -> void:
 	cleanup_main()
 	main.add_child(level)
 	
+	get_level_references()
+	goal.give_player(player)
+	
 	await TransitionManager.end_transition()
 	
 	# handle time vars
@@ -55,6 +63,10 @@ func go_to_level(index: int) -> void:
 ## rework this block so it instead opens up the level_finish ui.
 func complete_level() -> void:
 	stopwatch_on = false
+	
+	get_level_references()
+	freeze_player()
+	
 	var level: LevelData = LEVEL_LIST.levels[current_index]
 	level.is_complete = true
 	
@@ -91,6 +103,35 @@ func _process(delta: float) -> void:
 	if stopwatch_on:
 		player_time += delta
 	
+	if player_freeze:
+		if player and goal:
+			var target_pos: Vector3 = goal.target_sprite.global_transform.origin
+			var direction: Vector3 = player.camera.global_position.direction_to(target_pos)
+			if direction.is_zero_approx():
+				return
+			
+			var target_basis: Basis = Basis.looking_at(direction, Vector3.UP)
+			player.camera.global_transform.basis = player.camera.global_transform.basis.slerp(target_basis, 5 * delta)
+
+func freeze_player() -> void:
+	state_machine.is_frozen = true
+	player.freeze_control = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	player_freeze = true
+	
+	#var target_pos: Vector3 = goal.target_sprite.global_transform.origin
+	#player.camera.look_at(target_pos, Vector3.UP)
+
+func get_level_references() -> void:
+	for child in main.get_child(1).get_children():
+		if child is Player:
+			player = child
+		if child.name == "Goal":
+			goal = child
+	
+	for child in player.get_children():
+		if child.name == "StateMachine":
+			state_machine = child
 
 func cleanup_main() -> void:
 	for child in LevelManager.main.get_children():

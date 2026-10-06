@@ -6,7 +6,7 @@ func setup() -> void:
 	pass
 
 func enter() -> void: 
-	if player.movement.get_horizontal_velocity().length() >= player.movement.min_speed_for_slide:
+	if player.movement.can_slide():
 		Transitioned.emit(self, "SLIDE")
 	
 func exit() -> void: 

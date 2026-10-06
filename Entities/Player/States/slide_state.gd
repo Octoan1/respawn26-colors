@@ -1,65 +1,54 @@
 extends PlayerState
 
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
+@onready var camera_3d: Camera3D = %Camera3D
+
+var _cancelled := false
+
 
 func setup() -> void:
 	super()
-	pass
 
-func enter() -> void: 	
-	var direction: Vector3 = player.get_movement_direction()
 
-	# If there is no input, slide in the direction we're already moving
-	if direction == Vector3.ZERO:
-		direction = Vector3(
-			player.velocity.x,
-			0.0,
-			player.velocity.z
-		).normalized()
+var _air_time := 0.0
 
-	player.movement.start_slide(direction)
-	
-func exit() -> void: 
-	pass
-	
-func update(_delta: float) -> void:
-	pass
+func enter() -> void:
+	_air_time = 0.0
+	camera_3d.enable_dyamic_fov = true
+	camera_3d.fov += 5
+	player.movement.start_slide()
+
+func exit() -> void:
+	player.movement.end_slide()
 
 func physics_update(delta: float) -> void:
-	# player jumps
+	camera_3d.enable_dyamic_fov = false
+	camera_3d.fov = camera_3d.base_fov
+	
 	if Input.is_action_just_pressed("player_jump") and player.is_on_floor():
 		Transitioned.emit(self, "JUMP")
 		player.animation_player.play_backwards("Crouch")
 		return
-	
-	# player starts falling (could be pushed off edge)
-	if not player.is_on_floor():
+
+	if player.is_on_floor():
+		_air_time = 0.0
+	else:
+		_air_time += delta
+
+	if _air_time > 0.1:
 		player.coyote_timer.start()
 		Transitioned.emit(self, "AIR")
 		player.animation_player.play_backwards("Crouch")
 		return
-	
+
 	if Input.is_action_just_released("player_crouch"):
-		Transitioned.emit(self,"LANDING")
+		Transitioned.emit(self, "LANDING")
 		player.animation_player.play_backwards("Crouch")
 		return
-	
-	
-	if player.movement.get_horizontal_velocity().length() < player.movement.min_speed_for_slide:
-		var direction := player.get_movement_direction()
 
-		if Input.is_action_pressed("player_crouch"):
-			Transitioned.emit(self, "CROUCH")
-			return
-		
-		if direction != Vector3.ZERO:
-			Transitioned.emit(self, "WALK")
-			player.animation_player.play_backwards("Crouch")
-			return
-		else:
-			Transitioned.emit(self, "IDLE")
-			player.animation_player.play_backwards("Crouch")
-			return
-	
-	player.movement.apply_slide_friction(delta)
+	player.movement.update_slide(player.get_movement_direction(), delta)
 	player.move_and_slide()
+
+	# Stay in the slide while crouch is held, even after losing speed. This
+	# lets a downhill section restart the slide instead of bouncing through
+	# CROUCH and repeatedly re-entering SLIDE.

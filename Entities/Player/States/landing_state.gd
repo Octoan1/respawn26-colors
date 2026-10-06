@@ -20,7 +20,7 @@ func physics_update(_delta: float) -> void:
 	
 	# slide pressed
 	if Input.is_action_pressed("player_crouch"):
-		Transitioned.emit(self,"SLIDE")
+		Transitioned.emit(self,"CROUCH")
 		player.animation_player.play("Crouch")
 	
 	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")

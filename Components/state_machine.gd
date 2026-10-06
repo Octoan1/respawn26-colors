@@ -10,6 +10,9 @@ class_name StateMachine
 var current_state: State
 var states: Dictionary[String, State] = {}
 
+# conner added this. sorry if it breaks something
+var is_frozen: bool = false
+
 func _ready() -> void:
 	for child in get_children():
 		if child is State:
@@ -30,6 +33,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if is_frozen:
+		return
+	
 	if current_state:
 		current_state.update(delta)
 		
@@ -37,6 +43,9 @@ func _process(delta: float) -> void:
 			#debug_state_label.text = current_state.name
 		
 func _physics_process(delta: float) -> void:
+	if is_frozen:
+		return
+	
 	if current_state:
 		current_state.physics_update(delta)
 		

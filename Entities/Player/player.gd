@@ -21,6 +21,9 @@ var camera_roll_target: float = 0.0
 var camera_fov_boost: float = 0.0
 var base_fov: float = 75.0
 
+# conner added this, sorry if it breaks something
+var freeze_control: bool = false
+
 func _ready() -> void:
 	base_fov = camera.fov
 	
@@ -41,6 +44,9 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if freeze_control:
+		return
+	
 	# Recapture mouse
 	if event is InputEventMouseButton:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

@@ -9,9 +9,21 @@ class_name PlayerMovement
 @export var ground_friction: float = 6.0
 
 @export_category("Slide")
-@export var slide_speed: float = 14.0
-@export var slide_friction: float = 1.0
-@export var min_speed_for_slide: float = 5.0
+@export var min_speed_for_slide: float = 6.5   # entry gate; run_speed is 8, so you must be running
+@export var slide_entry_boost: float = 2.0     # small burst on entry, not a snap to max
+@export var slide_speed: float = 14.0          # hard cap (downhill can approach this)
+@export var slide_friction: float = 4.0        # m/s^2 lost on flat ground
+@export var slide_slope_gain: float = 2.5      # how strongly slopes add/remove speed
+@export var slide_steer_deg: float = 35.0      # max turn rate in deg/sec
+@export var slide_end_speed: float = 3.5       # slide ends below this
+@export var slide_cooldown: float = 0.8        # seconds after a slide before you can slide again
+@export var slide_floor_stick: float = 2.0     # keeps the capsule attached while sliding
+
+var slide_direction: Vector3 = Vector3.FORWARD
+var slide_current_speed: float = 0.0
+var slide_velocity: Vector3 = Vector3.ZERO
+var slide_floor_normal: Vector3 = Vector3.UP
+var _slide_ended_at: float = -999.0
 
 @export_category("Air Movement")
 @export var air_acceleration: float = 800.0
@@ -91,31 +103,84 @@ func apply_ground_friction(delta: float) -> void:
 	player.velocity.z = horizontal_velocity.z
 
 
-func start_slide(direction: Vector3) -> void:
-	var current_speed: float = get_horizontal_speed()
-	
-	var speed: float = max(current_speed, slide_speed)
-	
-	player.velocity.x = direction.x * speed
-	player.velocity.z = direction.z * speed
+func can_slide() -> bool:
+	var off_cooldown := _now() - _slide_ended_at >= slide_cooldown
+	return player.is_on_floor() and off_cooldown and get_horizontal_speed() >= min_speed_for_slide
 
 
-func apply_slide_friction(delta: float) -> void:
-	var horizontal_velocity: Vector2 = get_horizontal_velocity()
+func start_slide() -> void:
+	var h := get_horizontal_velocity()
+	slide_direction = Vector3(h.x, 0.0, h.y).normalized()
+	slide_current_speed = minf(h.length() + slide_entry_boost, slide_speed)
+	slide_floor_normal = player.get_floor_normal()
+	if slide_floor_normal == Vector3.ZERO:
+		slide_floor_normal = Vector3.UP
+	slide_velocity = Vector3(h.x, 0.0, h.y)
+	if slide_velocity.length_squared() > 0.0:
+		slide_velocity = slide_velocity.normalized() * slide_current_speed
+	slide_velocity = slide_velocity.slide(slide_floor_normal)
+	player.velocity = slide_velocity - slide_floor_normal * slide_floor_stick
 
-	var speed: float = horizontal_velocity.length()
 
-	if speed <= 0.0:
-		return
+func end_slide() -> void:
+	_slide_ended_at = _now()
 
-	var drop: float = speed * slide_friction * delta
-	var new_speed: float = max(speed - drop, 0.0)
 
-	horizontal_velocity = horizontal_velocity.normalized() * new_speed
+func update_slide(input_dir: Vector3, delta: float) -> void:
+	var n := slide_floor_normal
+	if player.is_on_floor():
+		n = player.get_floor_normal()
+		slide_floor_normal = n
 
-	player.velocity.x = horizontal_velocity.x
-	player.velocity.z = horizontal_velocity.y
+	# Keep the complete momentum vector tangent to the floor. Unlike a scalar
+	# speed, this lets gravity turn the player downhill even when the slide
+	# started across the slope.
+	slide_velocity = slide_velocity.slide(n)
+	slide_direction = slide_velocity.normalized()
 
+	if input_dir != Vector3.ZERO:
+		var target_direction := input_dir.slide(n).normalized()
+		if target_direction != Vector3.ZERO and slide_direction != Vector3.ZERO:
+			var turn := slide_direction.signed_angle_to(target_direction, n)
+			var max_turn := deg_to_rad(slide_steer_deg) * delta
+			slide_velocity = slide_velocity.rotated(
+				n,
+				clampf(turn, -max_turn, max_turn)
+			).normalized()
+			slide_velocity *= slide_current_speed
+
+	# Gravity is projected onto the floor and added to the velocity. This is
+	# what makes the player continue accelerating like a rolling ball.
+	var slope_gravity := player.get_gravity().slide(n) * slide_slope_gain
+	slide_velocity += slope_gravity * delta
+	slide_velocity = slide_velocity.slide(n)
+
+	# Friction opposes existing momentum. At 14 degrees the tangent gravity
+	# is strong enough to overcome this and start a slide downhill.
+	slide_velocity = slide_velocity.move_toward(
+		Vector3.ZERO,
+		slide_friction * delta
+	)
+	if slide_velocity.length() > slide_speed:
+		slide_velocity = slide_velocity.normalized() * slide_speed
+
+	slide_current_speed = slide_velocity.length()
+	slide_direction = slide_velocity.normalized()
+
+	# The tangent velocity follows the slope naturally; the small normal
+	# component prevents physics seams from launching the player.
+	player.velocity = slide_velocity - n * slide_floor_stick
+
+
+func sync_slide_speed() -> void:
+	# The slide simulation owns tangent momentum. Do not infer it from
+	# CharacterBody3D.velocity after floor collision resolution.
+	slide_current_speed = slide_velocity.length()
+	slide_direction = slide_velocity.normalized()
+
+
+func _now() -> float:
+	return Time.get_ticks_msec() / 1000.0
 
 func accelerate_air(direction: Vector3, delta: float) -> void:
 	if direction == Vector3.ZERO:
