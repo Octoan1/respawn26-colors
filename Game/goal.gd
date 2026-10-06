@@ -1,5 +1,6 @@
 extends Area3D
-
+@onready var target_sprite: Sprite3D = $TargetSprite
+var player: Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,9 +9,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	if not player:
+		return
+	
+	var target_pos: Vector3 = player.global_transform.origin
+	target_pos.y = target_sprite.global_transform.origin.y
+	
+	target_sprite.look_at(target_pos, Vector3.UP)
 
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Player:
 		LevelManager.complete_level()
+
+func give_player(ref: Player) -> void:
+	player = ref

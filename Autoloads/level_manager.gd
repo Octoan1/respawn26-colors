@@ -5,6 +5,9 @@ var player_time: float
 var stopwatch_on: bool = false
 
 var main: Node
+var player: Node3D
+var goal: Area3D
+var state_machine: StateMachine
 
 var current_index: int = 0
 """
@@ -44,6 +47,9 @@ func go_to_level(index: int) -> void:
 	cleanup_main()
 	main.add_child(level)
 	
+	get_level_references()
+	goal.give_player(player)
+	
 	await TransitionManager.end_transition()
 	
 	# handle time vars
@@ -55,6 +61,9 @@ func go_to_level(index: int) -> void:
 ## rework this block so it instead opens up the level_finish ui.
 func complete_level() -> void:
 	stopwatch_on = false
+	
+	freeze_player()
+	
 	var level: LevelData = LEVEL_LIST.levels[current_index]
 	level.is_complete = true
 	
@@ -90,7 +99,22 @@ func _is_valid_index(index: int) -> bool:
 func _process(delta: float) -> void:
 	if stopwatch_on:
 		player_time += delta
+
+func freeze_player() -> void:
+	state_machine.is_frozen = true
+	player.freeze_control = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func get_level_references() -> void:
+	for child in main.get_child(1).get_children():
+		if child is Player:
+			player = child
+		if child.name == "Goal":
+			goal = child
 	
+	for child in player.get_children():
+		if child.name == "StateMachine":
+			state_machine = child
 
 func cleanup_main() -> void:
 	for child in LevelManager.main.get_children():
