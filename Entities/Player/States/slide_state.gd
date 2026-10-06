@@ -45,6 +45,10 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "LANDING")
 		player.set_crouch_animation(false)
 		return
+		
+	if player.movement.get_horizontal_speed() < player.movement.slide_end_speed:
+		Transitioned.emit(self, "CROUCH")
+		return
 
 	player.movement.update_slide(player.get_movement_direction(), delta)
 	player.move_and_slide()
