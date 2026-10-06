@@ -173,11 +173,8 @@ func update_slide(input_dir: Vector3, delta: float) -> void:
 
 
 func sync_slide_speed() -> void:
-	# Keep the simulated tangent velocity. move_and_slide() can contain the
-	# normal floor-stick component and must not replace the slope simulation.
-	var carried_velocity := player.velocity.slide(slide_floor_normal)
-	if carried_velocity.length_squared() < slide_velocity.length_squared():
-		slide_velocity = carried_velocity
+	# The slide simulation owns tangent momentum. Do not infer it from
+	# CharacterBody3D.velocity after floor collision resolution.
 	slide_current_speed = slide_velocity.length()
 	slide_direction = slide_velocity.normalized()
 

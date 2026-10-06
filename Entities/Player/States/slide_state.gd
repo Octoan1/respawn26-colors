@@ -39,7 +39,6 @@ func physics_update(delta: float) -> void:
 
 	player.movement.update_slide(player.get_movement_direction(), delta)
 	player.move_and_slide()
-	player.movement.sync_slide_speed()
 
 	# Stay in the slide while crouch is held, even after losing speed. This
 	# lets a downhill section restart the slide instead of bouncing through
