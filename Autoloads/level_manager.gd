@@ -104,13 +104,14 @@ func _process(delta: float) -> void:
 		player_time += delta
 	
 	if player_freeze:
-		var target_pos: Vector3 = goal.target_sprite.global_transform.origin
-		var direction: Vector3 = player.camera.global_position.direction_to(target_pos)
-		if direction.is_zero_approx():
-			return
-		
-		var target_basis: Basis = Basis.looking_at(direction, Vector3.UP)
-		player.camera.global_transform.basis = player.camera.global_transform.basis.slerp(target_basis, 5 * delta)
+		if player and goal:
+			var target_pos: Vector3 = goal.target_sprite.global_transform.origin
+			var direction: Vector3 = player.camera.global_position.direction_to(target_pos)
+			if direction.is_zero_approx():
+				return
+			
+			var target_basis: Basis = Basis.looking_at(direction, Vector3.UP)
+			player.camera.global_transform.basis = player.camera.global_transform.basis.slerp(target_basis, 5 * delta)
 
 func freeze_player() -> void:
 	state_machine.is_frozen = true
