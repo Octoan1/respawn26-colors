@@ -36,7 +36,7 @@ func _ready() -> void:
 ## NEXT LEVEL
 func _on_next_level_pressed() -> void:
 	LevelManager.next_level()
-	free_ui.emit()
+	#free_ui.emit()
 
 func _on_next_level_mouse_entered() -> void:
 	expand_button(next_level)
@@ -47,7 +47,7 @@ func _on_next_level_mouse_exited() -> void:
 ## RETRY LEVEL
 func _on_retry_button_pressed() -> void:
 	LevelManager.restart_level()
-	free_ui.emit()
+	#free_ui.emit()
 
 func _on_retry_button_mouse_entered() -> void:
 	expand_button(retry_button)
@@ -58,7 +58,7 @@ func _on_retry_button_mouse_exited() -> void:
 ## LEVEL SELECT
 func _on_level_select_pressed() -> void:
 	UiManager.go_to_level_select()
-	free_ui.emit()
+	#free_ui.emit()
 
 func _on_level_select_mouse_entered() -> void:
 	expand_button(level_select)
@@ -69,7 +69,7 @@ func _on_level_select_mouse_exited() -> void:
 ## MAIN MENU
 func _on_main_menu_pressed() -> void:
 	UiManager.go_to_title()
-	free_ui.emit()
+	#free_ui.emit()
 
 func _on_main_menu_mouse_entered() -> void:
 	expand_button(main_menu)

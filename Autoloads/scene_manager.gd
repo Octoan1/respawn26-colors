@@ -60,3 +60,6 @@ func _fade_to(alpha: float) -> void:
 	var tween: Tween = create_tween()
 	tween.tween_property(_fade, "modulate:a", alpha, fade_time)
 	await tween.finished
+
+func play_scene_transition() -> void:
+	pass

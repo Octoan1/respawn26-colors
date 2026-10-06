@@ -32,6 +32,8 @@ func go_to_level(index: int) -> void:
 		push_error("LevelManager: no level at index %d" % index)
 		return
 	
+	await TransitionManager.play_transition()
+	
 	current_index = index
 	
 	var scene: PackedScene = get_current_level()
@@ -41,6 +43,8 @@ func go_to_level(index: int) -> void:
 	
 	cleanup_main()
 	main.add_child(level)
+	
+	await TransitionManager.end_transition()
 	
 	# handle time vars
 	player_time = 0
@@ -62,7 +66,7 @@ func next_level() -> void:
 	if _is_valid_index(current_index + 1):
 		go_to_level(current_index + 1)
 	else:
-		cleanup_main()
+		#cleanup_main()
 		current_index = 0
 		UiManager.go_to_title()
 
