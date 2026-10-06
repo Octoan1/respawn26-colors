@@ -10,13 +10,16 @@ func enter() -> void:
 
 func exit() -> void:
 	player.movement.can_grab_wall = false
-	pass
 
 func update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
 	# Landed
+	if player.curr_ability != player.Ability_Color.BLUE or !Input.is_action_pressed("ability_activate"):
+		Transitioned.emit(self, "AIR")
+		return
+	
 	if player.is_on_floor():
 		Transitioned.emit(self, "LANDING")
 		return

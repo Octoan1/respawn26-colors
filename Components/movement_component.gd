@@ -53,7 +53,7 @@ var _slide_ended_at: float = -999.0
 @export var wall_fov_boost: float = 8.0
 
 @export_category("Glide")
-@export var gravity_modifier_glide: float = 0.5
+@export var gravity_modifier_glide: float = 0.0000000005
 
 @onready var player: Player = get_parent()
 
