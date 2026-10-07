@@ -11,7 +11,7 @@ func _on_level_report_free_ui() -> void:
 
 func populate_finish() -> void:
 	level_report.populate_report()
-	finish_time.text = "%.2f" %LevelManager.player_time
+	finish_time.text = "%.2fs" %LevelManager.player_time
 
 
 func _on_level_report_new_best() -> void:

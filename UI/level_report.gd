@@ -142,10 +142,10 @@ func populate_report() -> void:
 			# show the time requirment for the next rank
 			if rank_index != 0:
 				next_rank.show()
-				next_rank.text = "Next time to beat: " + str(level_data.rank_times[rank_index-1])
+				next_rank.text = "Next time to beat: " + str(level_data.rank_times[rank_index-1]) + "s"
 			
 			rank_text.text = ranks[rank_index]
-			threshold_text.text = "%.2f" %time
+			threshold_text.text = "%.2fs" %time
 			
 			# check if this rank is an improvement, and update the level data
 			var original_rank: int = ranks.find(level_data.rank)

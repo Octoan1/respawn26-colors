@@ -6,20 +6,20 @@
 bg_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwgs4"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.76862746, 0.76862746, 0.76862746, 1)
 border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0b5w"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.76862746, 0.76862746, 0.76862746, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7a58j"]
 bg_color = Color(1, 1, 1, 0)
 
 [resource]
-Button/colors/font_color = Color(1, 1, 1, 1)
-Button/colors/font_disabled_color = Color(1, 0, 0, 1)
-Button/colors/font_focus_color = Color(0, 0, 0, 1)
-Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_color = Color(0.76862746, 0.76862746, 0.76862746, 1)
+Button/colors/font_disabled_color = Color(0.85490197, 0.003921569, 0, 1)
+Button/colors/font_focus_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+Button/colors/font_hover_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 Button/colors/icon_hover_color = Color(0.92156863, 0.92156863, 0.9372549, 1)
 Button/colors/icon_normal_color = Color(1, 1, 1, 1)
 Button/fonts/font = ExtResource("1_pwgs4")
@@ -27,5 +27,7 @@ Button/styles/disabled = SubResource("StyleBoxFlat_qgm14")
 Button/styles/focus = SubResource("StyleBoxFlat_pwgs4")
 Button/styles/hover = SubResource("StyleBoxFlat_q0b5w")
 Button/styles/normal = SubResource("StyleBoxFlat_7a58j")
+Label/colors/font_color = Color(0.76862746, 0.76862746, 0.76862746, 1)
 Label/fonts/font = ExtResource("1_pwgs4")
+RichTextLabel/colors/default_color = Color(0.76862746, 0.76862746, 0.76862746, 1)
 RichTextLabel/fonts/normal_font = ExtResource("1_pwgs4")

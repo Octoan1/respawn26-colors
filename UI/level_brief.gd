@@ -31,7 +31,7 @@ func populate_brief(level: LevelData) -> void:
 	if level.rank != "F":
 		rank_text.text = level.rank
 	if level.best_time != 99999.0:
-		best_time_text.text = "%.2f" %level.best_time
+		best_time_text.text = "%.2fs" %level.best_time
 	if level.is_complete:
 		#death_x.visible = true
 		pass

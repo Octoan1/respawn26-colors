@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 
 [node name="FullBrief" type="Control" parent="." unique_id=465622153]
 layout_mode = 1
@@ -41,6 +41,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.76862746, 0.76862746, 0.76862746, 1)
 
 [node name="DebugPanel" type="Panel" parent="FullBrief" unique_id=1207377848]
 visible = false

@@ -16,7 +16,7 @@ func play_transition(duration: float = 0.5) -> void:
 	# set shader vars
 	material.shader = SLASH_TRANSITION
 	material.set_shader_parameter("t", 0.0)
-	material.set_shader_parameter("mask_color", Color(1, 1, 1))
+	material.set_shader_parameter("mask_color", Color("#dcdcdc"))
 	material.set_shader_parameter("background_color", Color(0, 0, 0, 0))
 	
 	var tween_in: Tween = create_tween()
@@ -39,7 +39,7 @@ func end_transition(duration: float = 0.5) -> void:
 	# set shader vars
 	material.shader = SQUARE_TRANSITION
 	material.set_shader_parameter("t", 0.0)
-	material.set_shader_parameter("mask_color", Color(1, 1, 1))
+	material.set_shader_parameter("mask_color", Color("#dcdcdc"))
 	material.set_shader_parameter("background_color", Color(0, 0, 0, 0))
 	
 	var tween_out: Tween = create_tween()
