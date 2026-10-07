@@ -15,6 +15,7 @@ var contact_lost_time := 0.0
 
 
 func enter() -> void:
+	player.ability_charges = 1
 	var m := player.movement
 	var n := player.find_wall_normal()
 	player.wall_normal = n if n != Vector3.ZERO else player.get_wall_normal()
@@ -60,6 +61,8 @@ func physics_update(delta: float) -> void:
 
 	if player.is_on_floor():
 		Transitioned.emit(self, "IDLE"); return
+	if not player.has_wall_run_clearance(player.wall_normal):
+		Transitioned.emit(self, "PUSH_OFF_WALL"); return
 
 	if player.is_on_wall():
 		contact_lost_time = 0.0
@@ -75,11 +78,13 @@ func physics_update(delta: float) -> void:
 		player.coyote_timer.stop()
 		Transitioned.emit(self, "WALL_JUMP"); return
 	
-	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate"):
+	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate") and player.ability_charges > 0:
+		player.ability_charges -= 1
 		Transitioned.emit(self, "DASH")
 		return
 	
-	if player.curr_ability == player.Ability_Color.RED and Input.is_action_just_pressed("ability_activate"):
+	if player.curr_ability == player.Ability_Color.RED and Input.is_action_just_pressed("ability_activate") and player.ability_charges > 0:
+		player.ability_charges -= 1
 		Transitioned.emit(self, "ROCKET_JUMP")
 		return
 

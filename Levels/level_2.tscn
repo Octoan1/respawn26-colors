@@ -1,51 +1,39 @@
 [gd_scene format=3 uid="uid://ch0gm2u67dgkx"]
 
-[ext_resource type="Shader" uid="uid://c5ewvbyyvsufs" path="res://Levels/checkerboard.gdshader" id="1_arsda"]
-[ext_resource type="Shader" uid="uid://dhjviqjsnhplj" path="res://Assets/Materials/skybox.gdshader" id="1_fbld2"]
 [ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="2_dgq3b"]
-[ext_resource type="Material" uid="uid://fr50owsc8aet" path="res://Assets/Materials/Colors/orange_material.tres" id="2_fbld2"]
+[ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="3_arsda"]
 [ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="3_bcgyv"]
 [ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="4_dgq3b"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_77x7w"]
-shader = ExtResource("1_fbld2")
-shader_parameter/sky_color = Color(0.76862746, 0.76862746, 0.76862746, 1)
-
-[sub_resource type="Sky" id="Sky_0urlm"]
-sky_material = SubResource("ShaderMaterial_77x7w")
-
-[sub_resource type="Environment" id="Environment_fbld2"]
-background_mode = 2
-sky = SubResource("Sky_0urlm")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s275v"]
-render_priority = 0
-shader = ExtResource("1_arsda")
+[sub_resource type="BoxMesh" id="BoxMesh_dgq3b"]
+size = Vector3(16, 1, 14)
 
 [node name="Level2" type="Node3D" unique_id=1972966065]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=120570327]
-environment = SubResource("Environment_fbld2")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=382232467]
-transform = Transform3D(1, -2.2351742e-08, -2.130866e-06, -7.450581e-09, 0.9999993, -1.4007092e-06, 0, 2.9802322e-08, 1.0000014, -1.0500001, 0.14999928, 3.8743018e-08)
-material_override = ExtResource("2_fbld2")
-use_collision = true
-size = Vector3(20, 1, 20)
-material = SubResource("ShaderMaterial_s275v")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=481323281]
-transform = Transform3D(0.27246663, -1.9083312e-07, -4.57009e-07, -2.0300346e-09, 8.537724, -3.004115e-07, 0, 2.544442e-07, 0.21447133, -1.0500001, 4.7806463, 6.9798117)
-material_override = ExtResource("2_fbld2")
-use_collision = true
-size = Vector3(20, 1, 20)
-material = SubResource("ShaderMaterial_s275v")
-
 [node name="Player" parent="." unique_id=493457226 instance=ExtResource("2_dgq3b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2897635, -3.0730221)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Goal" parent="." unique_id=537695073 instance=ExtResource("3_bcgyv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3618498, 3.929882)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3618498, -53.070118)
+
+[node name="LevelGeometry" type="Node3D" parent="." unique_id=1695930746]
+script = ExtResource("3_arsda")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelGeometry" unique_id=109218916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5)
+mesh = SubResource("BoxMesh_dgq3b")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelGeometry" unique_id=1940563536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20.5)
+mesh = SubResource("BoxMesh_dgq3b")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="LevelGeometry" unique_id=1403737490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -37.5)
+mesh = SubResource("BoxMesh_dgq3b")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="LevelGeometry" unique_id=255348725]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -53.5)
+mesh = SubResource("BoxMesh_dgq3b")
 
 [node name="DeathPlane" parent="." unique_id=1176538747 instance=ExtResource("4_dgq3b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)

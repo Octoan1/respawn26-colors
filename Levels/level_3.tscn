@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c101aqsjcmsml"]
+
+[ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="1_ej5lj"]
+[ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="2_absw3"]
+[ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="3_padch"]
+
+[sub_resource type="TextMesh" id="TextMesh_61hl2"]
+text = "When going fast enough hold ctrl to slide down slopes"
+font_size = 100
+
+[sub_resource type="BoxMesh" id="BoxMesh_dgq3b"]
+size = Vector3(16, 1, 14)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ej5lj"]
+size = Vector3(16, 1, 55.5)
+
+[node name="Level3" type="Node3D" unique_id=1972966065]
+
+[node name="Player" parent="." unique_id=493457226 instance=ExtResource("1_ej5lj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Goal" parent="." unique_id=537695073 instance=ExtResource("2_absw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -26.63815, -75.070114)
+
+[node name="TutorialText" type="MeshInstance3D" parent="." unique_id=507895924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -16)
+mesh = SubResource("TextMesh_61hl2")
+
+[node name="LevelGeometry" type="Node3D" parent="." unique_id=1695930746]
+script = ExtResource("3_padch")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelGeometry" unique_id=109218916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5)
+mesh = SubResource("BoxMesh_dgq3b")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelGeometry" unique_id=1940563536]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, -13.822471, -34.26572)
+mesh = SubResource("BoxMesh_ej5lj")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="LevelGeometry" unique_id=777593774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -29, -75)
+mesh = SubResource("BoxMesh_dgq3b")

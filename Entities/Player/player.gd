@@ -4,6 +4,7 @@ class_name Player
 @export var mouse_sensitivity: float = 0.002
 
 @onready var head: Node3D = $Head
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var movement: PlayerMovement = $Movement
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -24,6 +25,8 @@ var camera_roll_target: float = 0.0
 var camera_fov_boost: float = 0.0
 var base_fov: float = 75.0
 var _crouch_animation_target := false
+var stand_height: float = 2.0
+var capsule: CapsuleShape3D
 
 # conner added this, sorry if it breaks something
 var freeze_control: bool = false
@@ -37,8 +40,12 @@ enum Ability_Color {
 var abilities: Array[Ability_Color]
 var ability_index: int
 var curr_ability: Ability_Color
+var ability_charges: int = 1
 
 func _ready() -> void:
+	animation_player.play("RESET")
+	capsule = collision_shape.shape as CapsuleShape3D
+	
 	base_fov = camera.fov
 	
 	coyote_timer = Timer.new()
@@ -65,6 +72,10 @@ func _ready() -> void:
 	abilities = []
 	ability_index = -1
 
+	var debug_manager := get_node_or_null("/root/DebugManager")
+	if debug_manager and debug_manager.has_signal("toggle_auto_bhop"):
+		if not debug_manager.is_connected("toggle_auto_bhop", _on_toggle_auto_bhop):
+			debug_manager.connect("toggle_auto_bhop", _on_toggle_auto_bhop)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if freeze_control:
@@ -90,12 +101,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			deg_to_rad(89)
 		)
 	
-	if event is InputEventKey:
+	if event is InputEvent:
 		change_ability(event)
 	
 	if event.is_action_pressed("GOD_MODE"):
 		var sm := $StateMachine
-		var current = sm.current_state
+		var current: State = sm.current_state
 		if current.name == "GOD_MODE":
 			current.Transitioned.emit(current, "AIR")
 		else:
@@ -156,7 +167,8 @@ func set_crouch_animation(crouched: bool) -> void:
 func can_wall_run() -> bool:
 	if is_on_floor() or wall_cooldown_timer > 0.0:
 		return false
-	return find_wall_normal() != Vector3.ZERO
+	var normal := find_wall_normal()
+	return normal != Vector3.ZERO and has_wall_run_clearance(normal)
 
 func get_movement_direction() -> Vector3:
 	var input_dir := Input.get_vector(
@@ -194,6 +206,34 @@ func find_wall_normal() -> Vector3:
 				return n
 	return Vector3.ZERO
 
+func has_wall_run_clearance(normal: Vector3) -> bool:
+	var new_wall_normal := Vector3(normal.x, 0.0, normal.z).normalized()
+	var capsule := collision_shape.shape as CapsuleShape3D
+	if new_wall_normal == Vector3.ZERO or capsule == null:
+		return false
+
+	# Check just inside the top and bottom of the capsule. The wall must span
+	# both points, leaving only the configured margin outside the body.
+	var half_height := maxf(capsule.height * 0.5 - movement.wall_run_clearance, 0.1)
+	var center := collision_shape.global_position
+	var cast_distance := maxf(movement.wall_probe_distance + 0.2, 0.5)
+	var query_points := [
+		center + Vector3.UP * half_height,
+		center - Vector3.UP * half_height,
+	]
+
+	for point: Vector3 in query_points:
+		var query := PhysicsRayQueryParameters3D.create(
+			point + new_wall_normal * cast_distance,
+			point - new_wall_normal * cast_distance,
+			collision_mask
+		)
+		query.exclude = [get_rid()]
+		if get_world_3d().direct_space_state.intersect_ray(query).is_empty():
+			return false
+
+	return true
+
 func remove_ability(color: Ability_Color) -> void:
 	if abilities.find(color) != -1:
 		abilities.remove_at(abilities.find(color))
@@ -215,6 +255,7 @@ func change_ability(event: InputEvent) -> void:
 	if abilities.is_empty():
 		return
 	if event.is_action_pressed("cycle_ability_left"):
+		ability_charges = 1
 		ability_index = (ability_index - 1) % abilities.size()
 		curr_ability = abilities[ability_index]
 		print("Abilities: ", abilities)
@@ -222,6 +263,7 @@ func change_ability(event: InputEvent) -> void:
 		print("Ability_Index: ", ability_index)
 		return
 	if event.is_action_pressed("cycle_ability_right"):
+		ability_charges = 1
 		ability_index = (ability_index + 1) % abilities.size()
 		curr_ability = abilities[ability_index]
 		print("Abilities: ", abilities)
@@ -231,18 +273,42 @@ func change_ability(event: InputEvent) -> void:
 	if event.is_action_pressed("change_ability_r"):
 		var index := abilities.find(Ability_Color.RED)
 		if index != -1:
+			ability_charges = 1
 			ability_index = index
 			curr_ability = Ability_Color.RED
+			print("Abilities: ", abilities)
+			print("Curr_Ability: ", curr_ability)
+			print("Ability_Index: ", ability_index)
 		return
 	if event.is_action_pressed("change_ability_g"):
 		var index := abilities.find(Ability_Color.GREEN)
 		if index != -1:
+			ability_charges = 1
 			ability_index = index
 			curr_ability = Ability_Color.GREEN
+			print("Abilities: ", abilities)
+			print("Curr_Ability: ", curr_ability)
+			print("Ability_Index: ", ability_index)
 		return
 	if event.is_action_pressed("change_ability_b"):
 		var index := abilities.find(Ability_Color.BLUE)
 		if index != -1:
+			ability_charges = 1
 			ability_index = index
 			curr_ability = Ability_Color.BLUE
+			print("Abilities: ", abilities)
+			print("Curr_Ability: ", curr_ability)
+			print("Ability_Index: ", ability_index)
 		return
+
+func _on_toggle_auto_bhop() -> void:
+	movement.auto_bhop = not movement.auto_bhop
+
+func can_stand() -> bool:
+	# How much taller we'd get by standing up
+	var extra := stand_height - capsule.height
+	if extra <= 0.01:
+		return true   # already standing
+
+	# true from test_move means we'd hit something, so there's no room
+	return not test_move(global_transform, Vector3.UP * extra)
