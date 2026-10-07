@@ -33,6 +33,7 @@ func enter() -> void:
 	# Keep only momentum that was already moving along the wall. Do not turn
 	# momentum directed into the wall into forward wall-run speed.
 	var along_speed := h.dot(wall_run_dir)
+	along_speed = maxf(along_speed, -m.wall_backward_speed)
 	player.velocity.x = wall_run_dir.x * along_speed
 	player.velocity.z = wall_run_dir.z * along_speed
 	player.velocity.y = clampf(player.velocity.y, -2.0, 3.0)
@@ -96,6 +97,8 @@ func physics_update(delta: float) -> void:
 		target_wall_speed,
 		wall_speed_step
 	)
+	if target_wall_speed < 0.0:
+		next_wall_speed = maxf(next_wall_speed, -m.wall_backward_speed)
 	player.velocity += wall_run_dir * (next_wall_speed - current_wall_speed)
 	m.apply_wall_friction(delta)
 	m.apply_wall_stick(_flat(player.wall_normal))
