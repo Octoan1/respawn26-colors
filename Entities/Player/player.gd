@@ -43,7 +43,7 @@ var curr_ability: Ability_Color
 var ability_charges: int = 1
 
 func _ready() -> void:
-	animation_player.play_backwards("Crouch")
+	animation_player.play("RESET")
 	capsule = collision_shape.shape as CapsuleShape3D
 	
 	base_fov = camera.fov
