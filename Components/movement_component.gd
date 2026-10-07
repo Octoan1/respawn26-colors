@@ -58,6 +58,10 @@ var _sprint_released_at: float = -999.0
 @export_category("Glide")
 @export var gravity_modifier_glide: float = 0.25
 
+@export_category("Dash")
+@export var dash_power: float = 10.0
+@export var dash_jump: float = 2.0
+
 @onready var player: Player = get_parent()
 
 
@@ -280,3 +284,8 @@ func apply_wall_gravity(run_progress: float, delta: float) -> void:
 	if player.velocity.y > 0.0:
 		player.velocity.y = lerpf(player.velocity.y, 0.0, 1.0 - exp(-6.0 * delta))
 	player.velocity.y -= wall_slip_gravity * run_progress * run_progress * delta
+
+func dash(dir: Vector3) -> void:
+	player.velocity += dir * dash_power
+	if player.is_on_floor():
+		player.velocity.y = dash_jump

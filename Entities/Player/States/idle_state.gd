@@ -26,6 +26,10 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "JUMP")
 		return
 	
+	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate"):
+		Transitioned.emit(self, "DASH")
+		return
+	
 	# Player left the ground
 	if not player.is_on_floor():
 		player.coyote_timer.start()

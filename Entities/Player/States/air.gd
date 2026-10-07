@@ -22,8 +22,11 @@ func physics_update(delta: float) -> void:
 		return
 		
 	if player.curr_ability == player.Ability_Color.BLUE and Input.is_action_just_pressed("ability_activate"):
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		Transitioned.emit(self, "GLIDE")
+		return
+	
+	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate"):
+		Transitioned.emit(self, "DASH")
 		return
 	
 	if Input.is_action_pressed("player_forwards") and player.can_wall_run():

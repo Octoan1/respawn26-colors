@@ -72,6 +72,10 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("player_jump"):
 		player.coyote_timer.stop()
 		Transitioned.emit(self, "WALL_JUMP"); return
+	
+	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate"):
+		Transitioned.emit(self, "DASH")
+		return
 
 	run_time += delta
 	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
