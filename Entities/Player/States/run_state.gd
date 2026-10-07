@@ -39,6 +39,11 @@ func physics_update(delta: float) -> void:
 		player.coyote_timer.start()
 		Transitioned.emit(self, "AIR")
 		return
+
+	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
+	if input_dir.y >= 0.0:
+		Transitioned.emit(self, "WALK")
+		return
 	
 	# Slide pressed
 	if Input.is_action_just_pressed("player_crouch"):

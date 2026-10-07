@@ -26,7 +26,8 @@ func physics_update(delta: float) -> void:
 		return
 	
 	# RUN state transition
-	if Input.is_action_pressed("player_sprint"):
+	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
+	if Input.is_action_pressed("player_sprint") and input_dir.y < 0.0:
 		Transitioned.emit(self, "RUN")
 		return
 		
