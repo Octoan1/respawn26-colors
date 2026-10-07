@@ -233,16 +233,25 @@ func change_ability(event: InputEvent) -> void:
 		if index != -1:
 			ability_index = index
 			curr_ability = Ability_Color.RED
+			print("Abilities: ", abilities)
+			print("Curr_Ability: ", curr_ability)
+			print("Ability_Index: ", ability_index)
 		return
 	if event.is_action_pressed("change_ability_g"):
 		var index := abilities.find(Ability_Color.GREEN)
 		if index != -1:
 			ability_index = index
 			curr_ability = Ability_Color.GREEN
+			print("Abilities: ", abilities)
+			print("Curr_Ability: ", curr_ability)
+			print("Ability_Index: ", ability_index)
 		return
 	if event.is_action_pressed("change_ability_b"):
 		var index := abilities.find(Ability_Color.BLUE)
 		if index != -1:
 			ability_index = index
 			curr_ability = Ability_Color.BLUE
+			print("Abilities: ", abilities)
+			print("Curr_Ability: ", curr_ability)
+			print("Ability_Index: ", ability_index)
 		return
