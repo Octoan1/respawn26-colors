@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="3_3mhv4"]
 [ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="3_syshm"]
 [ext_resource type="Material" uid="uid://ckrey5mb2aomc" path="res://Assets/Materials/MySharderMaterial.tres" id="5_syshm"]
-[ext_resource type="Material" uid="uid://fr50owsc8aet" path="res://Assets/Materials/Colors/comic_material.tres" id="6_77x7w"]
+[ext_resource type="Material" uid="uid://fr50owsc8aet" path="res://Assets/Materials/Colors/orange_material.tres" id="6_77x7w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_77x7w"]
 shader = ExtResource("1_0urlm")

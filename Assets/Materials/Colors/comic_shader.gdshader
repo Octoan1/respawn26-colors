@@ -9,13 +9,13 @@ uniform float shading_contrast : hint_range(0.1, 4.0) = 1.5;
 uniform float rim_influence : hint_range(0.0, 2.0) = 1.0;     
 
 // Floor & Distance Visibility Tweaks
-uniform float distance_shadow_scale : hint_range(0.0, 0.2) = 0.05; // Increases dot size into the distance
+uniform float distance_shadow_scale : hint_range(0.0, 0.2) = 0.01; // Increases dot size into the distance
 uniform float floor_dot_boost : hint_range(0.0, 1.0) = 0.3;        // Directly scales up dots on flat horizontal surfaces
 
 // Halftone Controls
 uniform float dot_scale : hint_range(10.0, 1000.0) = 300.0;
 uniform float dot_sharpness : hint_range(1.0, 50.0) = 20.0;
-uniform vec4 dot_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform vec4 dot_color : source_color = vec4(0.109, 0.109, 0.109, 1.0);
 
 vec2 rotate_uv(vec2 uv, float angle) {
     float s = sin(angle);

@@ -1,14 +1,15 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://c7anlkfgprt81"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bv2kwgw2rdvo1"]
 
-[ext_resource type="Shader" uid="uid://defw4t8mfg6v7" path="res://Assets/Materials/Colors/object_outline.gdshader" id="1_0a8i3"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_otl8b"]
-render_priority = 0
-shader = ExtResource("1_0a8i3")
-shader_parameter/outline_color = Color(0, 0, 0, 1)
-shader_parameter/outline_thickness = 2.0
+[ext_resource type="Shader" uid="uid://bijickla87uwi" path="res://Assets/Materials/Colors/comic_shader.gdshader" id="1_isc1o"]
 
 [resource]
-next_pass = SubResource("ShaderMaterial_otl8b")
-shading_mode = 0
-albedo_color = Color(0.1764706, 0.91764706, 0.003921569, 1)
+render_priority = 0
+shader = ExtResource("1_isc1o")
+shader_parameter/albedo = Color(0.1764706, 0.91764706, 0.003921569, 1)
+shader_parameter/shading_contrast = 1.5
+shader_parameter/rim_influence = 1.0
+shader_parameter/distance_shadow_scale = 0.010000000475
+shader_parameter/floor_dot_boost = 0.3
+shader_parameter/dot_scale = 300.0
+shader_parameter/dot_sharpness = 20.0
+shader_parameter/dot_color = Color(0.109, 0.109, 0.109, 1)
