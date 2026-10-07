@@ -60,6 +60,8 @@ func physics_update(delta: float) -> void:
 
 	if player.is_on_floor():
 		Transitioned.emit(self, "IDLE"); return
+	if not player.has_wall_run_clearance(player.wall_normal):
+		Transitioned.emit(self, "PUSH_OFF_WALL"); return
 
 	if player.is_on_wall():
 		contact_lost_time = 0.0

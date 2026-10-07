@@ -19,8 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://dps3uscid2nle" path="res://Assets/RedHandsIdleLessFrames.png" id="16_nhbkt"]
 [ext_resource type="Script" uid="uid://b64aox346y560" path="res://Entities/Player/glide.gd" id="16_vskfa"]
 [ext_resource type="Script" uid="uid://5cpyqw180xew" path="res://Entities/Player/god_mode.gd" id="17_pjcup"]
-[ext_resource type="Script" uid="uid://hndu88m74nd0" path="res://Entities/Player/dash.gd" id="18_0poeq"]
-[ext_resource type="Script" uid="uid://csirqqfru06hw" path="res://Entities/Player/rocket_jump.gd" id="19_ppdlg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t4wu"]
 
@@ -172,9 +170,6 @@ cull_mask = 1048573
 script = ExtResource("2_x1y6q")
 enable_dyamic_fov = false
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=349884302]
-target_position = Vector3(0, 0, -5)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=125584598]
 layers = 2
 mesh = SubResource("CapsuleMesh_g4v7s")
@@ -223,12 +218,6 @@ script = ExtResource("16_vskfa")
 
 [node name="GOD_MODE" type="Node" parent="StateMachine" unique_id=1782328412]
 script = ExtResource("17_pjcup")
-
-[node name="DASH" type="Node" parent="StateMachine" unique_id=778778550]
-script = ExtResource("18_0poeq")
-
-[node name="ROCKET_JUMP" type="Node" parent="StateMachine" unique_id=1118288116]
-script = ExtResource("19_ppdlg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=650415297]
 libraries/ = SubResource("AnimationLibrary_r8fok")

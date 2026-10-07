@@ -49,7 +49,8 @@ var _sprint_released_at: float = -999.0
 @export var wall_slip_gravity: float = 14.0  # downward accel at the end of the run
 @export var wall_friction: float = 1.0       # m/s² bled off ONLY above wall_speed
 @export var wall_cooldown: float = 0.3       # re-attach delay after leaving a wall
-@export var wall_probe_distance := 0.3
+@export var wall_probe_distance := 0.9
+@export var wall_run_clearance: float = 0.15 # margin inside the body's top and bottom
 
 @export_category("Wall Camera")
 @export var wall_camera_tilt_deg: float = 12.0
@@ -73,7 +74,6 @@ var explode_queued := false
 var explosion_timer := 0.0
 
 @onready var player: Player = get_parent()
-
 
 func accelerate_ground(
 	direction: Vector3,
