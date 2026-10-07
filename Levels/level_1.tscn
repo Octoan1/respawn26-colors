@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c14r1acf4uaap"]
 
+[ext_resource type="Shader" uid="uid://dhjviqjsnhplj" path="res://Assets/Materials/skybox.gdshader" id="1_0urlm"]
 [ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="1_3mhv4"]
 [ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="2_3mhv4"]
 [ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="3_3mhv4"]
@@ -7,14 +8,16 @@
 [ext_resource type="Material" uid="uid://cxwxfldabddxw" path="res://Assets/Materials/Colors/orange_material.tres" id="5_rfktq"]
 [ext_resource type="Material" uid="uid://ckrey5mb2aomc" path="res://Assets/Materials/MySharderMaterial.tres" id="5_syshm"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0urlm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_77x7w"]
+shader = ExtResource("1_0urlm")
+shader_parameter/sky_color = Color(0.109, 0.109, 0.109, 1)
 
-[sub_resource type="Sky" id="Sky_syshm"]
-sky_material = SubResource("ProceduralSkyMaterial_0urlm")
+[sub_resource type="Sky" id="Sky_0urlm"]
+sky_material = SubResource("ShaderMaterial_77x7w")
 
 [sub_resource type="Environment" id="Environment_rfktq"]
 background_mode = 2
-sky = SubResource("Sky_syshm")
+sky = SubResource("Sky_0urlm")
 ambient_light_source = 2
 ambient_light_color = Color(0.6832574, 0.00024642944, 0.6524995, 1)
 ambient_light_energy = 16.0
