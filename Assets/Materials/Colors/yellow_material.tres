@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dcjukspfowajh"]
+
+[ext_resource type="Shader" uid="uid://defw4t8mfg6v7" path="res://Assets/Materials/Colors/object_outline.gdshader" id="1_h8ew8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_otl8b"]
+render_priority = 0
+shader = ExtResource("1_h8ew8")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_thickness = 2.0
+
+[resource]
+next_pass = SubResource("ShaderMaterial_otl8b")
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
