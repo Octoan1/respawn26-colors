@@ -6,7 +6,7 @@ extends Control
 @onready var rank_text: Label = $FullBrief/RankText
 @onready var best_time_text: Label = $FullBrief/BestTimeText
 @onready var death_x: Label = $FullBrief/DeathX
-@onready var target_image = $FullBrief/TargetImage
+@onready var target_image: TextureRect = $FullBrief/TargetImage
 
 
 ## BUTTON TWEENING VARS

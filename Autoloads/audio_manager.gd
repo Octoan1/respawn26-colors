@@ -81,7 +81,7 @@ func play_sfx(stream: AudioStream, pitch_scale: float = 1.0) -> void:
 
 	active_sfx += 1
 
-	player.finished.connect(func():
+	player.finished.connect(func() -> void:
 		active_sfx -= 1
 		player.queue_free()
 	)

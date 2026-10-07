@@ -1,6 +1,7 @@
 extends Node
 const TEST_LEVEL = preload("uid://dpvvbsn3hlm2p")
 
+signal toggle_auto_bhop
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_map"):
@@ -8,6 +9,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_delete_save"):
 		SaveManager.clear_save_data()
 		SaveManager.load_game()
+	if event.is_action_pressed("debug_auto_bhop"):
+		toggle_auto_bhop.emit()
 
 ## Loads the level at [param index] in the list, refusing indices that don't exist.
 func go_to_debug_map() -> void:

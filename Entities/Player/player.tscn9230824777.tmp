@@ -19,17 +19,13 @@
 [ext_resource type="Texture2D" uid="uid://dps3uscid2nle" path="res://Assets/RedHandsIdleLessFrames.png" id="16_nhbkt"]
 [ext_resource type="Script" uid="uid://b64aox346y560" path="res://Entities/Player/glide.gd" id="16_vskfa"]
 [ext_resource type="Script" uid="uid://5cpyqw180xew" path="res://Entities/Player/god_mode.gd" id="17_pjcup"]
-[ext_resource type="Script" uid="uid://hndu88m74nd0" path="res://Entities/Player/dash.gd" id="18_0poeq"]
-[ext_resource type="Script" uid="uid://csirqqfru06hw" path="res://Entities/Player/rocket_jump.gd" id="19_ppdlg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t4wu"]
-height = 1.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_0poeq"]
 size = Vector3(2.5, 3, 3)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
-height = 1.5
 
 [sub_resource type="Animation" id="Animation_xr8lj"]
 resource_name = "start_slide"
@@ -46,54 +42,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape3D:shape:height")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [2.0, 1.5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape3D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.25, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MeshInstance3D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.25, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MeshInstance3D:mesh:height")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [2.0, 1.5]
-}
 
 [sub_resource type="Animation" id="Animation_r8fok"]
 length = 0.001
@@ -108,54 +56,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0.5, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape3D:shape:height")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape3D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -0.25, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MeshInstance3D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -0.25, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MeshInstance3D:mesh:height")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r8fok"]
@@ -250,9 +150,7 @@ script = ExtResource("2_xr8lj")
 metadata/_custom_type_script = "uid://4q3nmwc6tlho"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2139085190]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("CapsuleShape3D_0t4wu")
-debug_color = Color(0.99215686, 0, 0.28235295, 1)
 
 [node name="Head" type="Node3D" parent="." unique_id=730821380]
 unique_name_in_owner = true
@@ -272,11 +170,7 @@ cull_mask = 1048573
 script = ExtResource("2_x1y6q")
 enable_dyamic_fov = false
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=349884302]
-target_position = Vector3(0, 0, -5)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=125584598]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 layers = 2
 mesh = SubResource("CapsuleMesh_g4v7s")
 
@@ -324,12 +218,6 @@ script = ExtResource("16_vskfa")
 
 [node name="GOD_MODE" type="Node" parent="StateMachine" unique_id=1782328412]
 script = ExtResource("17_pjcup")
-
-[node name="DASH" type="Node" parent="StateMachine" unique_id=778778550]
-script = ExtResource("18_0poeq")
-
-[node name="ROCKET_JUMP" type="Node" parent="StateMachine" unique_id=1118288116]
-script = ExtResource("19_ppdlg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=650415297]
 libraries/ = SubResource("AnimationLibrary_r8fok")

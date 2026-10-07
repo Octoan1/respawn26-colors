@@ -52,10 +52,10 @@ horizontal_alignment = 1
 
 [node name="RankLabel" type="Label" parent="." unique_id=1360781295]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 169.0
-offset_right = 184.0
-offset_bottom = 203.0
+offset_left = 51.999992
+offset_top = 168.99998
+offset_right = 161.0
+offset_bottom = 202.99998
 rotation = 0.46914017
 theme = ExtResource("2_et546")
 theme_override_font_sizes/font_size = 32
@@ -76,9 +76,9 @@ horizontal_alignment = 1
 
 [node name="RankText" type="Label" parent="." unique_id=652060935]
 layout_mode = 0
-offset_left = -109.0
+offset_left = -130.0
 offset_top = 219.0
-offset_right = 275.0
+offset_right = 254.0
 offset_bottom = 422.0
 theme = ExtResource("2_et546")
 theme_override_font_sizes/font_size = 160
