@@ -9,7 +9,7 @@ signal new_best
 @onready var rank_text: Label = $RankText
 @onready var threshold_text: Label = $ThresholdText
 @onready var next_rank: Label = $NextRank
-@onready var target_image = $TargetImage
+@onready var target_image: TextureRect = $TargetImage
 
 
 ## BUTTON TWEENING VARS

@@ -3,7 +3,6 @@ extends PlayerState
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var camera_3d: Camera3D = %Camera3D
 
-var _cancelled := false
 
 
 func setup() -> void:

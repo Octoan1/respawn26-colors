@@ -22,10 +22,10 @@ func _attach_primitive_collision(mesh_inst: MeshInstance3D) -> void:
 		return
 
 	# Build StaticBody3D and CollisionShape3D
-	var static_body = StaticBody3D.new()
+	var static_body: StaticBody3D = StaticBody3D.new()
 	static_body.name = "AutoStaticBody"
 	
-	var col_shape = CollisionShape3D.new()
+	var col_shape: CollisionShape3D = CollisionShape3D.new()
 	col_shape.shape = shape
 	
 	# Attach to scene tree
@@ -34,25 +34,25 @@ func _attach_primitive_collision(mesh_inst: MeshInstance3D) -> void:
 
 func _create_matching_shape(mesh: Mesh) -> Shape3D:
 	if mesh is BoxMesh:
-		var box_shape = BoxShape3D.new()
+		var box_shape: BoxShape3D = BoxShape3D.new()
 		box_shape.size = (mesh as BoxMesh).size
 		return box_shape
 		
 	elif mesh is SphereMesh:
-		var sphere_shape = SphereShape3D.new()
+		var sphere_shape: SphereShape3D = SphereShape3D.new()
 		sphere_shape.radius = (mesh as SphereMesh).radius
 		return sphere_shape
 		
 	elif mesh is CylinderMesh:
-		var cyl_mesh = mesh as CylinderMesh
-		var cyl_shape = CylinderShape3D.new()
+		var cyl_mesh: CylinderMesh = mesh as CylinderMesh
+		var cyl_shape: CylinderShape3D = CylinderShape3D.new()
 		cyl_shape.height = cyl_mesh.height
 		cyl_shape.radius = maxf(cyl_mesh.top_radius, cyl_mesh.bottom_radius)
 		return cyl_shape
 		
 	elif mesh is CapsuleMesh:
-		var cap_mesh = mesh as CapsuleMesh
-		var cap_shape = CapsuleShape3D.new()
+		var cap_mesh := mesh as CapsuleMesh
+		var cap_shape := CapsuleShape3D.new()
 		cap_shape.height = cap_mesh.height
 		cap_shape.radius = cap_mesh.radius
 		return cap_shape

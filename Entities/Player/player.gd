@@ -100,7 +100,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("GOD_MODE"):
 		var sm := $StateMachine
-		var current = sm.current_state
+		var current: State = sm.current_state
 		if current.name == "GOD_MODE":
 			current.Transitioned.emit(current, "AIR")
 		else:
@@ -201,9 +201,9 @@ func find_wall_normal() -> Vector3:
 	return Vector3.ZERO
 
 func has_wall_run_clearance(normal: Vector3) -> bool:
-	var wall_normal := Vector3(normal.x, 0.0, normal.z).normalized()
+	var new_wall_normal := Vector3(normal.x, 0.0, normal.z).normalized()
 	var capsule := collision_shape.shape as CapsuleShape3D
-	if wall_normal == Vector3.ZERO or capsule == null:
+	if new_wall_normal == Vector3.ZERO or capsule == null:
 		return false
 
 	# Check just inside the top and bottom of the capsule. The wall must span
@@ -216,10 +216,10 @@ func has_wall_run_clearance(normal: Vector3) -> bool:
 		center - Vector3.UP * half_height,
 	]
 
-	for point in query_points:
+	for point: Vector3 in query_points:
 		var query := PhysicsRayQueryParameters3D.create(
-			point + wall_normal * cast_distance,
-			point - wall_normal * cast_distance,
+			point + new_wall_normal * cast_distance,
+			point - new_wall_normal * cast_distance,
 			collision_mask
 		)
 		query.exclude = [get_rid()]
