@@ -64,6 +64,10 @@ func _ready() -> void:
 	abilities = []
 	ability_index = -1
 
+	var debug_manager := get_node_or_null("/root/DebugManager")
+	if debug_manager and debug_manager.has_signal("toggle_auto_bhop"):
+		if not debug_manager.is_connected("toggle_auto_bhop", _on_toggle_auto_bhop):
+			debug_manager.connect("toggle_auto_bhop", _on_toggle_auto_bhop)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if freeze_control:
@@ -245,3 +249,6 @@ func change_ability(event: InputEvent) -> void:
 			ability_index = index
 			curr_ability = Ability_Color.BLUE
 		return
+
+func _on_toggle_auto_bhop() -> void:
+	movement.auto_bhop = not movement.auto_bhop

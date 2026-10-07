@@ -61,7 +61,6 @@ var _sprint_released_at: float = -999.0
 
 @onready var player: Player = get_parent()
 
-
 func accelerate_ground(
 	direction: Vector3,
 	speed: float,
