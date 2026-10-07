@@ -25,7 +25,7 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "ROCKET_JUMP")
 		return
 	
-	if Input.is_action_just_released("player_crouch"):
+	if not Input.is_action_pressed("player_crouch") and player.can_stand():
 		Transitioned.emit(self, "IDLE")
 		player.set_crouch_animation(false)
 		return

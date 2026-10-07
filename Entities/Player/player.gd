@@ -25,6 +25,8 @@ var camera_roll_target: float = 0.0
 var camera_fov_boost: float = 0.0
 var base_fov: float = 75.0
 var _crouch_animation_target := false
+var stand_height: float = 2.0
+var capsule: CapsuleShape3D
 
 # conner added this, sorry if it breaks something
 var freeze_control: bool = false
@@ -40,6 +42,9 @@ var ability_index: int
 var curr_ability: Ability_Color
 
 func _ready() -> void:
+	animation_player.play_backwards("Crouch")
+	capsule = collision_shape.shape as CapsuleShape3D
+	
 	base_fov = camera.fov
 	
 	coyote_timer = Timer.new()
@@ -292,3 +297,12 @@ func change_ability(event: InputEvent) -> void:
 
 func _on_toggle_auto_bhop() -> void:
 	movement.auto_bhop = not movement.auto_bhop
+
+func can_stand() -> bool:
+	# How much taller we'd get by standing up
+	var extra := stand_height - capsule.height
+	if extra <= 0.01:
+		return true   # already standing
+
+	# true from test_move means we'd hit something, so there's no room
+	return not test_move(global_transform, Vector3.UP * extra)
