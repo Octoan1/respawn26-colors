@@ -40,6 +40,7 @@ enum Ability_Color {
 var abilities: Array[Ability_Color]
 var ability_index: int
 var curr_ability: Ability_Color
+var ability_charges: int = 1
 
 func _ready() -> void:
 	animation_player.play_backwards("Crouch")
@@ -100,7 +101,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			deg_to_rad(89)
 		)
 	
-	if event is InputEventKey:
+	if event is InputEvent:
 		change_ability(event)
 	
 	if event.is_action_pressed("GOD_MODE"):
@@ -254,6 +255,7 @@ func change_ability(event: InputEvent) -> void:
 	if abilities.is_empty():
 		return
 	if event.is_action_pressed("cycle_ability_left"):
+		ability_charges = 1
 		ability_index = (ability_index - 1) % abilities.size()
 		curr_ability = abilities[ability_index]
 		print("Abilities: ", abilities)
@@ -261,6 +263,7 @@ func change_ability(event: InputEvent) -> void:
 		print("Ability_Index: ", ability_index)
 		return
 	if event.is_action_pressed("cycle_ability_right"):
+		ability_charges = 1
 		ability_index = (ability_index + 1) % abilities.size()
 		curr_ability = abilities[ability_index]
 		print("Abilities: ", abilities)
@@ -270,6 +273,7 @@ func change_ability(event: InputEvent) -> void:
 	if event.is_action_pressed("change_ability_r"):
 		var index := abilities.find(Ability_Color.RED)
 		if index != -1:
+			ability_charges = 1
 			ability_index = index
 			curr_ability = Ability_Color.RED
 			print("Abilities: ", abilities)
@@ -279,6 +283,7 @@ func change_ability(event: InputEvent) -> void:
 	if event.is_action_pressed("change_ability_g"):
 		var index := abilities.find(Ability_Color.GREEN)
 		if index != -1:
+			ability_charges = 1
 			ability_index = index
 			curr_ability = Ability_Color.GREEN
 			print("Abilities: ", abilities)
@@ -288,6 +293,7 @@ func change_ability(event: InputEvent) -> void:
 	if event.is_action_pressed("change_ability_b"):
 		var index := abilities.find(Ability_Color.BLUE)
 		if index != -1:
+			ability_charges = 1
 			ability_index = index
 			curr_ability = Ability_Color.BLUE
 			print("Abilities: ", abilities)

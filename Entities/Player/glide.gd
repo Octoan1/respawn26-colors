@@ -7,6 +7,7 @@ func setup() -> void:
 	super()
 
 func enter() -> void:
+	player.velocity.y = player.velocity.y * 0.2
 	if not player.wall_grab_timer.timeout.is_connected(_wall_grab_timeout):
 		player.wall_grab_timer.timeout.connect(_wall_grab_timeout)
 	player.wall_grab_timer.start()

@@ -6,7 +6,7 @@ func setup() -> void:
 	pass
 
 func enter() -> void: 
-	pass
+	player.ability_charges = 1
 	
 func exit() -> void: 
 	pass

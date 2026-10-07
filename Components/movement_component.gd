@@ -299,6 +299,8 @@ func dash(dir: Vector3) -> void:
 	player.velocity += dir * dash_power
 	if player.is_on_floor():
 		player.velocity.y = dash_jump
+	else:
+		player.velocity.y += dash_jump
 
 func fire_explosion() -> void:
 	if not player.ray.is_colliding():

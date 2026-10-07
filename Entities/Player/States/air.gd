@@ -21,7 +21,8 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "LANDING")
 		return
 		
-	if player.curr_ability == player.Ability_Color.BLUE and Input.is_action_just_pressed("ability_activate"):
+	if player.curr_ability == player.Ability_Color.BLUE and Input.is_action_just_pressed("ability_activate") and player.ability_charges > 0:
+		player.ability_charges -= 1
 		Transitioned.emit(self, "GLIDE")
 		return
 	
@@ -33,12 +34,16 @@ func physics_update(delta: float) -> void:
 	#)
 	#if input_dir.dot(Vector2(player.get_wall_normal().x, player.get_wall_normal().z)) < 0 and player.can_wall_run():
 	if player.can_wall_run():
-		Transitioned.emit(self, "WALL_RIDING"); return
-	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate"):
+		Transitioned.emit(self, "WALL_RIDING")
+		return
+		
+	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate") and player.ability_charges > 0:
+		player.ability_charges -= 1
 		Transitioned.emit(self, "DASH")
 		return
 	
-	if player.curr_ability == player.Ability_Color.RED and Input.is_action_just_pressed("ability_activate"):
+	if player.curr_ability == player.Ability_Color.RED and Input.is_action_just_pressed("ability_activate") and player.ability_charges > 0:
+		player.ability_charges -= 1
 		Transitioned.emit(self, "ROCKET_JUMP")
 		return
 	
