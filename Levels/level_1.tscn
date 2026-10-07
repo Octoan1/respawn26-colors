@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="3_3mhv4"]
 [ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="3_syshm"]
 
-[sub_resource type="TextMesh" id="TextMesh_3mhv4"]
-text = "Hold ctrl to crouch"
+[sub_resource type="TextMesh" id="TextMesh_rf6l5"]
+text = "Press Ctrl to crouch"
 font_size = 100
 
-[sub_resource type="TextMesh" id="TextMesh_rf6l5"]
-text = "Press space to jump"
+[sub_resource type="TextMesh" id="TextMesh_syshm"]
+text = "Press Space to jump"
 font_size = 80
 
 [sub_resource type="BoxMesh" id="BoxMesh_31hda"]
@@ -26,6 +26,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2897635, 3.4666555)
 
 [node name="Goal" parent="." unique_id=537695073 instance=ExtResource("3_3mhv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8618498, -63.349747)
+
+[node name="CrouchTutorialText" type="MeshInstance3D" parent="." unique_id=262766230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8159976, -18.179626)
+mesh = SubResource("TextMesh_rf6l5")
+
+[node name="JumpText2" type="MeshInstance3D" parent="." unique_id=1729276077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0179615, -1.76836)
+mesh = SubResource("TextMesh_syshm")
+
+[node name="DeathPlane" parent="." unique_id=1176538747 instance=ExtResource("3_syshm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.4820385, -1.76836)
 
 [node name="LevelGeometry" type="Node3D" parent="." unique_id=575242549]
 script = ExtResource("1_3mhv4")
