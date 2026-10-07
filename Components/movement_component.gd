@@ -41,6 +41,7 @@ var _sprint_released_at: float = -999.0
 @export var stick_force: float = 2.0
 @export var push_off_wall_force: float = 5.0
 @export var wall_speed: float = 12.0
+@export var wall_backward_speed: float = 3.0
 @export var wall_acceleration: float = 0.5
 @export var can_grab_wall: bool = false
 @export var wall_min_entry_speed: float = 0.0

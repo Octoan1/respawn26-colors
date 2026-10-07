@@ -30,10 +30,11 @@ func enter() -> void:
 			along = -along
 	wall_run_dir = along
 
-	# Redirect all horizontal momentum along the wall, with a speed floor
-	var speed := h.length()
-	player.velocity.x = wall_run_dir.x * speed
-	player.velocity.z = wall_run_dir.z * speed
+	# Keep only momentum that was already moving along the wall. Do not turn
+	# momentum directed into the wall into forward wall-run speed.
+	var along_speed := h.dot(wall_run_dir)
+	player.velocity.x = wall_run_dir.x * along_speed
+	player.velocity.z = wall_run_dir.z * along_speed
 	player.velocity.y = clampf(player.velocity.y, -2.0, 3.0)
 	run_time = 0.0
 
@@ -74,14 +75,28 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "WALL_JUMP"); return
 
 	run_time += delta
-	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
+	var input_world := player.get_movement_direction()
 
 	if _should_detach(delta) or run_time >= m.wall_run_time or m.get_horizontal_speed() < m.wall_min_entry_speed:
 		Transitioned.emit(self, "PUSH_OFF_WALL"); return
 
-	# Movement is along the wall, independent of where the camera points
-	if input_dir.y < -0.1:
-		m.accelerate_wall(wall_run_dir, m.wall_speed, delta)
+	# Use the input's projection onto the wall tangent. This prevents camera
+	# forward/backward from incorrectly forcing movement along the wall.
+	var target_wall_speed := 0.0
+	var wall_input := input_world.dot(wall_run_dir)
+	if wall_input > 0.1:
+		target_wall_speed = m.wall_speed
+	elif wall_input < -0.1:
+		target_wall_speed = -m.wall_backward_speed
+
+	var current_wall_speed := player.velocity.dot(wall_run_dir)
+	var wall_speed_step := m.wall_acceleration * m.wall_speed * delta
+	var next_wall_speed := move_toward(
+		current_wall_speed,
+		target_wall_speed,
+		wall_speed_step
+	)
+	player.velocity += wall_run_dir * (next_wall_speed - current_wall_speed)
 	m.apply_wall_friction(delta)
 	m.apply_wall_stick(_flat(player.wall_normal))
 	m.apply_wall_gravity(run_time / m.wall_run_time, delta)
