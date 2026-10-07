@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dtmh8l8v52fcd"]
+
+[ext_resource type="Shader" uid="uid://bwchx3w8pj6l3" path="res://Assets/Materials/Outline.gdshader" id="1_jdxvv"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jdxvv")
+shader_parameter/threshold = 4.23999999463552
+shader_parameter/line_color = Color(0.7683073, 0.7683069, 0.76830703, 1)
+shader_parameter/background_color = Color(0.10822479, 0.10822455, 0.108224414, 1)

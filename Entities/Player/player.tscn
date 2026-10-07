@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dwqmakkymaxlj" path="res://Entities/Player/States/walk_state.gd" id="3_tekja"]
 [ext_resource type="Script" uid="uid://b2yq8oy70aiv4" path="res://Entities/Player/States/run_state.gd" id="4_7a1se"]
 [ext_resource type="Script" uid="uid://cs8dvwww68gmk" path="res://Entities/Player/States/jump.gd" id="4_tekja"]
+[ext_resource type="Material" uid="uid://dtmh8l8v52fcd" path="res://Assets/Materials/Outline.tres" id="4_vskfa"]
 [ext_resource type="Script" uid="uid://bei4dicsadbmf" path="res://Entities/Player/States/air.gd" id="5_5c2io"]
 [ext_resource type="Script" uid="uid://b7m30eoriqxd" path="res://Entities/Player/States/wall_riding.gd" id="6_4wf4l"]
 [ext_resource type="Script" uid="uid://dqviqt5hnpsuc" path="res://Entities/Player/States/wall_jump.gd" id="7_01a4e"]
@@ -20,6 +21,9 @@
 [ext_resource type="Script" uid="uid://5cpyqw180xew" path="res://Entities/Player/god_mode.gd" id="17_pjcup"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t4wu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0poeq"]
+size = Vector3(2.5, 3, 3)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 
@@ -152,6 +156,13 @@ shape = SubResource("CapsuleShape3D_0t4wu")
 [node name="Head" type="Node3D" parent="." unique_id=730821380]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head" unique_id=834846103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19099039, -0.47434425, -0.021601677)
+material_override = ExtResource("4_vskfa")
+cast_shadow = 0
+extra_cull_margin = 16384.0
+mesh = SubResource("BoxMesh_0poeq")
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=100536400]
 unique_name_in_owner = true
