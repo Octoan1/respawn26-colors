@@ -23,6 +23,7 @@ UiManager="*uid://delk213ruhhe6"
 DebugManager="*uid://bs5fgahe5i6do"
 SaveManager="*uid://c0sl3trrfiygb"
 TransitionManager="*uid://dyj6q1aibagbw"
+AudioManager="*uid://dqlwosckdun1y"
 
 [debug]
 
