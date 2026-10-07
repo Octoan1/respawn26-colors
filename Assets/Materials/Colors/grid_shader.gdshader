@@ -2,9 +2,9 @@ shader_type spatial;
 render_mode unshaded; // Keeps the clean, vibrant cartoon aesthetic untouched
 
 uniform vec4 object_color : source_color = vec4(1.0, 0.5, 0.0, 1.0); // Base Color
-uniform vec4 pattern_color : source_color = vec4(1.0, 1.0, 1.0, 0.15); // Grid overlay color (light tint)
+uniform vec4 pattern_color : source_color = vec4(0.109, 0.109, 0.109, 1); // Grid overlay color (light tint)
 
-uniform float grid_scale : hint_range(1.0, 100.0, 1.0) = 20.0;       // Grid frequency density
+uniform float grid_scale : hint_range(1.0, 100.0, 1.0) = 15.0;       // Grid frequency density
 uniform float line_thickness : hint_range(0.01, 0.2, 0.01) = 0.03;   // How thick the grid wires look
 
 void fragment() {

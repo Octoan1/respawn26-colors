@@ -1,19 +1,19 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dbpkpbe8t87ux"]
 
 [ext_resource type="Shader" uid="uid://defw4t8mfg6v7" path="res://Assets/Materials/Colors/object_outline.gdshader" id="1_j5hae"]
-[ext_resource type="Shader" uid="uid://bn3d3dfmb5y1e" path="res://Assets/Materials/grid_shader.gdshader" id="1_vn2ef"]
+[ext_resource type="Shader" uid="uid://bn3d3dfmb5y1e" path="res://Assets/Materials/Colors/grid_shader.gdshader" id="2_aqc8i"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_77x7w"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wlm5q"]
 render_priority = 0
 shader = ExtResource("1_j5hae")
-shader_parameter/outline_color = Color(0.109, 0.109, 0.109, 1)
-shader_parameter/outline_thickness = 2.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 1.0
 
 [resource]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_77x7w")
-shader = ExtResource("1_vn2ef")
-shader_parameter/object_color = Color(1, 0.64705884, 0, 1)
-shader_parameter/pattern_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+next_pass = SubResource("ShaderMaterial_wlm5q")
+shader = ExtResource("2_aqc8i")
+shader_parameter/object_color = Color(1, 0.5, 0, 1)
+shader_parameter/pattern_color = Color(0.109, 0.109, 0.109, 1)
 shader_parameter/grid_scale = 20.0
 shader_parameter/line_thickness = 0.03
