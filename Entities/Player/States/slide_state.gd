@@ -14,17 +14,13 @@ var _air_time := 0.0
 
 func enter() -> void:
 	_air_time = 0.0
-	camera_3d.enable_dyamic_fov = true
-	camera_3d.fov += 5
+	camera_3d.trigger_slide_lurch()
 	player.movement.start_slide()
 
 func exit() -> void:
 	player.movement.end_slide()
 
 func physics_update(delta: float) -> void:
-	camera_3d.enable_dyamic_fov = false
-	camera_3d.fov = camera_3d.base_fov
-	
 	if Input.is_action_just_pressed("player_jump") and player.is_on_floor():
 		Transitioned.emit(self, "JUMP")
 		player.set_crouch_animation(false)

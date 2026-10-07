@@ -9,6 +9,7 @@ class_name Player
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var debug_velocity: Label = $Debug/DebugVelocity
 @onready var debug_state: Label = $Debug/DebugState
+@onready var debug_fov: Label = $Debug/DebugFOV
 
 var coyote_timer: Timer
 var jump_buffer_timer: Timer
@@ -131,10 +132,10 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	debug_velocity.text = "Vel: %.2f" % velocity.length()
 	debug_state.text = $StateMachine.current_state.name
+	debug_fov.text = "fov: %.2f" % camera.fov
 	
 	var w := 1.0 - exp(-movement.wall_tilt_speed * delta)
 	camera.rotation.z = lerp_angle(camera.rotation.z, camera_roll_target, w)
-	camera.fov = lerpf(camera.fov, base_fov + camera_fov_boost, w)
 
 func start_wall_cooldown() -> void:
 	wall_cooldown_timer = movement.wall_cooldown

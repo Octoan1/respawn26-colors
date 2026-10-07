@@ -1,47 +1,61 @@
 extends Camera3D
 
 @export var enable_dyamic_fov: bool = true
-
-@export var max_fov: float = 100
-## Controls how much the FOV increases with speed.
+@export var max_fov: float = 100.0
 @export var fov_multiplier: float = 3.0
-## Controls how quickly the FOV changes.
 @export var fov_smoothing: float = 5.0
-## Controls the speed before fov starts increasing
 @export var fov_start_speed: float = 8.0
+@export var slide_fov_lurch_amount: float = 12.0
+@export var slide_fov_lurch_decay: float = 80.0
+@export var slide_min_fov: float = 80.0
+@export var slide_fov_entry_speed: float = 25.0
 
 @onready var player: Player = $"../.."
+
 var base_fov: float
+var _slide_fov_lurch_offset: float = 0.0
+var _slide_fov_entry_active := false
+
 
 func _ready() -> void:
-	# Store the camera's starting FOV
-	base_fov = self.fov
+	base_fov = fov
+
 
 func _process(delta: float) -> void:
-	# Update the FOV based on the player's speed
-	update_fov(delta)
-	
-func update_fov(delta: float) -> void:
-	if not enable_dyamic_fov:
-		return
-	
-	# Get the player's speed in the direction the camera is facing
-	var forward_speed: float = player.velocity.dot(-%Head.global_transform.basis.z)
-	
-	# Ignore movement that is backwards
-	forward_speed = max(forward_speed, 0.0)
-	
-	# Set a minimum forward speed
-	if forward_speed < fov_start_speed:
-		forward_speed = 0.0
-	else:
-		forward_speed -= fov_start_speed
+	#if not enable_dyamic_fov:
+		#return
 
-	# Increase the FOV based on the player's forward speed
-	var target_fov: float = base_fov + forward_speed * fov_multiplier
-	
-	# Prevent the FOV from going above the maximum
-	target_fov = clamp(target_fov, base_fov, max_fov)
+	_slide_fov_lurch_offset = move_toward(
+		_slide_fov_lurch_offset,
+		0.0,
+		slide_fov_lurch_decay * delta
+	)
 
-	# Smoothly move the current FOV toward the target FOV
-	self.fov = lerp(self.fov, target_fov, delta * fov_smoothing)
+	var forward_speed := maxf(
+		player.velocity.dot(-%Head.global_transform.basis.z),
+		0.0
+	)
+	var speed_fov := maxf(forward_speed - fov_start_speed, 0.0) * fov_multiplier
+	var normal_fov := clampf(
+		base_fov + speed_fov + player.camera_fov_boost,
+		base_fov,
+		max_fov
+	)
+	var target_fov := normal_fov + _slide_fov_lurch_offset
+	var fov_speed := fov_smoothing
+	if _slide_fov_entry_active:
+		target_fov = maxf(target_fov, slide_min_fov)
+		fov_speed = slide_fov_entry_speed
+
+	fov = lerpf(
+		fov,
+		target_fov,
+		1.0 - exp(-fov_speed * delta)
+	)
+	if _slide_fov_entry_active and fov >= slide_min_fov - 0.1:
+		_slide_fov_entry_active = false
+
+
+func trigger_slide_lurch() -> void:
+	_slide_fov_entry_active = fov < slide_min_fov
+	_slide_fov_lurch_offset = slide_fov_lurch_amount
