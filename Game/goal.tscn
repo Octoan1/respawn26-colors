@@ -1,14 +1,26 @@
 [gd_scene format=3 uid="uid://cw7fospdday3t"]
 
 [ext_resource type="Script" uid="uid://cq01v0yjkh6na" path="res://Game/goal.gd" id="1_kncha"]
+[ext_resource type="Material" uid="uid://ckrey5mb2aomc" path="res://Assets/Materials/MySharderMaterial.tres" id="2_l0rw2"]
 [ext_resource type="Texture2D" uid="uid://dftyypdcffk8u" path="res://Assets/Targets/temp_target.png" id="2_sdqis"]
 [ext_resource type="Texture2D" uid="uid://drv67hpaea6sh" path="res://Assets/GreyboxTextures/greybox_dark_grid.png" id="3_l0rw2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mrsi2"]
+radius = 1.11
+height = 2.22
+radial_segments = 4
+rings = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7k2vp"]
 size = Vector3(4.421356, 1, 3.5770874)
 
 [node name="Goal" type="Area3D" unique_id=537695073]
 script = ExtResource("1_kncha")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1702085789]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.99999994, 0, 0, 0, 1.0000001, 0, 0, 0)
+material_override = ExtResource("2_l0rw2")
+mesh = SubResource("CapsuleMesh_mrsi2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1670711101]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0.1)
