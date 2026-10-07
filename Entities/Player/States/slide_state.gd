@@ -25,6 +25,14 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "JUMP")
 		player.set_crouch_animation(false)
 		return
+	
+	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate"):
+		Transitioned.emit(self, "DASH")
+		return
+	
+	if player.curr_ability == player.Ability_Color.RED and Input.is_action_just_pressed("ability_activate"):
+		Transitioned.emit(self, "ROCKET_JUMP")
+		return
 
 	if player.is_on_floor():
 		_air_time = 0.0

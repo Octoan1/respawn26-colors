@@ -17,6 +17,13 @@ func update(_delta: float) -> void:
 
 func physics_update(delta: float) -> void:
 	var direction := player.get_movement_direction()
+	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate"):
+		Transitioned.emit(self, "DASH")
+		return
+	
+	if player.curr_ability == player.Ability_Color.RED and Input.is_action_just_pressed("ability_activate"):
+		Transitioned.emit(self, "ROCKET_JUMP")
+		return
 	
 	if Input.is_action_just_released("player_crouch"):
 		Transitioned.emit(self, "IDLE")

@@ -59,6 +59,19 @@ var _sprint_released_at: float = -999.0
 @export_category("Glide")
 @export var gravity_modifier_glide: float = 0.25
 
+@export_category("Dash")
+@export var dash_power: float = 10.0
+@export var dash_jump: float = 2.0
+
+@export_category("Explosion")
+@export var explosion_radius: float = 6.0
+@export var explosion_force: float = 18.0
+@export var explosion_up_bias: float = 0.3    # tilts the push upward (helps rocket jumps)
+@export var explosion_cooldown: float = 0.5
+
+var explode_queued := false
+var explosion_timer := 0.0
+
 @onready var player: Player = get_parent()
 
 
@@ -281,3 +294,32 @@ func apply_wall_gravity(run_progress: float, delta: float) -> void:
 	if player.velocity.y > 0.0:
 		player.velocity.y = lerpf(player.velocity.y, 0.0, 1.0 - exp(-6.0 * delta))
 	player.velocity.y -= wall_slip_gravity * run_progress * run_progress * delta
+
+func dash(dir: Vector3) -> void:
+	player.velocity += dir * dash_power
+	if player.is_on_floor():
+		player.velocity.y = dash_jump
+
+func fire_explosion() -> void:
+	if not player.ray.is_colliding():
+		return
+
+	# Pull the center slightly off the surface so it isn't buried in the wall
+	var point: Vector3 = player.ray.get_collision_point() + player.ray.get_collision_normal() * 0.1
+	explode_at(point)
+
+func explode_at(point: Vector3) -> void:
+	# Measure from the middle of the body, not the feet
+	var center := player.global_position
+	var offset := center - point
+	var dist := offset.length()
+	if dist >= explosion_radius:
+		return
+
+	var falloff := 1.0 - dist / explosion_radius
+	falloff *= falloff   # squared: strong up close, drops off quickly
+
+	var dir := Vector3.UP if dist < 0.001 else offset / dist
+	dir = (dir + Vector3.UP * explosion_up_bias).normalized()
+
+	player.velocity += dir * explosion_force * falloff

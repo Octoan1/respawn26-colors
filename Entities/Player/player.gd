@@ -11,6 +11,7 @@ class_name Player
 @onready var debug_state: Label = $Debug/DebugState
 @onready var debug_fov: Label = $Debug/DebugFOV
 
+@onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
 var coyote_timer: Timer
 var jump_buffer_timer: Timer
 var wall_grab_timer: Timer

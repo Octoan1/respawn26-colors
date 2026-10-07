@@ -22,7 +22,6 @@ func physics_update(delta: float) -> void:
 		return
 		
 	if player.curr_ability == player.Ability_Color.BLUE and Input.is_action_just_pressed("ability_activate"):
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		Transitioned.emit(self, "GLIDE")
 		return
 	
@@ -35,6 +34,17 @@ func physics_update(delta: float) -> void:
 	#if input_dir.dot(Vector2(player.get_wall_normal().x, player.get_wall_normal().z)) < 0 and player.can_wall_run():
 	if player.can_wall_run():
 		Transitioned.emit(self, "WALL_RIDING"); return
+	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate"):
+		Transitioned.emit(self, "DASH")
+		return
+	
+	if player.curr_ability == player.Ability_Color.RED and Input.is_action_just_pressed("ability_activate"):
+		Transitioned.emit(self, "ROCKET_JUMP")
+		return
+	
+	if Input.is_action_pressed("player_forwards") and player.can_wall_run():
+		Transitioned.emit(self, "WALL_RIDING")
+		return
 	
 	# Coyote-time jump
 	if Input.is_action_just_pressed("player_jump") and not player.coyote_timer.is_stopped():
