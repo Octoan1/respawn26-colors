@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dwqmakkymaxlj" path="res://Entities/Player/States/walk_state.gd" id="3_tekja"]
 [ext_resource type="Script" uid="uid://b2yq8oy70aiv4" path="res://Entities/Player/States/run_state.gd" id="4_7a1se"]
 [ext_resource type="Script" uid="uid://cs8dvwww68gmk" path="res://Entities/Player/States/jump.gd" id="4_tekja"]
+[ext_resource type="Material" uid="uid://dtmh8l8v52fcd" path="res://Assets/Materials/Outline.tres" id="4_vskfa"]
 [ext_resource type="Script" uid="uid://bei4dicsadbmf" path="res://Entities/Player/States/air.gd" id="5_5c2io"]
 [ext_resource type="Script" uid="uid://b7m30eoriqxd" path="res://Entities/Player/States/wall_riding.gd" id="6_4wf4l"]
 [ext_resource type="Script" uid="uid://dqviqt5hnpsuc" path="res://Entities/Player/States/wall_jump.gd" id="7_01a4e"]
@@ -16,8 +17,13 @@
 [ext_resource type="Script" uid="uid://c46mxkgb0dg1e" path="res://Entities/Player/States/landing_state.gd" id="9_owvpp"]
 [ext_resource type="Script" uid="uid://6wd36mbo3304" path="res://Entities/Player/push_off_wall.gd" id="12_iplt1"]
 [ext_resource type="Texture2D" uid="uid://dps3uscid2nle" path="res://Assets/RedHandsIdleLessFrames.png" id="16_nhbkt"]
+[ext_resource type="Script" uid="uid://b64aox346y560" path="res://Entities/Player/glide.gd" id="16_vskfa"]
+[ext_resource type="Script" uid="uid://5cpyqw180xew" path="res://Entities/Player/god_mode.gd" id="17_pjcup"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t4wu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0poeq"]
+size = Vector3(2.5, 3, 3)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
 
@@ -153,7 +159,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Head" unique_id=834846103]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19099039, -0.47434425, -0.021601677)
-visible = false
 material_override = ExtResource("4_vskfa")
 cast_shadow = 0
 extra_cull_margin = 16384.0
@@ -209,6 +214,12 @@ script = ExtResource("7_01a4e")
 
 [node name="PUSH_OFF_WALL" type="Node" parent="StateMachine" unique_id=1425482450]
 script = ExtResource("12_iplt1")
+
+[node name="GLIDE" type="Node" parent="StateMachine" unique_id=1068120126]
+script = ExtResource("16_vskfa")
+
+[node name="GOD_MODE" type="Node" parent="StateMachine" unique_id=1782328412]
+script = ExtResource("17_pjcup")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=650415297]
 libraries/ = SubResource("AnimationLibrary_r8fok")

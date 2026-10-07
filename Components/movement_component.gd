@@ -55,6 +55,9 @@ var _sprint_released_at: float = -999.0
 @export var wall_tilt_speed: float = 10.0
 @export var wall_fov_boost: float = 8.0
 
+@export_category("Glide")
+@export var gravity_modifier_glide: float = 0.25
+
 @onready var player: Player = get_parent()
 
 
@@ -224,6 +227,9 @@ func jump() -> void:
 
 func apply_gravity(delta: float) -> void:
 	player.velocity += player.get_gravity() * delta
+
+func apply_glide_gravity(delta: float, modifier: float) -> void:
+	player.velocity += player.get_gravity() * modifier * delta
 
 
 func get_horizontal_velocity() -> Vector2:

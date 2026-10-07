@@ -8,7 +8,7 @@ extends Camera3D
 @export var slide_fov_lurch_amount: float = 12.0
 @export var slide_fov_lurch_decay: float = 80.0
 @export var slide_min_fov: float = 80.0
-@export var slide_fov_entry_speed: float = 25.0
+@export var slide_fov_entry_speed: float = 5.0
 
 @onready var player: Player = $"../.."
 
