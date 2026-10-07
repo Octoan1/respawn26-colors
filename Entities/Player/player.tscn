@@ -154,6 +154,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=100536400]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
 cull_mask = 1048573
 script = ExtResource("2_x1y6q")
 enable_dyamic_fov = false
@@ -221,6 +222,14 @@ offset_right = 48.0
 offset_bottom = 76.0
 theme_override_font_sizes/font_size = 32
 text = "none"
+
+[node name="DebugFOV" type="Label" parent="Debug" unique_id=639912218]
+offset_left = 8.0
+offset_top = 101.0
+offset_right = 99.0
+offset_bottom = 146.0
+theme_override_font_sizes/font_size = 32
+text = "fov: w"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Debug" unique_id=1334015899]
 position = Vector2(715, 446.00003)
