@@ -23,13 +23,11 @@
 [ext_resource type="Script" uid="uid://csirqqfru06hw" path="res://Entities/Player/rocket_jump.gd" id="19_ppdlg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t4wu"]
-height = 1.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_0poeq"]
 size = Vector3(2.5, 3, 3)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
-height = 1.5
 
 [sub_resource type="Animation" id="Animation_xr8lj"]
 resource_name = "start_slide"
@@ -119,7 +117,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.5]
+"values": [2.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -131,7 +129,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -0.25, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -143,7 +141,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -0.25, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -155,7 +153,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.5]
+"values": [2.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r8fok"]
@@ -250,7 +248,6 @@ script = ExtResource("2_xr8lj")
 metadata/_custom_type_script = "uid://4q3nmwc6tlho"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2139085190]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("CapsuleShape3D_0t4wu")
 debug_color = Color(0.99215686, 0, 0.28235295, 1)
 
@@ -277,7 +274,6 @@ enable_dyamic_fov = false
 target_position = Vector3(0, 0, -5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=125584598]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 layers = 2
 mesh = SubResource("CapsuleMesh_g4v7s")
 
