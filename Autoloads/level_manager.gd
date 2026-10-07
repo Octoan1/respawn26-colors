@@ -51,7 +51,7 @@ func go_to_level(index: int) -> void:
 	cleanup_main()
 	main.add_child(level)
 	
-	
+	capture_mouse()
 	
 	await TransitionManager.end_transition()
 	
@@ -129,6 +129,9 @@ func freeze_player() -> void:
 	
 	#var target_pos: Vector3 = goal.target_sprite.global_transform.origin
 	#player.camera.look_at(target_pos, Vector3.UP)
+
+func capture_mouse() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func get_level_references() -> void:
 	for child in main.get_child(1).get_children():
