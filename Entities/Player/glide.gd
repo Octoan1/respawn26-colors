@@ -1,5 +1,8 @@
 extends PlayerState
 
+var x: float
+
+
 func setup() -> void:
 	super()
 
@@ -7,6 +10,8 @@ func enter() -> void:
 	if not player.wall_grab_timer.timeout.is_connected(_wall_grab_timeout):
 		player.wall_grab_timer.timeout.connect(_wall_grab_timeout)
 	player.wall_grab_timer.start()
+	#player.velocity = _flat(player.velocity)
+	player.glide_timer.start()
 
 func exit() -> void:
 	player.movement.can_grab_wall = false
@@ -40,10 +45,21 @@ func physics_update(delta: float) -> void:
 	# Air movement
 	var direction := player.get_movement_direction()
 	player.movement.accelerate_air(direction, delta)
-	player.movement.apply_glide_gravity(delta)
 	
+	if not player.glide_timer.is_stopped():
+		player.movement.apply_glide_gravity(delta, 0.3)
+		print(0.1)
+	else:
+		x += delta
+		var modifier := 0.3 + 0.5 * log(1.0 + x)
+		player.movement.apply_glide_gravity(delta, modifier)
+		print(modifier)
 	player.move_and_slide()
 
 
 func _wall_grab_timeout() -> void:
 	player.movement.can_grab_wall = true
+
+func _flat(v: Vector3) -> Vector3:
+	v.y = 0
+	return v

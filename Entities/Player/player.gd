@@ -13,6 +13,7 @@ class_name Player
 var coyote_timer: Timer
 var jump_buffer_timer: Timer
 var wall_grab_timer: Timer
+var glide_timer: Timer
 
 var wall_normal: Vector3
 
@@ -52,6 +53,11 @@ func _ready() -> void:
 	jump_buffer_timer.one_shot = true
 	jump_buffer_timer.wait_time = 0.1
 	add_child(jump_buffer_timer)
+	
+	glide_timer = Timer.new()
+	glide_timer.one_shot = true
+	glide_timer.wait_time = 2.0
+	add_child(glide_timer)
 	
 	curr_ability = Ability_Color.BASE
 	abilities = []
