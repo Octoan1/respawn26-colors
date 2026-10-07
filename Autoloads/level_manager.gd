@@ -1,12 +1,14 @@
 extends Node
-const LEVEL_LIST: LevelList = preload("res://levels/level_list.tres")
+#const LEVEL_LIST: LevelList = preload("res://levels/level_list.tres")
+@onready var LEVEL_LIST: LevelList = preload("res://levels/level_list.tres")
+#const LEVEL_LIST: LevelList = preload("uid://c2qh6vlm3bgnl")
 
 var player_time: float
 var stopwatch_on: bool = false
 var player_freeze: bool = false
 
 var main: Node
-var player: Node3D
+var player: Player
 var goal: Area3D
 var state_machine: StateMachine
 
@@ -49,10 +51,12 @@ func go_to_level(index: int) -> void:
 	cleanup_main()
 	main.add_child(level)
 	
-	get_level_references()
-	goal.give_player(player)
+	
 	
 	await TransitionManager.end_transition()
+	
+	get_level_references()
+	goal.give_player(player)
 	
 	# handle time vars
 	player_time = 0
@@ -114,10 +118,14 @@ func _process(delta: float) -> void:
 			player.camera.global_transform.basis = player.camera.global_transform.basis.slerp(target_basis, 5 * delta)
 
 func freeze_player() -> void:
-	state_machine.is_frozen = true
-	player.freeze_control = true
+	if state_machine:
+		state_machine.is_frozen = true
+	
+	if player:
+		player.freeze_control = true
+		player_freeze = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	player_freeze = true
+	
 	
 	#var target_pos: Vector3 = goal.target_sprite.global_transform.origin
 	#player.camera.look_at(target_pos, Vector3.UP)

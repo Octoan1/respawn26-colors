@@ -3,6 +3,9 @@ const TITLE = preload("uid://cad2mj4oauw32")
 const LEVEL_SELECT = preload("uid://b4bgodk2ydk3r")
 const LEVEL_FINISH = preload("uid://1mvsvkkyyb8e")
 const LEVEL_BRIEF = preload("uid://cwequt0alhfgo")
+const LEVEL_FAIL = preload("uid://ca8mctmsyxsth")
+
+
 
 var main_canvas: CanvasLayer
 
@@ -74,3 +77,11 @@ func go_to_level_brief(level_num: int, from: String) -> void:
 
 func get_canvas_layer() -> void:
 	main_canvas = LevelManager.main.get_child(0)
+
+func show_level_fail() -> void:
+	get_canvas_layer()
+	
+	var scene: PackedScene = LEVEL_FAIL
+	var level_fail_screen: Node = scene.instantiate()
+	
+	main_canvas.add_child(level_fail_screen)

@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://c5ewvbyyvsufs" path="res://Levels/checkerboard.gdshader" id="1_arsda"]
 [ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="2_dgq3b"]
 [ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="3_bcgyv"]
+[ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="4_dgq3b"]
 
 [sub_resource type="Environment" id="Environment_fbld2"]
 
@@ -32,3 +33,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2897635, -3.0730221)
 
 [node name="Goal" parent="." unique_id=537695073 instance=ExtResource("3_bcgyv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3618498, 3.929882)
+
+[node name="DeathPlane" parent="." unique_id=1176538747 instance=ExtResource("4_dgq3b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)

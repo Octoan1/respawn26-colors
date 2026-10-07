@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://ca8mctmsyxsth"]
+
+[ext_resource type="Theme" uid="uid://biqu4o348eq17" path="res://UI/white_text_theme.tres" id="1_b71ck"]
+[ext_resource type="Script" uid="uid://cleqd0oyf1p5w" path="res://UI/level_fail.gd" id="1_p1p2a"]
+
+[node name="LevelFail" type="Control" unique_id=712425203]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p1p2a")
+
+[node name="RetryButton" type="Button" parent="." unique_id=808866500]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+offset_right = 600.0
+offset_bottom = -200.0
+grow_vertical = 0
+theme = ExtResource("1_b71ck")
+theme_override_font_sizes/font_size = 60
+text = "Retry Mission"
+alignment = 0
+
+[node name="LevelSelect" type="Button" parent="." unique_id=915429445]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+offset_right = 600.0
+offset_bottom = -100.0
+grow_vertical = 0
+theme = ExtResource("1_b71ck")
+theme_override_font_sizes/font_size = 60
+text = "Mission Select"
+alignment = 0
+
+[node name="MainMenu" type="Button" parent="." unique_id=1851818971]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 600.0
+grow_vertical = 0
+theme = ExtResource("1_b71ck")
+theme_override_font_sizes/font_size = 60
+text = "Main Menu"
+alignment = 0
+
+[node name="Label1" type="Label" parent="." unique_id=2091136574]
+layout_mode = 1
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 537.0
+offset_bottom = 202.0
+theme = ExtResource("1_b71ck")
+theme_override_font_sizes/font_size = 200
+text = "Mission"
+
+[node name="Label2" type="Label" parent="." unique_id=224753625]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 197.0
+offset_right = 752.0
+offset_bottom = 349.0
+theme = ExtResource("1_b71ck")
+theme_override_font_sizes/font_size = 200
+text = "Failed"
+
+[node name="Label3" type="Label" parent="." unique_id=1508352920]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -612.0
+offset_top = 153.0
+offset_right = -258.0
+offset_bottom = 192.0
+grow_horizontal = 0
+theme = ExtResource("1_b71ck")
+theme_override_font_sizes/font_size = 50
+text = "Contract terminated"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="RetryButton" to="." method="_on_retry_button_mouse_entered"]
+[connection signal="mouse_exited" from="RetryButton" to="." method="_on_retry_button_mouse_exited"]
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="mouse_entered" from="LevelSelect" to="." method="_on_level_select_mouse_entered"]
+[connection signal="mouse_exited" from="LevelSelect" to="." method="_on_level_select_mouse_exited"]
+[connection signal="pressed" from="LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="mouse_entered" from="MainMenu" to="." method="_on_main_menu_mouse_entered"]
+[connection signal="mouse_exited" from="MainMenu" to="." method="_on_main_menu_mouse_exited"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
