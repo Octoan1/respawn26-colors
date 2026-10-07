@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bv74d6eieclsb"]
+
+[ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="1_nsqb1"]
+[ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="2_t60mx"]
+[ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="3_ujo87"]
+
+[sub_resource type="TextMesh" id="TextMesh_nsqb1"]
+text = "When near a wall, jump twoards it to wall run"
+font_size = 75
+
+[sub_resource type="BoxMesh" id="BoxMesh_dgq3b"]
+size = Vector3(16, 1, 16.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ej5lj"]
+size = Vector3(16, 1, 44)
+
+[node name="Level3" type="Node3D" unique_id=1972966065]
+
+[node name="Player" parent="." unique_id=493457226 instance=ExtResource("1_nsqb1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Goal" parent="." unique_id=537695073 instance=ExtResource("2_t60mx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8618507, -57.070114)
+
+[node name="TutorialText" type="MeshInstance3D" parent="." unique_id=489941465]
+transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, -0.13695502, 1, -10)
+mesh = SubResource("TextMesh_nsqb1")
+
+[node name="LevelGeometry" type="Node3D" parent="." unique_id=1695930746]
+script = ExtResource("3_ujo87")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelGeometry" unique_id=109218916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+mesh = SubResource("BoxMesh_dgq3b")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="LevelGeometry" unique_id=343272872]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.25)
+mesh = SubResource("BoxMesh_dgq3b")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="LevelGeometry" unique_id=1573455396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -56.75)
+mesh = SubResource("BoxMesh_dgq3b")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelGeometry" unique_id=1940563536]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -8.5, 7.6775293, -42.76572)
+mesh = SubResource("BoxMesh_ej5lj")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="LevelGeometry" unique_id=522830025]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 8.5, 7.6775293, -15.51572)
+mesh = SubResource("BoxMesh_ej5lj")
