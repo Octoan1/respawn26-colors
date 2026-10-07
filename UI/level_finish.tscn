@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cyiit5ijbsqtm" path="res://UI/level_finish.gd" id="1_8mbsd"]
 [ext_resource type="PackedScene" uid="uid://cmjf4x1s7t6j7" path="res://UI/level_report.tscn" id="1_c3prp"]
+[ext_resource type="Theme" uid="uid://biqu4o348eq17" path="res://UI/white_text_theme.tres" id="3_kkeks"]
 
 [node name="LevelFinish" type="Control" unique_id=1125964717]
 layout_mode = 3
@@ -28,8 +29,11 @@ offset_right = -99.81433
 offset_bottom = 55.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_font_sizes/font_size = 80
+theme = ExtResource("3_kkeks")
+theme_override_font_sizes/font_size = 120
 text = "FinishTime"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NewBestTime" type="Label" parent="." unique_id=212989002]
 visible = false

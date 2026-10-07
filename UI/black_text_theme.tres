@@ -4,24 +4,24 @@
 [ext_resource type="FontFile" uid="uid://3aswnqx4h2bk" path="res://Assets/fonts/Y224.otf" id="1_ff54d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jrb8"]
-bg_color = Color(0, 0, 0, 0.6901961)
+bg_color = Color(0.09803922, 0.09803922, 0.09803922, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_au8t7"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfei1"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ff54d"]
 bg_color = Color(0, 0, 0, 0)
 
 [resource]
 default_font = ExtResource("1_ff54d")
-Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 Button/fonts/font = ExtResource("1_dfei1")
 Button/styles/disabled = SubResource("StyleBoxFlat_6jrb8")
 Button/styles/focus = SubResource("StyleBoxFlat_au8t7")
 Button/styles/hover = SubResource("StyleBoxFlat_dfei1")
 Button/styles/normal = SubResource("StyleBoxFlat_ff54d")
-Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 Label/fonts/font = ExtResource("1_dfei1")

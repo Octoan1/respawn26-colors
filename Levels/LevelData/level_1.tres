@@ -7,9 +7,9 @@
 [resource]
 script = ExtResource("1_kuhn7")
 scene = ExtResource("1_xup6f")
-name = "Level 1"
+name = "Training"
 color = "Orange"
-target_info = "Stinky dude"
+target_info = "Objective: Learn the ropes, and prepare to liberate the colors."
 s_rank_time = 5.0
 a_rank_time = 10.0
 b_rank_time = 15.0
