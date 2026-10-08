@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cmmeigimjb23c"]
+
+[ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="1_oraik"]
+[ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="2_sq5ev"]
+[ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="4_b55c6"]
+[ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="5_qb52v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7k2vp"]
+size = Vector3(9, 1, 27.541245)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wlm5q"]
+size = Vector3(9, 9.219994, 10.226013)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0t5j7"]
+size = Vector3(9, 1, 120.84235)
+
+[sub_resource type="BoxMesh" id="BoxMesh_532tp"]
+size = Vector3(9, 1, 1)
+
+[node name="Orange1" type="Node3D" unique_id=1440823683]
+
+[node name="Player" parent="." unique_id=493457226 instance=ExtResource("1_oraik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Goal" parent="." unique_id=537695073 instance=ExtResource("2_sq5ev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.083265185, 1.6061609, -189.64966)
+
+[node name="LevelGeometry" type="Node3D" parent="." unique_id=1535937367]
+script = ExtResource("4_b55c6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelGeometry" unique_id=132703302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.305)
+mesh = SubResource("BoxMesh_7k2vp")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="LevelGeometry" unique_id=1673599923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -43.263138)
+mesh = SubResource("BoxMesh_7k2vp")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="LevelGeometry" unique_id=618593333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.2598863, -27.887747)
+mesh = SubResource("BoxMesh_wlm5q")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelGeometry" unique_id=1394323626]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130.96559)
+mesh = SubResource("BoxMesh_0t5j7")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="LevelGeometry" unique_id=1851029163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9447534, -13.447942)
+mesh = SubResource("BoxMesh_532tp")
+
+[node name="DeathPlane" parent="." unique_id=1176538747 instance=ExtResource("5_qb52v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)

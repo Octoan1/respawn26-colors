@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://b40vpuxol4yuo"]
+
+[ext_resource type="Script" uid="uid://of7uetyps83t" path="res://Levels/LevelData/level_data.gd" id="1_dmy0s"]
+[ext_resource type="PackedScene" uid="uid://c14r1acf4uaap" path="res://Levels/green_level.tscn" id="1_kefv5"]
+[ext_resource type="Texture2D" uid="uid://dxn0y7y5uoji8" path="res://icon.svg" id="2_kefv5"]
+
+[resource]
+script = ExtResource("1_dmy0s")
+scene = ExtResource("1_kefv5")
+name = "Color Ability 1"
+color = "2dea01"
+target_info = "Description: It’s about time your first color ability manifests. We sense an aura of anxiety deep within you. Channel this feeling and complete the training. After this, you’ll finally be ready to carry out some real contracts."
+level_num = 3
+s_rank_time = 15.0
+a_rank_time = 18.0
+b_rank_time = 24.0
+c_rank_time = 30.0
+d_rank_time = 99999.0
+metadata/_custom_type_script = "uid://of7uetyps83t"
