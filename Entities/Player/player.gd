@@ -11,8 +11,9 @@ class_name Player
 @onready var debug_velocity: Label = $Debug/DebugVelocity
 @onready var debug_state: Label = $Debug/DebugState
 @onready var debug_fov: Label = $Debug/DebugFOV
-
 @onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
+@onready var sprite: AnimatedSprite2D = $Debug/AnimatedSprite2D
+
 var coyote_timer: Timer
 var jump_buffer_timer: Timer
 var wall_grab_timer: Timer
@@ -45,6 +46,7 @@ var ability_charges_g: int = 1
 var ability_charges_b: int = 1
 
 func _ready() -> void:
+	sprite.play("Default")
 	animation_player.play("RESET")
 	capsule = collision_shape.shape as CapsuleShape3D
 	
@@ -259,6 +261,7 @@ func change_ability(event: InputEvent) -> void:
 	if event.is_action_pressed("cycle_ability_left"):
 		ability_index = (ability_index - 1) % abilities.size()
 		curr_ability = abilities[ability_index]
+		_change_sprite(curr_ability)
 		print("Abilities: ", abilities)
 		print("Curr_Ability: ", curr_ability)
 		print("Ability_Index: ", ability_index)
@@ -266,6 +269,7 @@ func change_ability(event: InputEvent) -> void:
 	if event.is_action_pressed("cycle_ability_right"):
 		ability_index = (ability_index + 1) % abilities.size()
 		curr_ability = abilities[ability_index]
+		_change_sprite(curr_ability)
 		print("Abilities: ", abilities)
 		print("Curr_Ability: ", curr_ability)
 		print("Ability_Index: ", ability_index)
@@ -275,6 +279,7 @@ func change_ability(event: InputEvent) -> void:
 		if index != -1:
 			ability_index = index
 			curr_ability = Ability_Color.RED
+			_change_sprite(curr_ability)
 			print("Abilities: ", abilities)
 			print("Curr_Ability: ", curr_ability)
 			print("Ability_Index: ", ability_index)
@@ -284,6 +289,7 @@ func change_ability(event: InputEvent) -> void:
 		if index != -1:
 			ability_index = index
 			curr_ability = Ability_Color.GREEN
+			_change_sprite(curr_ability)
 			print("Abilities: ", abilities)
 			print("Curr_Ability: ", curr_ability)
 			print("Ability_Index: ", ability_index)
@@ -293,6 +299,7 @@ func change_ability(event: InputEvent) -> void:
 		if index != -1:
 			ability_index = index
 			curr_ability = Ability_Color.BLUE
+			_change_sprite(curr_ability)
 			print("Abilities: ", abilities)
 			print("Curr_Ability: ", curr_ability)
 			print("Ability_Index: ", ability_index)
@@ -309,3 +316,14 @@ func can_stand() -> bool:
 
 	# true from test_move means we'd hit something, so there's no room
 	return not test_move(global_transform, Vector3.UP * extra)
+
+func _change_sprite(color: Ability_Color) -> void:
+	animation_player.play("Sprite Change")
+	await animation_player.animation_finished 
+	if color == Ability_Color.BLUE:
+		sprite.play("Blue Idle")
+	if color == Ability_Color.GREEN:
+		sprite.play("Green Idle")
+	if color == Ability_Color.RED:
+		sprite.play("Red Idle")
+	animation_player.play_backwards("Sprite Change")
