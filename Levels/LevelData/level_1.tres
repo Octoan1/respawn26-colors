@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://d4mtaab55ng0s"]
 
 [ext_resource type="Script" uid="uid://of7uetyps83t" path="res://Levels/LevelData/level_data.gd" id="1_kuhn7"]
-[ext_resource type="PackedScene" uid="uid://c08uq03ru8nfo" path="res://Levels/tutorial.tscn" id="1_re2th"]
+[ext_resource type="PackedScene" uid="uid://d3vdq78d7ygbk" path="res://Levels/tutorial.tscn" id="1_re2th"]
 [ext_resource type="Texture2D" uid="uid://dxn0y7y5uoji8" path="res://icon.svg" id="3_re2th"]
 
 [resource]

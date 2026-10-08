@@ -36,8 +36,8 @@
 render_priority = 0
 shader = ExtResource("3_a8wow")
 shader_parameter/threshold = 4.21999999508256
-shader_parameter/line_width = 1.0
-shader_parameter/line_color = Color(0.7683073, 0.7683069, 0.76830703, 1)
+shader_parameter/line_width = 0.0
+shader_parameter/line_color = Color(0.76862746, 0.76862746, 0.76862746, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0poeq"]
 size = Vector3(2.5, 3, 3)
@@ -630,6 +630,7 @@ script = ExtResource("1_mv1ah")
 
 [node name="Movement" type="Node" parent="." unique_id=1839494748]
 script = ExtResource("2_xr8lj")
+slide_slope_gain = 5.0
 metadata/_custom_type_script = "uid://4q3nmwc6tlho"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2139085190]
