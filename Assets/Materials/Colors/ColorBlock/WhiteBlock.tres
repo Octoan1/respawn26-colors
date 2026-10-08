@@ -14,4 +14,4 @@ void fragment() {
 [resource]
 render_priority = 0
 shader = SubResource("Shader_le14t")
-shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/base_color = Color(0.76862746, 0.76862746, 0.76862746, 1)
