@@ -6,7 +6,9 @@ func setup() -> void:
 	pass
 
 func enter() -> void: 
-	player.ability_charges = 1
+	player.ability_charges_r = 1
+	player.ability_charges_g = 1
+	player.ability_charges_b = 1
 	
 func exit() -> void: 
 	pass
