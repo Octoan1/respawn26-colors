@@ -17,13 +17,23 @@ func _on_level_select_pressed() -> void:
 	#queue_free()
 
 func update_title_text() -> void:
-	rich_text_label.text = "Operation [color=da0100]R[/color]OY[color=2dea01]G[/color][color=2000da]B[/color]IV"
+	rich_text_label.text = "Operation ROYGBIV"
+	
+	# green ability unlocked
+	if SaveManager.levels_complete >= 3:
+		rich_text_label.text = "Operation ROY[color=2dea01]G[/color]BIV"
 	
 	# orange world complete
-	if SaveManager.levels_complete >= 4:
-		rich_text_label.text = "Operation [color=da0100]R[/color][color=orange]O[/color]Y[color=2dea01]G[/color][color=2000da]B[/color]IV"
+	if SaveManager.levels_complete >= 5:
+		rich_text_label.text = "Operation R[color=orange]O[/color]Y[color=2dea01]G[/color]BIV"
+	# blue ability unlocked
+	if SaveManager.levels_complete >= 6:
+		rich_text_label.text = "Operation R[color=orange]O[/color]Y[color=2dea01]G[/color][color=2000da]B[/color]IV"
 	# indigo world complete
 	if SaveManager.levels_complete >= 8:
+		rich_text_label.text = "Operation R[color=orange]O[/color]Y[color=2dea01]G[/color][color=2000da]B[/color][color=indigo]I[/color]V"
+	# red ability unlocked
+	if SaveManager.levels_complete >= 9:
 		rich_text_label.text = "Operation [color=da0100]R[/color][color=orange]O[/color]Y[color=2dea01]G[/color][color=2000da]B[/color][color=indigo]I[/color]V"
 	# yellow world complete
 	if SaveManager.levels_complete >= 12:

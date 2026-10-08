@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://bwr4qe55wmlry"]
+
+[ext_resource type="Script" uid="uid://of7uetyps83t" path="res://Levels/LevelData/level_data.gd" id="1_1e6fq"]
+[ext_resource type="PackedScene" uid="uid://cslatjlxndha0" path="res://Levels/indigo_1.tscn" id="1_lsowg"]
+[ext_resource type="Texture2D" uid="uid://dxn0y7y5uoji8" path="res://icon.svg" id="2_lsowg"]
+
+[resource]
+script = ExtResource("1_1e6fq")
+scene = ExtResource("1_lsowg")
+name = "IndigoCo 1"
+color = "4b0082"
+target_info = "The next company is IndigoCo. Same story, but they’ve got a hold of Indigo. Until you take action, the color Indigo will continue to be exploited and monopolized. Liberate the colors. Free Indigo from their control."
+level_num = 7
+s_rank_time = 10.0
+a_rank_time = 13.0
+b_rank_time = 17.0
+c_rank_time = 24.0
+d_rank_time = 99999.0
+metadata/_custom_type_script = "uid://of7uetyps83t"
