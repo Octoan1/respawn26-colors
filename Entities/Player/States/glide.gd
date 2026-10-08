@@ -13,9 +13,15 @@ func enter() -> void:
 	player.wall_grab_timer.start()
 	#player.velocity = _flat(player.velocity)
 	player.glide_timer.start()
+	player.sprite.play("Blue Transition")
+	await player.sprite.animation_finished
+	player.sprite.play_backwards("Blue Float")
 
 func exit() -> void:
 	player.movement.can_grab_wall = false
+	player.sprite.play_backwards("Blue Transition")
+	await player.sprite.animation_finished
+	player.sprite.play("Blue Idle")
 
 func update(_delta: float) -> void:
 	pass
