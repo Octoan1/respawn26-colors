@@ -59,7 +59,7 @@ offset_bottom = 202.99998
 rotation = 0.46914017
 theme = ExtResource("2_et546")
 theme_override_font_sizes/font_size = 32
-text = "grade"
+text = "rank"
 horizontal_alignment = 1
 
 [node name="LevelName" type="Label" parent="." unique_id=768762528]

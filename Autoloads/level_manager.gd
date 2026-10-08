@@ -1,6 +1,6 @@
 extends Node
 #const LEVEL_LIST: LevelList = preload("res://levels/level_list.tres")
-@onready var LEVEL_LIST: LevelList = preload("res://levels/level_list.tres")
+@onready var LEVEL_LIST: LevelList = preload("res://Levels/level_list.tres")
 #const LEVEL_LIST: LevelList = preload("uid://c2qh6vlm3bgnl")
 
 var player_time: float

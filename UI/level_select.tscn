@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cgh82hqqoo643" path="res://UI/level_select.gd" id="1_r4dbv"]
 [ext_resource type="Theme" uid="uid://biqu4o348eq17" path="res://UI/white_text_theme.tres" id="2_qgm14"]
-[ext_resource type="FontFile" uid="uid://3aswnqx4h2bk" path="res://Assets/fonts/Y224.otf" id="3_q0b5w"]
 
 [node name="LevelSelect" type="Control" unique_id=193318194]
 layout_mode = 3
@@ -49,13 +48,12 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -493.0
-offset_top = 60.0
+offset_top = 27.0
 offset_right = 493.0
-offset_bottom = 125.0
+offset_bottom = 124.0
 grow_horizontal = 2
 theme = ExtResource("2_qgm14")
-theme_override_fonts/font = ExtResource("3_q0b5w")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 128
 text = "Mission Select"
 horizontal_alignment = 1
 

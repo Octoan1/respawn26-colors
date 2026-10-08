@@ -15,6 +15,8 @@ func _process(_delta: float) -> void:
 
 func populate_button_data() -> void:
 	for level_num in range(LevelManager.LEVEL_LIST.levels.size()):
+		var level_data: LevelData = LevelManager.LEVEL_LIST.levels[level_num]
+		
 		# create a new hbox every 4 levels
 		var hbox: HBoxContainer 
 		if level_num % buttons_per_row == 0:
@@ -27,6 +29,8 @@ func populate_button_data() -> void:
 		# create a button for each level
 		var button: Button = Button.new()
 		button.pressed.connect(go_to_level.bind(level_num))
+		
+		
 		button.text = "Mission " + str(level_num+1)
 		#button.add_theme_font_size_override("font_size", 20)
 		button.add_theme_font_size_override("font_size", 52)
@@ -43,8 +47,45 @@ func populate_button_data() -> void:
 		var hbox_index: int = level_columns.get_children().size()-1
 		level_columns.get_child(hbox_index).add_child(button)
 		
+		await get_tree().process_frame
+		
+		# create labels
+		var button_labels: Array[Label] = populate_level_info(level_data, button.global_position)
+		
+		button.mouse_entered.connect(show_level_info.bind(button_labels[0], button_labels[1]))
+		button.mouse_exited.connect(hide_level_info.bind(button_labels[0], button_labels[1]))
+		add_child(button_labels[0])
+		add_child(button_labels[1])
 
+func show_level_info(rank_label: Label, time_label: Label) -> void:
+	rank_label.visible = true
+	time_label.visible = true
 
+func hide_level_info(rank_label: Label, time_label: Label) -> void:
+	rank_label.visible = false
+	time_label.visible = false
+
+func populate_level_info(level_data: LevelData, pos: Vector2) -> Array[Label]:
+	print(pos)
+	# create a label for the level's rank
+	var rank_label: Label = Label.new()
+	rank_label.text = "Rank " + level_data.rank
+	rank_label.add_theme_font_size_override("font_size", 24)
+	rank_label.theme = WHITE_TEXT_THEME
+	rank_label.global_position = pos + Vector2(0, -20)
+	rank_label.visible = false
+	
+	
+	# create a lebel for the level's time
+	var time_label: Label = Label.new()
+	time_label.text = "Time %.2f" %level_data.best_time
+	time_label.add_theme_font_size_override("font_size", 24)
+	time_label.theme = WHITE_TEXT_THEME
+	time_label.global_position = pos + Vector2(60, -20)
+	time_label.visible = false
+	
+	return [rank_label, time_label]
+	
 
 func go_to_level(level_num: int) -> void:
 	UiManager.go_to_level_brief(level_num, "level_select")
