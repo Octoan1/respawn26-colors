@@ -5,4 +5,4 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_color_block")
-shader_parameter/base_color = Color(0.0721977, 0.12959531, 1.2032688e-08, 1)
+shader_parameter/base_color = Color(0.11, 0.11, 0.11, 1)

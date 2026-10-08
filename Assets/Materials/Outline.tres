@@ -5,5 +5,5 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_jdxvv")
-shader_parameter/threshold = 4.23999999463552
+shader_parameter/threshold = 4.0
 shader_parameter/line_color = Color(0.7683073, 0.7683069, 0.76830703, 1)
