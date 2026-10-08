@@ -21,8 +21,8 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "LANDING")
 		return
 		
-	if player.curr_ability == player.Ability_Color.BLUE and Input.is_action_just_pressed("ability_activate") and player.ability_charges > 0:
-		player.ability_charges -= 1
+	if player.curr_ability == player.Ability_Color.BLUE and Input.is_action_just_pressed("ability_activate") and player.ability_charges_b > 0:
+		player.ability_charges_b -= 1
 		Transitioned.emit(self, "GLIDE")
 		return
 	
@@ -37,13 +37,13 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "WALL_RIDING")
 		return
 		
-	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate") and player.ability_charges > 0:
-		player.ability_charges -= 1
+	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate") and player.ability_charges_g > 0:
+		player.ability_charges_g -= 1
 		Transitioned.emit(self, "DASH")
 		return
 	
-	if player.curr_ability == player.Ability_Color.RED and Input.is_action_just_pressed("ability_activate") and player.ability_charges > 0:
-		player.ability_charges -= 1
+	if player.curr_ability == player.Ability_Color.RED and Input.is_action_just_pressed("ability_activate") and player.ability_charges_r > 0:
+		player.ability_charges_r -= 1
 		Transitioned.emit(self, "ROCKET_JUMP")
 		return
 	

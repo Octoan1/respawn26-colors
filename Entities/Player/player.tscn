@@ -15,12 +15,12 @@
 [ext_resource type="Script" uid="uid://b4o0syihug2u2" path="res://Entities/Player/States/slide_state.gd" id="7_ap3xn"]
 [ext_resource type="Script" uid="uid://ca4hkabplsyfi" path="res://Entities/Player/States/crouch_state.gd" id="8_r8fok"]
 [ext_resource type="Script" uid="uid://c46mxkgb0dg1e" path="res://Entities/Player/States/landing_state.gd" id="9_owvpp"]
-[ext_resource type="Script" uid="uid://6wd36mbo3304" path="res://Entities/Player/push_off_wall.gd" id="12_iplt1"]
+[ext_resource type="Script" uid="uid://6wd36mbo3304" path="res://Entities/Player/States/push_off_wall.gd" id="12_iplt1"]
 [ext_resource type="Texture2D" uid="uid://dps3uscid2nle" path="res://Assets/RedHandsIdleLessFrames.png" id="16_nhbkt"]
-[ext_resource type="Script" uid="uid://b64aox346y560" path="res://Entities/Player/glide.gd" id="16_vskfa"]
-[ext_resource type="Script" uid="uid://5cpyqw180xew" path="res://Entities/Player/god_mode.gd" id="17_pjcup"]
-[ext_resource type="Script" uid="uid://hndu88m74nd0" path="res://Entities/Player/dash.gd" id="18_0poeq"]
-[ext_resource type="Script" uid="uid://csirqqfru06hw" path="res://Entities/Player/rocket_jump.gd" id="19_ppdlg"]
+[ext_resource type="Script" uid="uid://b64aox346y560" path="res://Entities/Player/States/glide.gd" id="16_vskfa"]
+[ext_resource type="Script" uid="uid://5cpyqw180xew" path="res://Entities/Player/States/god_mode.gd" id="17_pjcup"]
+[ext_resource type="Script" uid="uid://hndu88m74nd0" path="res://Entities/Player/States/dash.gd" id="18_0poeq"]
+[ext_resource type="Script" uid="uid://csirqqfru06hw" path="res://Entities/Player/States/rocket_jump.gd" id="19_ppdlg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t4wu"]
 
