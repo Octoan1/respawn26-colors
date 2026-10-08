@@ -11,6 +11,7 @@ name = "Color Ability 1"
 color = "2dea01"
 target_info = "Description: It’s about time your first color ability manifests. We sense an aura of anxiety deep within you. Channel this feeling and complete the training. After this, you’ll finally be ready to carry out some real contracts."
 level_num = 3
+has_green = true
 s_rank_time = 15.0
 a_rank_time = 18.0
 b_rank_time = 24.0

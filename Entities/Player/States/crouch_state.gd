@@ -6,8 +6,7 @@ func setup() -> void:
 	pass
 
 func enter() -> void: 
-	if player.movement.can_slide():
-		Transitioned.emit(self, "SLIDE")
+	pass
 	
 func exit() -> void: 
 	pass
@@ -17,6 +16,10 @@ func update(_delta: float) -> void:
 
 func physics_update(delta: float) -> void:
 	var direction := player.get_movement_direction()
+	
+	if player.movement.can_slide():
+		Transitioned.emit(self, "SLIDE")
+		return
 	
 	if player.curr_ability == player.Ability_Color.GREEN and Input.is_action_just_pressed("ability_activate") and player.ability_charges_g > 0:
 		player.ability_charges_g -= 1
