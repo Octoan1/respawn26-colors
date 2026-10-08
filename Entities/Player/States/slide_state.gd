@@ -5,10 +5,11 @@ extends PlayerState
 
 const SLIDESFX = preload("uid://b26uh7audsn6e")
 var slide_sfx_timer = 0.0
+var slide_sfx_player = AudioManager.create_sfx_adv(SLIDESFX, 1.0, 1.2)
+
 
 func setup() -> void:
 	super()
-
 
 var _air_time := 0.0
 
@@ -19,14 +20,18 @@ func enter() -> void:
 
 func exit() -> void:
 	player.movement.end_slide()
-
+	slide_sfx_player.stop()
+	slide_sfx_timer = 0.0
+	#print("SFX STOP")
+	
 func update(delta: float) -> void:
 	slide_sfx_timer -= delta
 	
 	if slide_sfx_timer <= 0.0:
 		slide_sfx_timer = 5.22
-		AudioManager.play_sfx(SLIDESFX, randf_range(.6,1.0))
-	
+		slide_sfx_player.pitch_scale = randf_range(.6,1.0)
+		slide_sfx_player.play()
+		#print("SFX PLAY")
 
 func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("player_jump") and player.is_on_floor():

@@ -88,4 +88,17 @@ func play_sfx(stream: AudioStream, pitch_scale: float = 1.0) -> void:
 
 	player.play()
 
+func create_sfx_adv(stream: AudioStream, pitch_scale: float = 1.0, volume_lin: float = 1.0) -> AudioStreamPlayer:
+	# NOTE: YOU MUST MANUALLY FREED AND PLAYED THE NODE WHEN DONE
+
+	var player := AudioStreamPlayer.new()
+	player.stream = stream
+	player.bus = SFX_BUS
+	player.pitch_scale = pitch_scale
+	player.volume_linear = volume_lin
+
+	add_child(player)
+
+	active_sfx += 1
+	return player
 	#endregion
