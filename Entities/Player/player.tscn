@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://b2yq8oy70aiv4" path="res://Entities/Player/States/run_state.gd" id="4_7a1se"]
 [ext_resource type="Script" uid="uid://cs8dvwww68gmk" path="res://Entities/Player/States/jump.gd" id="4_tekja"]
 [ext_resource type="Material" uid="uid://dtmh8l8v52fcd" path="res://Assets/Materials/Outline.tres" id="4_vskfa"]
-[ext_resource type="Material" path="res://Assets/Materials/ColorBlock.tres" id="20_color_block"]
 [ext_resource type="Script" uid="uid://bei4dicsadbmf" path="res://Entities/Player/States/air.gd" id="5_5c2io"]
 [ext_resource type="Script" uid="uid://b7m30eoriqxd" path="res://Entities/Player/States/wall_riding.gd" id="6_4wf4l"]
 [ext_resource type="Script" uid="uid://dqviqt5hnpsuc" path="res://Entities/Player/States/wall_jump.gd" id="7_01a4e"]
@@ -22,6 +21,7 @@
 [ext_resource type="Script" uid="uid://5cpyqw180xew" path="res://Entities/Player/States/god_mode.gd" id="17_pjcup"]
 [ext_resource type="Script" uid="uid://hndu88m74nd0" path="res://Entities/Player/States/dash.gd" id="18_0poeq"]
 [ext_resource type="Script" uid="uid://csirqqfru06hw" path="res://Entities/Player/States/rocket_jump.gd" id="19_ppdlg"]
+[ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/ColorBlock.tres" id="20_color_block"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t4wu"]
 

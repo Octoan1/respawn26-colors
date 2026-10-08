@@ -3,6 +3,7 @@ render_mode unshaded, blend_mix, cull_disabled, depth_draw_never, depth_test_dis
 
 uniform sampler2D DEPTH_TEXTURE: hint_depth_texture, filter_linear_mipmap;
 uniform float threshold: hint_range(4, 5, 0.01) = 4.24;
+uniform float line_width: hint_range(0.0, 8.0, 1.0) = 0.0;
 uniform vec3 line_color: source_color = vec3(1.0);
 
 float calculation(float dx, float dy, float dz, float ex, float ey, float ez) {
@@ -65,16 +66,22 @@ void vertex() {
 	POSITION = vec4(VERTEX.xy, 1.0, 1.0);
 }
 
-void fragment() {
-	vec2 screen_uv = SCREEN_UV;
-	vec2 pixel_size = 1.0 / VIEWPORT_SIZE;
-	
+float edge_strength(
+	vec2 screen_uv,
+	vec2 pixel_size,
+	mat4 inverse_projection,
+	mat4 inverse_view
+) {
 	vec3 coordinates[9];
 	for (int x = -1; x <=1; x++){
 		int i = x == -1 ? 0 : x == 0 ? 3 : 6;
 		for (int y = -1; y <= 1; y++){
 			vec2 offset = pixel_size * vec2(float(x), float(y));
-			coordinates[i + y + 1] = world_position(screen_uv + offset, INV_PROJECTION_MATRIX, INV_VIEW_MATRIX);
+			coordinates[i + y + 1] = world_position(
+				screen_uv + offset,
+				inverse_projection,
+				inverse_view
+			);
 		}
 	}
 	
@@ -86,12 +93,37 @@ void fragment() {
 	}
 	
 	float bend = sqrt(dist_x * dist_x + dist_y * dist_y);
-	
-	float line_mask = 1.0 - smoothstep(
+	return 1.0 - smoothstep(
 		threshold - 0.02,
 		threshold + 0.02,
 		bend
 	);
+}
+
+void fragment() {
+	vec2 pixel_size = 1.0 / VIEWPORT_SIZE;
+	float line_mask = 0.0;
+	mat4 inverse_projection = INV_PROJECTION_MATRIX;
+	mat4 inverse_view = INV_VIEW_MATRIX;
+
+	for (int x = -8; x <= 8; x++) {
+		for (int y = -8; y <= 8; y++) {
+			float distance_from_center = length(vec2(float(x), float(y)));
+			if (distance_from_center <= line_width) {
+				vec2 offset = vec2(float(x), float(y)) * pixel_size;
+				line_mask = max(
+					line_mask,
+					edge_strength(
+						SCREEN_UV + offset,
+						pixel_size,
+						inverse_projection,
+						inverse_view
+					)
+				);
+			}
+		}
+	}
+
 	ALBEDO = line_color;
 	ALPHA = line_mask;
 }
