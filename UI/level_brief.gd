@@ -24,7 +24,9 @@ func _ready() -> void:
 	back_button.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 
 func populate_brief(level: LevelData) -> void:
-	level_name.text = level.name
+	var level_num: int = LevelManager.current_index + 1
+	
+	level_name.text = "Mission " + str(level.level_num) + ": " + level.name
 	target_info.text = level.target_info
 	print(level.rank)
 	print(level.best_time)

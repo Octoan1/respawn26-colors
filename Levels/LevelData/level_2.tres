@@ -7,9 +7,10 @@
 [resource]
 script = ExtResource("1_7a54s")
 scene = ExtResource("1_uo1x3")
-name = "Level 2"
+name = "Training 2"
 color = "Violet"
 target_info = "Weirdo"
+level_num = 2
 s_rank_time = 5.0
 a_rank_time = 10.0
 b_rank_time = 15.0

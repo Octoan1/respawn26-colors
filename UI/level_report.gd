@@ -1,6 +1,5 @@
 extends Control
 
-signal free_ui
 signal new_best
 
 ## UI POPULATION VARS
@@ -125,10 +124,10 @@ func close_button(button: Button) -> void:
 
 func populate_report() -> void:
 	var level_data: LevelData = LevelManager.LEVEL_LIST.levels[LevelManager.current_index]
-	print(level_data.rank_times)
+	var level_num: int = LevelManager.current_index + 1
 	
 	# update level name
-	level_name.text = level_data.name
+	level_name.text = "Mission " + str(level_data.level_num) + ": " + level_data.name
 	
 	# update rank text + threshold text + next rank text
 	var rank_index: int = 0
