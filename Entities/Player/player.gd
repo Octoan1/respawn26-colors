@@ -7,6 +7,7 @@ class_name Player
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var movement: PlayerMovement = $Movement
 @onready var camera: Camera3D = $Head/Camera3D
+@onready var outline_material: ShaderMaterial = $Head/Shader.material_override as ShaderMaterial
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var debug_velocity: Label = $Debug/DebugVelocity
 @onready var debug_state: Label = $Debug/DebugState
@@ -47,6 +48,8 @@ var ability_charges_b: int = 1
 func _ready() -> void:
 	animation_player.play("RESET")
 	capsule = collision_shape.shape as CapsuleShape3D
+	if outline_material == null:
+		push_error("Player outline material is missing or is not a ShaderMaterial.")
 	
 	base_fov = camera.fov
 	
@@ -147,6 +150,12 @@ func _process(delta: float) -> void:
 	debug_velocity.text = "Vel: %.2f" % velocity.length()
 	debug_state.text = $StateMachine.current_state.name
 	debug_fov.text = "fov: %.2f" % camera.fov
+
+	if outline_material != null:
+		outline_material.set_shader_parameter(
+			"player_inverse_transform",
+			global_transform.affine_inverse()
+		)
 	
 	var w := 1.0 - exp(-movement.wall_tilt_speed * delta)
 	camera.rotation.z = lerp_angle(camera.rotation.z, camera_roll_target, w)
