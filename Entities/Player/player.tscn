@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://db8je6wadmfjf" path="res://Components/state_machine.gd" id="2_lu8i8"]
 [ext_resource type="Script" uid="uid://dgysd5kft553j" path="res://Entities/Player/player_camera.gd" id="2_x1y6q"]
 [ext_resource type="Script" uid="uid://4q3nmwc6tlho" path="res://Components/movement_component.gd" id="2_xr8lj"]
+[ext_resource type="Shader" uid="uid://xatsuartdydx" path="res://Assets/Materials/Outline.gdshader" id="3_a8wow"]
 [ext_resource type="Script" uid="uid://ocobi86ia54a" path="res://Entities/Player/States/idle_state.gd" id="3_lub02"]
 [ext_resource type="Script" uid="uid://dwqmakkymaxlj" path="res://Entities/Player/States/walk_state.gd" id="3_tekja"]
 [ext_resource type="Script" uid="uid://b2yq8oy70aiv4" path="res://Entities/Player/States/run_state.gd" id="4_7a1se"]
 [ext_resource type="Script" uid="uid://cs8dvwww68gmk" path="res://Entities/Player/States/jump.gd" id="4_tekja"]
-[ext_resource type="Material" uid="uid://dtmh8l8v52fcd" path="res://Assets/Materials/Outline.tres" id="4_vskfa"]
 [ext_resource type="Script" uid="uid://bei4dicsadbmf" path="res://Entities/Player/States/air.gd" id="5_5c2io"]
 [ext_resource type="Script" uid="uid://b7m30eoriqxd" path="res://Entities/Player/States/wall_riding.gd" id="6_4wf4l"]
 [ext_resource type="Script" uid="uid://dqviqt5hnpsuc" path="res://Entities/Player/States/wall_jump.gd" id="7_01a4e"]
@@ -21,8 +21,16 @@
 [ext_resource type="Script" uid="uid://5cpyqw180xew" path="res://Entities/Player/States/god_mode.gd" id="17_pjcup"]
 [ext_resource type="Script" uid="uid://hndu88m74nd0" path="res://Entities/Player/States/dash.gd" id="18_0poeq"]
 [ext_resource type="Script" uid="uid://csirqqfru06hw" path="res://Entities/Player/States/rocket_jump.gd" id="19_ppdlg"]
+[ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.tres" id="20_color_block"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t4wu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_avsg8"]
+render_priority = 0
+shader = ExtResource("3_a8wow")
+shader_parameter/threshold = 4.21999999508256
+shader_parameter/line_width = 1.0
+shader_parameter/line_color = Color(0.7683073, 0.7683069, 0.76830703, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0poeq"]
 size = Vector3(2.5, 3, 3)
@@ -255,9 +263,9 @@ debug_color = Color(0.99215686, 0, 0.28235295, 1)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Head" unique_id=834846103]
+[node name="Shader" type="MeshInstance3D" parent="Head" unique_id=834846103]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19099039, -0.47434425, -0.021601677)
-material_override = ExtResource("4_vskfa")
+material_override = SubResource("ShaderMaterial_avsg8")
 cast_shadow = 0
 extra_cull_margin = 16384.0
 mesh = SubResource("BoxMesh_0poeq")
@@ -274,6 +282,7 @@ target_position = Vector3(0, 0, -5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=125584598]
 layers = 2
+material_override = ExtResource("20_color_block")
 mesh = SubResource("CapsuleMesh_g4v7s")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1226587949 node_paths=PackedStringArray("initial_state")]

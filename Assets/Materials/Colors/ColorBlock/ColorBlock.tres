@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://pn1fg55kk547"]
+
+[ext_resource type="Shader" uid="uid://ben2vk0hqh1fv" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.gdshader" id="1_color_block"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_color_block")
+shader_parameter/base_color = Color(0.11, 0.11, 0.11, 1)

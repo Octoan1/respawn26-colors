@@ -13,7 +13,7 @@ float calculation(float dx, float dy, float dz, float ex, float ey, float ez) {
 
 vec3 world_position(vec2 uv_coord, mat4 proj_matrix, mat4 view_matrix){
 	float depth = texture(DEPTH_TEXTURE, uv_coord).x;
-	vec3 ndc = vec3(uv_coord, depth) * 2.0 - 0.0;
+	vec3 ndc = vec3(uv_coord, depth) * 2.0 - 1.0;
 	vec4 view = proj_matrix * vec4(ndc, 1.0);
 	view.xyz /= view.w;
 	float linear_depth = -view.z;
