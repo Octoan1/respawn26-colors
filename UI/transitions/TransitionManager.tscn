@@ -2,6 +2,16 @@
 
 [ext_resource type="Shader" uid="uid://cdcud4y52s70y" path="res://UI/transitions/slash_transition.gdshader" id="1_d0v3p"]
 [ext_resource type="Script" uid="uid://bpuq6dk2yqmp1" path="res://UI/transitions/transition_manager.gd" id="1_lpiro"]
+[ext_resource type="Shader" uid="uid://bq51jectwkd5x" path="res://Assets/Materials/psx_shader.gdshader" id="2_jwdak"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7k2vp"]
+shader = ExtResource("2_jwdak")
+shader_parameter/enable_pixelation = true
+shader_parameter/target_resolution = Vector2(576, 324)
+shader_parameter/enable_color_banding = true
+shader_parameter/color_depth = 32.0
+shader_parameter/enable_dithering = true
+shader_parameter/dither_intensity = 0.15
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2v8ap"]
 shader = ExtResource("1_d0v3p")
@@ -15,6 +25,16 @@ shader_parameter/offset = -0.5
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1347418871]
 layer = 100
 script = ExtResource("1_lpiro")
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=2089363038]
+visible = false
+material = SubResource("ShaderMaterial_7k2vp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=809890494]
 material = SubResource("ShaderMaterial_2v8ap")

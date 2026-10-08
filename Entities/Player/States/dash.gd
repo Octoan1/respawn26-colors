@@ -6,10 +6,11 @@ func setup() -> void:
 func enter() -> void:
 	#-player.camera.global_transform.basis.z
 	player.movement.dash(player.get_movement_direction())
-	
+	player.sprite.play("Green Dash")
 	
 func exit() -> void:
-	pass
+	await player.sprite.animation_finished
+	player.sprite.play("Green Idle")
 	
 func update(_delta: float) -> void:
 	pass
