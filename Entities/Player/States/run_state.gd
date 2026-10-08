@@ -7,6 +7,9 @@ const HEADBOB_MOVE_AMOUNT = 0.06
 const HEADBOB_FREQUENCY = 2.4
 var headbob_time := 0.0
 
+const RUNSFX = [preload("uid://bxsou8ahwmaq8"), preload("uid://xid7qxgq58lu"), preload("uid://bs4wmv0aoreu0")]
+var run_sfx_timer = 0.0
+
 func setup() -> void:
 	origin = animated_sprite_2d.transform.origin + Vector2(0,20)
 	super()
@@ -19,6 +22,12 @@ func exit() -> void:
 	
 func update(delta: float) -> void:
 	headbob_time += delta * player.velocity.length()
+	
+	run_sfx_timer -= delta
+	
+	if run_sfx_timer <= 0.0:
+		run_sfx_timer = .23
+		AudioManager.play_sfx(RUNSFX[randi_range(0, 2)], randf_range(.6,1.0))
 	
 	if false:
 		%Camera3D.transform.origin = Vector3(

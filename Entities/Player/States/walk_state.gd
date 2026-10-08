@@ -1,5 +1,8 @@
 extends PlayerState
 
+const WALKSFX = [preload("uid://bxsou8ahwmaq8"), preload("uid://xid7qxgq58lu"), preload("uid://bs4wmv0aoreu0")]
+var walk_sfx_timer = 0.0
+
 func setup() -> void:
 	super()
 	pass
@@ -11,7 +14,11 @@ func exit() -> void:
 	pass
 	
 func update(_delta: float) -> void:
-	pass
+	walk_sfx_timer -= _delta
+	
+	if walk_sfx_timer <= 0.0:
+		walk_sfx_timer = .325
+		AudioManager.play_sfx(WALKSFX[randi_range(0, 2)], randf_range(.6,1.0))
 
 func physics_update(delta: float) -> void:
 	# JUMP state transition

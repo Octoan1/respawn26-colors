@@ -2,8 +2,9 @@ extends PlayerState
 
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var camera_3d: Camera3D = %Camera3D
-const SLIDE = preload("uid://sb21hrxvrqfl")
 
+const SLIDESFX = preload("uid://b26uh7audsn6e")
+var slide_sfx_timer = 0.0
 
 func setup() -> void:
 	super()
@@ -18,6 +19,14 @@ func enter() -> void:
 
 func exit() -> void:
 	player.movement.end_slide()
+
+func update(delta: float) -> void:
+	slide_sfx_timer -= delta
+	
+	if slide_sfx_timer <= 0.0:
+		slide_sfx_timer = 5.22
+		AudioManager.play_sfx(SLIDESFX, randf_range(.6,1.0))
+	
 
 func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("player_jump") and player.is_on_floor():
@@ -57,8 +66,6 @@ func physics_update(delta: float) -> void:
 
 	player.movement.update_slide(player.get_movement_direction(), delta)
 	player.move_and_slide()
-	
-	AudioManager.play_sfx(SLIDE, .3)
 
 	# Stay in the slide while crouch is held, even after losing speed. This
 	# lets a downhill section restart the slide instead of bouncing through

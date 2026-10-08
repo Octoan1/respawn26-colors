@@ -13,6 +13,8 @@ var wall_run_dir := Vector3.ZERO
 var run_time := 0.0
 var contact_lost_time := 0.0
 
+const RUNSFX = [preload("uid://bxsou8ahwmaq8"), preload("uid://xid7qxgq58lu"), preload("uid://bs4wmv0aoreu0")]
+var run_sfx_timer = 0.0
 
 func enter() -> void:
 	player.ability_charges_r = 1
@@ -56,6 +58,13 @@ func exit() -> void:
 	player.camera_fov_boost = 0.0
 	player.start_wall_cooldown()
 
+
+func update(delta: float) -> void:
+	run_sfx_timer -= delta
+	
+	if run_sfx_timer <= 0.0:
+		run_sfx_timer = .2 - (.001 * player.velocity.x)
+		AudioManager.play_sfx(RUNSFX[randi_range(0, 2)], randf_range(.9,1.1))
 
 func physics_update(delta: float) -> void:
 	var m := player.movement

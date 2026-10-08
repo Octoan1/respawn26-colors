@@ -1,5 +1,7 @@
 extends PlayerState
 
+const JUMP = preload("uid://1hlxkoq66361")
+
 func setup() -> void:
 	super()
 	pass
@@ -22,6 +24,8 @@ func enter() -> void:
 
 	# Set (not add) vertical speed so a slipping, falling run still gives a full jump
 	player.velocity.y = m.jump_velocity
+	
+	AudioManager.play_sfx(JUMP, randf_range(1.0,1.2))
 	
 func exit() -> void: 
 	pass
