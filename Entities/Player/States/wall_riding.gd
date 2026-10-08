@@ -6,7 +6,10 @@ extends PlayerState
 @export var look_away_threshold := 0.3      # forward.dot(normal): above this = looking away from the wall
 @export var hold_into_wall_threshold := 0.3 # input.dot(-normal): above this = pushing into the wall
 @export var detach_grace := 0.2            # seconds you can look away before dropping
+@export var backward_time_scale := 2.5   # run_time speed when moving fully backwards relative to facing
+@export var backward_scale_smoothing := 10.0
 
+var time_scale := 1.0
 var detach_timer := 0.0
 
 var wall_run_dir := Vector3.ZERO
@@ -49,6 +52,7 @@ func enter() -> void:
 	
 	detach_timer = 0.0
 	contact_lost_time = 0.0
+	time_scale = 1.0
 
 
 func exit() -> void:
@@ -65,6 +69,11 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "IDLE"); return
 	if not player.has_wall_run_clearance(player.wall_normal):
 		Transitioned.emit(self, "PUSH_OFF_WALL"); return
+		
+	if Input.is_action_just_pressed("player_crouch"):
+		player.velocity += player.wall_normal * 2
+		Transitioned.emit(self, "AIR")
+		return
 
 	if player.is_on_wall():
 		contact_lost_time = 0.0
@@ -90,7 +99,16 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "ROCKET_JUMP")
 		return
 
-	run_time += delta
+	# Moving backwards relative to where you're facing: burn the wall run faster
+	var h := Vector3(player.velocity.x, 0.0, player.velocity.z)
+	var target_scale := 1.0
+	if h.length() > 0.5:
+		var forward := _flat(-player.global_transform.basis.z)
+		var backwards := clampf(-h.normalized().dot(forward), 0.0, 1.0)  # 0 = fine, 1 = straight backwards
+		target_scale = lerpf(1.0, backward_time_scale, backwards)
+	time_scale = lerpf(time_scale, target_scale, 1.0 - exp(-backward_scale_smoothing * delta))
+
+	run_time += delta * time_scale
 	var input_world := player.get_movement_direction()
 
 	if _should_detach(delta) or run_time >= m.wall_run_time or m.get_horizontal_speed() < m.wall_min_entry_speed:
