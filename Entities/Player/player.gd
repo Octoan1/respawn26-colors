@@ -212,7 +212,6 @@ func find_wall_normal() -> Vector3:
 
 func has_wall_run_clearance(normal: Vector3) -> bool:
 	var new_wall_normal := Vector3(normal.x, 0.0, normal.z).normalized()
-	var capsule := collision_shape.shape as CapsuleShape3D
 	if new_wall_normal == Vector3.ZERO or capsule == null:
 		return false
 
@@ -244,6 +243,7 @@ func remove_ability(color: Ability_Color) -> void:
 		if abilities.is_empty():
 			ability_index = -1
 			curr_ability = Ability_Color.BASE
+			_change_sprite(Ability_Color.BASE)
 		else:
 			ability_index = 0
 			curr_ability = abilities[ability_index]
@@ -254,6 +254,7 @@ func gain_ability(color: Ability_Color) -> void:
 	if curr_ability == Ability_Color.BASE:
 		ability_index = 0
 		curr_ability = abilities[ability_index]
+		_change_sprite(curr_ability)
 
 func change_ability(event: InputEvent) -> void:
 	if abilities.is_empty():
@@ -326,4 +327,6 @@ func _change_sprite(color: Ability_Color) -> void:
 		sprite.play("Green Idle")
 	if color == Ability_Color.RED:
 		sprite.play("Red Idle")
+	if color == Ability_Color.BASE:
+		sprite.play("Default")
 	animation_player.play_backwards("Sprite Change")
