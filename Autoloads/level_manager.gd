@@ -6,6 +6,7 @@ extends Node
 var player_time: float
 var stopwatch_on: bool = false
 var player_freeze: bool = false
+var current_level: Node
 
 var main: Node
 var player: Player
@@ -50,10 +51,9 @@ func go_to_level(index: int) -> void:
 	
 	cleanup_main()
 	main.add_child(level)
+	current_level = level
 	
 	capture_mouse()
-	
-	await TransitionManager.end_transition()
 	
 	get_level_references()
 	goal.give_player(player)
@@ -61,6 +61,17 @@ func go_to_level(index: int) -> void:
 	# handle time vars
 	player_time = 0
 	stopwatch_on = true
+	var lev:LevelData = LEVEL_LIST.levels[index]
+	if player == null or goal == null:
+		push_error("LevelManager: level is missing a Player or Goal")
+	else:
+		if lev.has_green:
+			player.gain_ability(player.Ability_Color.GREEN, (lev.level_num == 3))
+		if lev.has_red:
+			player.gain_ability(player.Ability_Color.RED)
+		if lev.has_blue:
+			player.gain_ability(player.Ability_Color.BLUE)
+	await TransitionManager.end_transition()
 
 
 ## Advances to the next level, or back to the title after the last one.
@@ -133,16 +144,34 @@ func freeze_player() -> void:
 func capture_mouse() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+#func get_level_references() -> void:
+	#for child in main.get_child(1).get_children():
+		#if child is Player:
+			#player = child
+		#if child.name == "Goal":
+			#goal = child
+	#
+	#for child in player.get_children():
+		#if child.name == "StateMachine":
+			#state_machine = child
 func get_level_references() -> void:
-	for child in main.get_child(1).get_children():
+	player = null
+	goal = null
+	state_machine = null
+	
+	if not is_instance_valid(current_level):
+		return
+	
+	for child in current_level.get_children():
 		if child is Player:
 			player = child
-		if child.name == "Goal":
+		elif child.name == "Goal":
 			goal = child
 	
-	for child in player.get_children():
-		if child.name == "StateMachine":
-			state_machine = child
+	if player:
+		for child in player.get_children():
+			if child.name == "StateMachine":
+				state_machine = child
 
 func cleanup_main() -> void:
 	for child in LevelManager.main.get_children():
@@ -150,4 +179,5 @@ func cleanup_main() -> void:
 			for grandchild in child.get_children():
 				grandchild.queue_free()
 			continue
+		main.remove_child(child)
 		child.queue_free()

@@ -242,35 +242,37 @@ func remove_ability(color: Ability_Color) -> void:
 		abilities.remove_at(abilities.find(color))
 		if abilities.is_empty():
 			ability_index = -1
-			curr_ability = Ability_Color.BASE
 			_change_sprite(Ability_Color.BASE)
+			curr_ability = Ability_Color.BASE
 		else:
 			ability_index = 0
+			_change_sprite(abilities[ability_index])
 			curr_ability = abilities[ability_index]
 
-func gain_ability(color: Ability_Color) -> void:
+func gain_ability(color: Ability_Color, level3: bool = false) -> void:
 	if abilities.find(color) == -1:
 		abilities.append(color)
 	if curr_ability == Ability_Color.BASE:
 		ability_index = 0
+		if !level3:
+			_change_sprite(abilities[ability_index])
 		curr_ability = abilities[ability_index]
-		_change_sprite(curr_ability)
 
 func change_ability(event: InputEvent) -> void:
 	if abilities.is_empty():
 		return
 	if event.is_action_pressed("cycle_ability_left"):
 		ability_index = (ability_index - 1) % abilities.size()
+		_change_sprite(abilities[ability_index])
 		curr_ability = abilities[ability_index]
-		_change_sprite(curr_ability)
 		print("Abilities: ", abilities)
 		print("Curr_Ability: ", curr_ability)
 		print("Ability_Index: ", ability_index)
 		return
 	if event.is_action_pressed("cycle_ability_right"):
 		ability_index = (ability_index + 1) % abilities.size()
+		_change_sprite(abilities[ability_index])
 		curr_ability = abilities[ability_index]
-		_change_sprite(curr_ability)
 		print("Abilities: ", abilities)
 		print("Curr_Ability: ", curr_ability)
 		print("Ability_Index: ", ability_index)
@@ -279,8 +281,8 @@ func change_ability(event: InputEvent) -> void:
 		var index := abilities.find(Ability_Color.RED)
 		if index != -1:
 			ability_index = index
+			_change_sprite(Ability_Color.RED)
 			curr_ability = Ability_Color.RED
-			_change_sprite(curr_ability)
 			print("Abilities: ", abilities)
 			print("Curr_Ability: ", curr_ability)
 			print("Ability_Index: ", ability_index)
@@ -289,8 +291,8 @@ func change_ability(event: InputEvent) -> void:
 		var index := abilities.find(Ability_Color.GREEN)
 		if index != -1:
 			ability_index = index
+			_change_sprite(Ability_Color.GREEN)
 			curr_ability = Ability_Color.GREEN
-			_change_sprite(curr_ability)
 			print("Abilities: ", abilities)
 			print("Curr_Ability: ", curr_ability)
 			print("Ability_Index: ", ability_index)
@@ -299,8 +301,8 @@ func change_ability(event: InputEvent) -> void:
 		var index := abilities.find(Ability_Color.BLUE)
 		if index != -1:
 			ability_index = index
+			_change_sprite(Ability_Color.BLUE)
 			curr_ability = Ability_Color.BLUE
-			_change_sprite(curr_ability)
 			print("Abilities: ", abilities)
 			print("Curr_Ability: ", curr_ability)
 			print("Ability_Index: ", ability_index)
@@ -319,6 +321,8 @@ func can_stand() -> bool:
 	return not test_move(global_transform, Vector3.UP * extra)
 
 func _change_sprite(color: Ability_Color) -> void:
+	if color == curr_ability:
+		return
 	animation_player.play("Sprite Change")
 	await animation_player.animation_finished 
 	if color == Ability_Color.BLUE:
