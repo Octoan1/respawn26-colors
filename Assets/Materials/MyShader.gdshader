@@ -1,9 +1,12 @@
 shader_type spatial;
-render_mode cull_front;
+render_mode unshaded;
 
 void vertex() {
-	VERTEX.y += sin(TIME * 2.0 + cos(VERTEX.x)) * -1.0;
-	VERTEX.x += sin(TIME * 5.0 + sin(VERTEX.y)) * 2.0;
+	VERTEX.z += cos(TIME * 2.0 + VERTEX.x * 40.0) * .005;
+	VERTEX.y += cos(TIME * 2.0 + VERTEX.z * 40.0) * .005;
+	VERTEX.z += 0.0;
+	//VERTEX.x += sin(TIME * 2.0 + VERTEX.y * 10.0) * .005;
+	//VERTEX. += sin(TIME * 1.0 + cos(VERTEX.y)) * .05;
 
 	// Called for every vertex the material is visible on.
 }
