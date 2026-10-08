@@ -52,5 +52,4 @@ rotation = -0.26529005
 theme_override_font_sizes/font_size = 40
 text = "New Best!"
 
-[connection signal="free_ui" from="LevelReport" to="." method="_on_level_report_free_ui"]
 [connection signal="new_best" from="LevelReport" to="." method="_on_level_report_new_best"]
