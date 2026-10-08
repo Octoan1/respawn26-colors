@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dmvtx31pbh5es"]
+
+[ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="1_2buu0"]
+[ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="2_s0mph"]
+[ext_resource type="Material" uid="uid://dwbubdyewarvs" path="res://Assets/Materials/Colors/ColorBlock/WhiteBlock.tres" id="3_padpd"]
+[ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="4_i1m50"]
+[ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="5_4nliy"]
+[ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.tres" id="6_5epd2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mscth"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_e312d"]
+sky_material = SubResource("ProceduralSkyMaterial_mscth")
+
+[sub_resource type="Environment" id="Environment_j0mkc"]
+background_mode = 2
+sky = SubResource("Sky_e312d")
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.28851813, 0.28851795, 0.28851798, 1)
+fog_density = 1.0
+
+[sub_resource type="TextMesh" id="TextMesh_532tp"]
+text = "WASD = Move
+Lshift = Sprint"
+font_size = 100
+
+[sub_resource type="BoxMesh" id="BoxMesh_31hda"]
+size = Vector3(45.740112, 1, 48)
+
+[node name="BlueTutorial" type="Node3D" unique_id=1440823683]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=948532434]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=974864444]
+environment = SubResource("Environment_j0mkc")
+
+[node name="Player" parent="." unique_id=493457226 instance=ExtResource("1_2buu0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.3453155, 3.4666555)
+
+[node name="Goal" parent="." unique_id=537695073 instance=ExtResource("2_s0mph")]
+transform = Transform3D(0.81061506, 0, -0.58557945, 0, 1, 0, 0.58557945, 0, 0.81061506, 39.190224, -4.33011, -130.56972)
+
+[node name="MovementText" type="MeshInstance3D" parent="." unique_id=433738536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5906463, -1.1598244)
+mesh = SubResource("TextMesh_532tp")
+surface_material_override/0 = ExtResource("3_padpd")
+
+[node name="DeathPlane" parent="." unique_id=1176538747 instance=ExtResource("4_i1m50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.070606, -1.76836)
+
+[node name="LevelGeometry" type="Node3D" parent="." unique_id=575242549]
+script = ExtResource("5_4nliy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelGeometry" unique_id=391901291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17)
+mesh = SubResource("BoxMesh_31hda")
+surface_material_override/0 = ExtResource("6_5epd2")
