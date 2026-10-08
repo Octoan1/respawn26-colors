@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://dhinokha6swk8"]
+
+[ext_resource type="Script" uid="uid://of7uetyps83t" path="res://Levels/LevelData/level_data.gd" id="1_dxhfa"]
+[ext_resource type="PackedScene" uid="uid://mnabickbepby" path="res://Levels/red_level.tscn" id="1_jeq0h"]
+[ext_resource type="Texture2D" uid="uid://dxn0y7y5uoji8" path="res://icon.svg" id="2_jeq0h"]
+
+[resource]
+script = ExtResource("1_dxhfa")
+scene = ExtResource("1_jeq0h")
+name = "Color Ability 3"
+color = "da0100"
+target_info = "We sense one last ability manifesting within, one of malevolence and rage. Be careful, not many who’ve been fortunate enough to acquire this skill have been able to control it. Prove us wrong, show you have what it takes, and your next task will be waiting."
+level_num = 9
+s_rank_time = 15.0
+a_rank_time = 18.0
+b_rank_time = 22.0
+c_rank_time = 26.0
+d_rank_time = 99999.0
+metadata/_custom_type_script = "uid://of7uetyps83t"
