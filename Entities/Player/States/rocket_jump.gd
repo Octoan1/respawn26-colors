@@ -5,10 +5,12 @@ func setup() -> void:
 
 func enter() -> void:
 	player.movement.fire_explosion()
+	player.sprite.play("Red Push")
 	
 	
 func exit() -> void:
-	pass
+	await player.sprite.animation_finished
+	player.sprite.play("Red Idle")
 	
 func update(_delta: float) -> void:
 	pass
