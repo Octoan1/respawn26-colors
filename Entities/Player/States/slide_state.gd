@@ -2,7 +2,7 @@ extends PlayerState
 
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var camera_3d: Camera3D = %Camera3D
-
+const SLIDE = preload("uid://sb21hrxvrqfl")
 
 
 func setup() -> void:
@@ -57,6 +57,8 @@ func physics_update(delta: float) -> void:
 
 	player.movement.update_slide(player.get_movement_direction(), delta)
 	player.move_and_slide()
+	
+	AudioManager.play_sfx(SLIDE, .3)
 
 	# Stay in the slide while crouch is held, even after losing speed. This
 	# lets a downhill section restart the slide instead of bouncing through

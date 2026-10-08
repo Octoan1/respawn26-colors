@@ -1,5 +1,7 @@
 extends PlayerState
 
+const LANDSFX = [preload("uid://dwdj7qtuosmsy"), preload("uid://cva4sjdlcf0h3"), preload("uid://62k7kw6kj41d")]
+
 
 func setup() -> void:
 	super()
@@ -9,6 +11,7 @@ func enter() -> void:
 	player.ability_charges_r = 1
 	player.ability_charges_g = 1
 	player.ability_charges_b = 1
+	AudioManager.play_sfx(LANDSFX[randi_range(0,2)], randf_range(.4,.5))
 	
 func exit() -> void: 
 	pass
