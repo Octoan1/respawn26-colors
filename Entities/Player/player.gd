@@ -13,6 +13,7 @@ class_name Player
 @onready var debug_fov: Label = $Debug/DebugFOV
 @onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
 @onready var sprite: AnimatedSprite2D = $Debug/AnimatedSprite2D
+@onready var state_machine: StateMachine = $StateMachine
 
 var coyote_timer: Timer
 var jump_buffer_timer: Timer
@@ -147,7 +148,7 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	debug_velocity.text = "Vel: %.2f" % velocity.length()
-	debug_state.text = $StateMachine.current_state.name
+	debug_state.text = state_machine.current_state.name
 	debug_fov.text = "fov: %.2f" % camera.fov
 	
 	var w := 1.0 - exp(-movement.wall_tilt_speed * delta)
