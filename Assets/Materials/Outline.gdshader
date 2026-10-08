@@ -6,9 +6,9 @@ uniform float threshold: hint_range(4, 5, 0.01) = 4.24;
 uniform vec3 line_color: source_color = vec3(1.0);
 uniform vec3 background_color: source_color = vec3(0.0);
 uniform vec3 texture_color: source_color = vec3(0.12);
-uniform float texture_scale: hint_range(0.1, 20.0) = 2.5;
-uniform float texture_strength: hint_range(0.0, 1.0) = 0.35;
-uniform float texture_line_width: hint_range(0.01, 0.49) = 0.08;
+uniform float noise_scale: hint_range(0.1, 20.0) = 2.5;
+uniform float noise_strength: hint_range(0.0, 1.0) = 0.35;
+uniform float noise_contrast: hint_range(0.25, 4.0) = 1.5;
 
 float calculation(float dx, float dy, float dz, float ex, float ey, float ez) {
 	float dist = (pow((dx*ex) + (dy*ey) + (dz*ez), 2)/(dx*dx + dy*dy + dz*dz))/(ex*ex + ey*ey + ez*ez);
@@ -26,13 +26,44 @@ vec3 world_position(vec2 uv_coord, mat4 proj_matrix, mat4 view_matrix){
 	return world_position;
 }
 
-float grid_line(float coordinate) {
-	float distance_to_line = abs(fract(coordinate) - 0.5);
-	return 1.0 - smoothstep(
-		texture_line_width,
-		texture_line_width + 0.02,
-		distance_to_line
-	);
+float hash_noise(vec3 position) {
+	return fract(sin(dot(position, vec3(127.1, 311.7, 74.7))) * 43758.5453);
+}
+
+float value_noise(vec3 position) {
+	vec3 cell = floor(position);
+	vec3 local_position = fract(position);
+	local_position = local_position * local_position * (3.0 - 2.0 * local_position);
+
+	float n000 = hash_noise(cell + vec3(0.0, 0.0, 0.0));
+	float n100 = hash_noise(cell + vec3(1.0, 0.0, 0.0));
+	float n010 = hash_noise(cell + vec3(0.0, 1.0, 0.0));
+	float n110 = hash_noise(cell + vec3(1.0, 1.0, 0.0));
+	float n001 = hash_noise(cell + vec3(0.0, 0.0, 1.0));
+	float n101 = hash_noise(cell + vec3(1.0, 0.0, 1.0));
+	float n011 = hash_noise(cell + vec3(0.0, 1.0, 1.0));
+	float n111 = hash_noise(cell + vec3(1.0, 1.0, 1.0));
+
+	float x00 = mix(n000, n100, local_position.x);
+	float x10 = mix(n010, n110, local_position.x);
+	float x01 = mix(n001, n101, local_position.x);
+	float x11 = mix(n011, n111, local_position.x);
+	float y0 = mix(x00, x10, local_position.y);
+	float y1 = mix(x01, x11, local_position.y);
+	return mix(y0, y1, local_position.z);
+}
+
+float fractal_noise(vec3 position) {
+	float result = 0.0;
+	float amplitude = 0.5;
+
+	for (int octave = 0; octave < 3; octave++) {
+		result += value_noise(position) * amplitude;
+		position *= 2.0;
+		amplitude *= 0.5;
+	}
+
+	return result / 0.875;
 }
 
 void vertex() {
@@ -63,16 +94,13 @@ void fragment() {
 	
 	float center_depth = texture(DEPTH_TEXTURE, screen_uv).x;
 	vec3 center_world_position = coordinates[4];
-	vec3 grid_coordinates = center_world_position * texture_scale;
-	float texture_pattern = max(
-		grid_line(grid_coordinates.x),
-		max(grid_line(grid_coordinates.y), grid_line(grid_coordinates.z))
-	);
+	float texture_pattern = fractal_noise(center_world_position * noise_scale);
+	texture_pattern = pow(texture_pattern, noise_contrast);
 	float object_mask = 1.0 - step(0.9999, center_depth);
 	vec3 textured_background = mix(
 		background_color,
 		texture_color,
-		texture_pattern * texture_strength * object_mask
+		texture_pattern * noise_strength * object_mask
 	);
 
 	ALBEDO = bend < threshold ? line_color : textured_background;
