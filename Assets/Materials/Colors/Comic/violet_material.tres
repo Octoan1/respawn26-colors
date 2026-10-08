@@ -1,11 +1,11 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://d0xcqxbdshh2k"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dw61vxkbalv1c"]
 
-[ext_resource type="Shader" uid="uid://bijickla87uwi" path="res://Assets/Materials/Colors/comic_shader.gdshader" id="1_1bcpa"]
+[ext_resource type="Shader" uid="uid://bijickla87uwi" path="res://Assets/Materials/Colors/Comic/comic_shader.gdshader" id="1_0ekpr"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_1bcpa")
-shader_parameter/albedo = Color(0.1254902, 0, 0.85490197, 1)
+shader = ExtResource("1_0ekpr")
+shader_parameter/albedo = Color(0.93333334, 0.50980395, 0.93333334, 1)
 shader_parameter/shading_contrast = 1.5
 shader_parameter/rim_influence = 1.0
 shader_parameter/distance_shadow_scale = 0.010000000475
