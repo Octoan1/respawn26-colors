@@ -93,7 +93,7 @@ mesh = SubResource("TextMesh_532tp")
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 4.4288797, -63.238922)
 mesh = SubResource("TextMesh_rf6l5")
 
-[node name="JumpText2" type="MeshInstance3D" parent="." unique_id=1729276077]
+[node name="JumpText" type="MeshInstance3D" parent="." unique_id=1729276077]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0647697, -40.119263)
 mesh = SubResource("TextMesh_syshm")
 
@@ -101,7 +101,7 @@ mesh = SubResource("TextMesh_syshm")
 transform = Transform3D(0.61566144, 0, 0.78801066, 0, 1, 0, -0.78801066, 0, 0.61566144, 1.6482582, -2.1921186, -87.738525)
 mesh = SubResource("TextMesh_7k2vp")
 
-[node name="WallRunText2" type="MeshInstance3D" parent="." unique_id=1516511510]
+[node name="MissionObjectiveText" type="MeshInstance3D" parent="." unique_id=1516511510]
 transform = Transform3D(0.8476922, 0, -0.53048867, 0, 1, 0, 0.53048867, 0, 0.8476922, 33.87796, -3.770527, -122.50787)
 mesh = SubResource("TextMesh_gdvy0")
 

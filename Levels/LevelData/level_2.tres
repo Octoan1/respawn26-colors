@@ -1,19 +1,19 @@
 [gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://bfdlpt0scsnsi"]
 
 [ext_resource type="Script" uid="uid://of7uetyps83t" path="res://Levels/LevelData/level_data.gd" id="1_7a54s"]
-[ext_resource type="PackedScene" uid="uid://ch0gm2u67dgkx" path="res://Levels/level_2.tscn" id="1_uo1x3"]
+[ext_resource type="PackedScene" uid="uid://ch0gm2u67dgkx" path="res://Levels/training.tscn" id="1_7ws4d"]
 [ext_resource type="Texture2D" uid="uid://dxn0y7y5uoji8" path="res://icon.svg" id="3_7ws4d"]
 
 [resource]
 script = ExtResource("1_7a54s")
-scene = ExtResource("1_uo1x3")
-name = "Training 2"
+scene = ExtResource("1_7ws4d")
+name = "Training+"
 color = "Violet"
-target_info = "Weirdo"
+target_info = "Now that you know how to move, it's time to put those skills to the test. Don't fall, or it's coming out of your paycheck. Complete this course, and you're ready."
 level_num = 2
-s_rank_time = 5.0
+s_rank_time = 7.0
 a_rank_time = 10.0
 b_rank_time = 15.0
 c_rank_time = 20.0
-d_rank_time = 25.0
+d_rank_time = 99999.0
 metadata/_custom_type_script = "uid://of7uetyps83t"
