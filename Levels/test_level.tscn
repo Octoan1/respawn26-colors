@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://blvx7nuocbrm6" path="res://Assets/Materials/greybox_lightgrey_mat.tres" id="1_00vsl"]
 [ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="2_00vsl"]
 [ext_resource type="Shader" uid="uid://cuogquan7wfub" path="res://Levels/test.gdshader" id="3_4k50d"]
-[ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/ColorBlock.tres" id="4_color_block"]
+[ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.tres" id="4_color_block"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_00vsl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)

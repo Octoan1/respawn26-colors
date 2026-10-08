@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://gi126bseemuo"]
+
+[sub_resource type="Shader" id="Shader_62mnl"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform vec4 base_color : source_color = vec4(0.11, 0.11, 0.11, 1.0);
+
+void fragment() {
+	ALBEDO = base_color.rgb;
+}
+"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_62mnl")
+shader_parameter/base_color = Color(0, 0, 1, 1)
