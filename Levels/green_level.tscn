@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="3_syshm"]
 
 [sub_resource type="TextMesh" id="TextMesh_rfktq"]
-text = "LMB (Left click) + speed = Dash"
+text = "Press 'LMB' + 'W/A/S/D' to Dash"
 font_size = 60
 
 [sub_resource type="TextMesh" id="TextMesh_0urlm"]
