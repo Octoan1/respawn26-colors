@@ -1,15 +1,9 @@
 shader_type spatial;
-render_mode unshaded;
+render_mode unshaded, blend_mix, cull_disabled, depth_draw_never, depth_test_disabled;
 
 uniform sampler2D DEPTH_TEXTURE: hint_depth_texture, filter_linear_mipmap;
 uniform float threshold: hint_range(4, 5, 0.01) = 4.24;
 uniform vec3 line_color: source_color = vec3(1.0);
-uniform vec3 background_color: source_color = vec3(0.0);
-uniform vec3 texture_color: source_color = vec3(0.12);
-uniform float noise_scale: hint_range(0.1, 20.0) = 2.5;
-uniform float noise_strength: hint_range(0.0, 1.0) = 0.35;
-uniform float noise_contrast: hint_range(0.25, 4.0) = 1.5;
-uniform mat4 player_inverse_transform;
 
 float calculation(float dx, float dy, float dz, float ex, float ey, float ez) {
 	float dist = (pow((dx*ex) + (dy*ey) + (dz*ez), 2)/(dx*dx + dy*dy + dz*dz))/(ex*ex + ey*ey + ez*ez);
@@ -93,17 +87,11 @@ void fragment() {
 	
 	float bend = sqrt(dist_x * dist_x + dist_y * dist_y);
 	
-	float center_depth = texture(DEPTH_TEXTURE, screen_uv).x;
-	vec3 center_world_position = coordinates[4];
-	vec3 player_local_position = (player_inverse_transform * vec4(center_world_position, 1.0)).xyz;
-	float texture_pattern = fractal_noise(player_local_position * noise_scale);
-	texture_pattern = pow(texture_pattern, noise_contrast);
-	float object_mask = 1.0 - step(0.9999, center_depth);
-	vec3 textured_background = mix(
-		background_color,
-		texture_color,
-		texture_pattern * noise_strength * object_mask
+	float line_mask = 1.0 - smoothstep(
+		threshold - 0.02,
+		threshold + 0.02,
+		bend
 	);
-
-	ALBEDO = bend < threshold ? line_color : textured_background;
+	ALBEDO = line_color;
+	ALPHA = line_mask;
 }
