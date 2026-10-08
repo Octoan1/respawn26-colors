@@ -117,10 +117,10 @@ horizontal_alignment = 2
 
 [node name="RankLabel" type="Label" parent="FullBrief" unique_id=1559893491]
 layout_mode = 0
-offset_left = -228.0
-offset_top = -17.0
-offset_right = -68.0
-offset_bottom = 18.0
+offset_left = -256.0
+offset_top = 95.0
+offset_right = -96.0
+offset_bottom = 130.0
 theme = ExtResource("2_reudq")
 theme_override_font_sizes/font_size = 32
 text = "rank"
@@ -150,9 +150,9 @@ autowrap_mode = 3
 
 [node name="RankText" type="Label" parent="FullBrief" unique_id=298512007]
 layout_mode = 0
-offset_left = -343.0
+offset_left = -298.0
 offset_top = 15.0
-offset_right = 41.0
+offset_right = 86.0
 offset_bottom = 218.0
 theme = ExtResource("2_reudq")
 theme_override_font_sizes/font_size = 140
