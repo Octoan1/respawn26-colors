@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://of7uetyps83t" path="res://Levels/LevelData/level_data.gd" id="1_kuhn7"]
 [ext_resource type="PackedScene" uid="uid://d3vdq78d7ygbk" path="res://Levels/tutorial.tscn" id="1_re2th"]
-[ext_resource type="Texture2D" uid="uid://dxn0y7y5uoji8" path="res://icon.svg" id="3_re2th"]
 
 [resource]
 script = ExtResource("1_kuhn7")
@@ -16,4 +15,7 @@ a_rank_time = 16.0
 b_rank_time = 20.0
 c_rank_time = 24.0
 d_rank_time = 99999.0
+best_time = null
+is_complete = null
+rank = null
 metadata/_custom_type_script = "uid://of7uetyps83t"
