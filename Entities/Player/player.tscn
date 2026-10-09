@@ -631,7 +631,7 @@ script = ExtResource("1_mv1ah")
 [node name="Movement" type="Node" parent="." unique_id=1839494748]
 script = ExtResource("2_xr8lj")
 slide_slope_gain = 5.0
-gravity_modifier_glide = 0.2
+gravity_modifier_glide = 0.01
 metadata/_custom_type_script = "uid://4q3nmwc6tlho"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2139085190]

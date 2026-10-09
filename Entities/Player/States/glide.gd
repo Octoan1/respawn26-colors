@@ -54,7 +54,7 @@ func physics_update(delta: float) -> void:
 	player.movement.accelerate_air(direction, delta)
 	
 	if not player.glide_timer.is_stopped():
-		player.movement.apply_glide_gravity(delta, 0.3)
+		player.movement.apply_glide_gravity(delta, 0.2)
 		print(0.1)
 	else:
 		x += delta

@@ -23,9 +23,19 @@ fog_mode = 1
 fog_light_color = Color(0.21656412, 0.29163662, 0.41816238, 1)
 fog_density = 1.0
 
+[sub_resource type="TextMesh" id="TextMesh_2buu0"]
+text = "Press [2] to choose Blue
+Press [Q/E] to cycle color"
+font_size = 90
+
 [sub_resource type="TextMesh" id="TextMesh_532tp"]
-text = "Hold [LMB]  in air to glide"
-font_size = 100
+text = "Hold [Click]  in air to glide"
+font_size = 90
+
+[sub_resource type="TextMesh" id="TextMesh_s0mph"]
+text = "Use glide to 
+carry momentum"
+font_size = 101
 
 [sub_resource type="BoxMesh" id="BoxMesh_31hda"]
 size = Vector3(39.5, 1, 20.5)
@@ -33,8 +43,23 @@ size = Vector3(39.5, 1, 20.5)
 [sub_resource type="BoxMesh" id="BoxMesh_padpd"]
 size = Vector3(16.4, 7.6, 9.8)
 
+[sub_resource type="BoxMesh" id="BoxMesh_v0071"]
+size = Vector3(1.1, 11, 6.8)
+
 [sub_resource type="BoxMesh" id="BoxMesh_u2jd8"]
-size = Vector3(16.4, 7.6, 9.8)
+size = Vector3(16.4, 11, 13.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qg4ne"]
+size = Vector3(16.4, 5.8, 2.1000001)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6qyj0"]
+size = Vector3(16.4, 2.1000001, 30.800001)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gscyi"]
+size = Vector3(2.1000001, 25.2, 31.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0vo45"]
+size = Vector3(16.4, 1.5, 32.100002)
 
 [sub_resource type="BoxMesh" id="BoxMesh_i1m50"]
 size = Vector3(14.5, 14.5, 1.5)
@@ -73,19 +98,24 @@ shadow_enabled = true
 environment = SubResource("Environment_j0mkc")
 
 [node name="Player" parent="." unique_id=493457226 instance=ExtResource("1_2buu0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.3453155, 3.4666555)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.90000004, 7.3453155, -0.033344507)
 
 [node name="Goal" parent="." unique_id=537695073 instance=ExtResource("2_s0mph")]
-transform = Transform3D(0.81061506, 0, -0.58557945, 0, 1, 0, 0.58557945, 0, 0.81061506, 39.190224, -4.33011, -130.56972)
+transform = Transform3D(0.81061506, 0, -0.58557945, 0, 1, 0, 0.58557945, 0, 0.81061506, 119.49023, -4.33011, -130.56972)
 
 [node name="MovementText" type="MeshInstance3D" parent="." unique_id=433738536]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5906463, -7.1598244)
-mesh = SubResource("TextMesh_532tp")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6000001, 7.5906463, -7.1598244)
+mesh = SubResource("TextMesh_2buu0")
 surface_material_override/0 = ExtResource("3_padpd")
 
 [node name="MovementText2" type="MeshInstance3D" parent="." unique_id=1107826407]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.900001, 9.690646, -29.159824)
 mesh = SubResource("TextMesh_532tp")
+surface_material_override/0 = ExtResource("3_padpd")
+
+[node name="MovementText3" type="MeshInstance3D" parent="." unique_id=468958146]
+transform = Transform3D(0.9396926, 0, -0.34202012, 0, 1, 0, 0.34202012, 0, 0.9396926, 9.152139, 2.1906462, -89.07003)
+mesh = SubResource("TextMesh_s0mph")
 surface_material_override/0 = ExtResource("3_padpd")
 
 [node name="DeathPlane" parent="." unique_id=1176538747 instance=ExtResource("4_i1m50")]
@@ -104,9 +134,76 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.999999, 4.45, -25.600002)
 mesh = SubResource("BoxMesh_padpd")
 surface_material_override/0 = ExtResource("6_5epd2")
 
-[node name="MeshInstance3D13" type="MeshInstance3D" parent="LevelGeometry" unique_id=1617894119]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.999999, -3.8500004, -84.6)
+[node name="WallRuns" type="Node3D" parent="LevelGeometry" unique_id=559812304]
+visible = false
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="LevelGeometry/WallRuns" unique_id=640325646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.950005, 2.249999, -98.299995)
+mesh = SubResource("BoxMesh_v0071")
+surface_material_override/0 = ExtResource("6_5epd2")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="LevelGeometry/WallRuns" unique_id=218837117]
+transform = Transform3D(0.9396926, 0, 0.34202012, 0, 1, 0, -0.34202012, 0, 0.9396926, 98.25, 2.249999, -103.299995)
+mesh = SubResource("BoxMesh_v0071")
+surface_material_override/0 = ExtResource("6_5epd2")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="LevelGeometry/WallRuns" unique_id=1397660613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100.25, 2.249999, -116.899994)
+mesh = SubResource("BoxMesh_v0071")
+surface_material_override/0 = ExtResource("6_5epd2")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="LevelGeometry/WallRuns" unique_id=354857490]
+transform = Transform3D(0.9396926, 0, 0.34202012, 0, 1, 0, -0.34202012, 0, 0.9396926, 99.55, 2.249999, -121.899994)
+mesh = SubResource("BoxMesh_v0071")
+surface_material_override/0 = ExtResource("6_5epd2")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="LevelGeometry/WallRuns" unique_id=2083735329]
+transform = Transform3D(0.98480785, 0, -0.17364821, 0, 1, 0, 0.17364821, 0, 0.98480785, 90.65, 2.249999, -106.299995)
+mesh = SubResource("BoxMesh_v0071")
+surface_material_override/0 = ExtResource("6_5epd2")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="LevelGeometry/WallRuns" unique_id=1213849795]
+transform = Transform3D(0.8660253, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660253, 92.450005, 2.249999, -111.99999)
+mesh = SubResource("BoxMesh_v0071")
+surface_material_override/0 = ExtResource("6_5epd2")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="LevelGeometry" unique_id=596108606]
+transform = Transform3D(0.86602545, 0, -0.5, 0, 1, 0, 0.5, 0, 0.86602545, 7.6314864, -5.3500013, -90.98227)
 mesh = SubResource("BoxMesh_u2jd8")
+surface_material_override/0 = ExtResource("6_5epd2")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="LevelGeometry" unique_id=1441076884]
+transform = Transform3D(0.86602545, 0, -0.5, 0, 1, 0, 0.5, 0, 0.86602545, 42.506485, -24.249998, -148.54807)
+mesh = SubResource("BoxMesh_u2jd8")
+surface_material_override/0 = ExtResource("6_5epd2")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="LevelGeometry" unique_id=2072293406]
+transform = Transform3D(0.9396926, 0, -0.34202012, 0, 1, 0, 0.34202012, 0, 0.9396926, 6.6929293, 11.65, -83.32885)
+visible = false
+mesh = SubResource("BoxMesh_qg4ne")
+surface_material_override/0 = ExtResource("6_5epd2")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="LevelGeometry" unique_id=1997005311]
+transform = Transform3D(0.9396926, 0, -0.34202012, 0, 1, 0, 0.34202012, 0, 0.9396926, 11.60092, 13.5, -96.813446)
+visible = false
+mesh = SubResource("BoxMesh_6qyj0")
+surface_material_override/0 = ExtResource("6_5epd2")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="LevelGeometry" unique_id=296228971]
+transform = Transform3D(0.93969274, 0, -0.34202015, 0, 1, 0, 0.34202015, 0, 0.93969274, 18.439426, 1.7499995, -94.696884)
+visible = false
+mesh = SubResource("BoxMesh_gscyi")
+surface_material_override/0 = ExtResource("6_5epd2")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="LevelGeometry" unique_id=1983554285]
+transform = Transform3D(0.9396926, 0, -0.34202012, 0, 1, 0, 0.34202012, 0, 0.9396926, 5.001822, 1.7499995, -99.58777)
+visible = false
+mesh = SubResource("BoxMesh_gscyi")
+surface_material_override/0 = ExtResource("6_5epd2")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="LevelGeometry" unique_id=1653310520]
+transform = Transform3D(0.8660253, 0.25, -0.43301266, 0, 0.8660254, 0.5, 0.5, -0.43301278, 0.75000006, 17.699924, -8.5, -108.421326)
+mesh = SubResource("BoxMesh_0vo45")
 surface_material_override/0 = ExtResource("6_5epd2")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="LevelGeometry" unique_id=688874019]
