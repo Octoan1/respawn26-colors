@@ -8,6 +8,10 @@ extends Resource
 @export var target_info: String
 @export var target_image: Texture2D = preload("uid://dxn0y7y5uoji8")
 @export var level_num: int = 0
+@export var has_green: bool = false
+@export var has_blue: bool = false
+@export var has_red: bool = false
+
 
 @export_group("Rank Times")
 @export var s_rank_time: float

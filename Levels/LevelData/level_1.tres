@@ -8,7 +8,7 @@
 script = ExtResource("1_kuhn7")
 scene = ExtResource("1_re2th")
 name = "Training 1"
-color = "Orange"
+color = "c4c4c4"
 target_info = "Learn the ropes, and prepare to liberate the colors."
 level_num = 1
 s_rank_time = 13.0
@@ -16,4 +16,7 @@ a_rank_time = 16.0
 b_rank_time = 20.0
 c_rank_time = 24.0
 d_rank_time = 99999.0
+best_time = null
+is_complete = null
+rank = null
 metadata/_custom_type_script = "uid://of7uetyps83t"

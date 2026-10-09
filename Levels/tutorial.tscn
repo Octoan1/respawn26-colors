@@ -24,17 +24,17 @@ fog_light_color = Color(0.28851813, 0.28851795, 0.28851798, 1)
 fog_density = 1.0
 
 [sub_resource type="TextMesh" id="TextMesh_532tp"]
-text = "WASD = Move
-Lshift = Sprint"
+text = "Use 'WASD' to Move
+Hold 'L-shift' to Sprint"
 font_size = 100
 
 [sub_resource type="TextMesh" id="TextMesh_rf6l5"]
-text = "Ctrl = Crouch
+text = "Press 'Ctrl' to Crouch
 Crouch + Speed = Slide"
 font_size = 127
 
 [sub_resource type="TextMesh" id="TextMesh_syshm"]
-text = "Press Space to jump"
+text = "Press 'Spacebar' to jump"
 font_size = 80
 
 [sub_resource type="TextMesh" id="TextMesh_7k2vp"]
@@ -46,6 +46,11 @@ font_size = 100
 text = "Find the target, 
 and liberate the color."
 font_size = 70
+
+[sub_resource type="TextMesh" id="TextMesh_kkeks"]
+text = "Press 'R' to 
+restart level"
+font_size = 80
 
 [sub_resource type="BoxMesh" id="BoxMesh_31hda"]
 size = Vector3(45.740112, 1, 48)
@@ -116,7 +121,7 @@ mesh = SubResource("TextMesh_532tp")
 surface_material_override/0 = ExtResource("3_e312d")
 
 [node name="CrouchTutorialText" type="MeshInstance3D" parent="." unique_id=262766230]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 4.4288797, -63.238922)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 2.356678, 4.4288797, -63.238922)
 mesh = SubResource("TextMesh_rf6l5")
 surface_material_override/0 = ExtResource("3_e312d")
 
@@ -133,6 +138,11 @@ surface_material_override/0 = ExtResource("3_e312d")
 [node name="MissionObjectiveText" type="MeshInstance3D" parent="." unique_id=1516511510]
 transform = Transform3D(0.8476922, 0, -0.53048867, 0, 1, 0, 0.53048867, 0, 0.8476922, 33.87796, -3.770527, -122.50787)
 mesh = SubResource("TextMesh_gdvy0")
+surface_material_override/0 = ExtResource("3_e312d")
+
+[node name="RestartLevelText" type="MeshInstance3D" parent="." unique_id=1224131229]
+transform = Transform3D(0.8476922, 0, -0.53048867, 0, 1, 0, 0.53048867, 0, 0.8476922, 23.720015, -6.5353327, -110.01459)
+mesh = SubResource("TextMesh_kkeks")
 surface_material_override/0 = ExtResource("3_e312d")
 
 [node name="DeathPlane" parent="." unique_id=1176538747 instance=ExtResource("3_mscth")]

@@ -2,7 +2,7 @@ extends Control
 @onready var level_columns: Control = $ScrollContainer/LevelColumns
 @export var buttons_per_row: int = 4
 const WHITE_TEXT_THEME = preload("uid://biqu4o348eq17")
-
+const BLACK_TEXT_THEME = preload("uid://cm882kskewj27")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,10 +32,19 @@ func populate_button_data() -> void:
 		
 		
 		button.text = "Mission " + str(level_num+1)
-		#button.add_theme_font_size_override("font_size", 20)
 		button.add_theme_font_size_override("font_size", 52)
 		button.theme = WHITE_TEXT_THEME
 		button.custom_minimum_size = Vector2(200, 80)
+		
+		if level_data.is_complete:
+			var style: StyleBoxFlat = StyleBoxFlat.new()
+			if level_data.color == "c4c4c4":
+				button.theme = BLACK_TEXT_THEME
+			
+			style.bg_color = Color(level_data.color)
+			
+			button.add_theme_stylebox_override("normal", style)
+			button.add_theme_color_override("font_color", Color("1c1c1c"))
 		
 		if level_num != 0:
 			if LevelManager.LEVEL_LIST.levels[level_num-1].is_complete == false:
