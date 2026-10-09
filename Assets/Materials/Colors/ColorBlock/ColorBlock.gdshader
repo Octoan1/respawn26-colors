@@ -2,8 +2,8 @@ shader_type spatial;
 render_mode unshaded;
 
 uniform vec4 base_color : source_color = vec4(0.11, 0.11, 0.11, 1.0);
-uniform float texture_scale : hint_range(0.1, 20.0) = 3.0;
-uniform float texture_strength : hint_range(0.0, 1.0) = 0.08;
+uniform float texture_scale : hint_range(0.0, 5.0) = 0.08;
+uniform float texture_strength : hint_range(0.0, 5.0) = 1.0;
 
 varying vec3 local_position;
 

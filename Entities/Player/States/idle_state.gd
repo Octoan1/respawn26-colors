@@ -51,7 +51,10 @@ func physics_update(delta: float) -> void:
 	var direction := player.get_movement_direction()
 
 	if direction != Vector3.ZERO:
-		Transitioned.emit(self, "WALK")
+		if (player.is_sprinting and player.toggle_sprint_on) or (not player.toggle_sprint_on and Input.is_action_pressed("player_sprint")):
+			Transitioned.emit(self, "RUN")
+		else:
+			Transitioned.emit(self, "WALK")
 		return
 
 	player.movement.apply_ground_friction(delta)

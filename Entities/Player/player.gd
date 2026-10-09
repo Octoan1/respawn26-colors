@@ -15,10 +15,15 @@ class_name Player
 @onready var sprite: AnimatedSprite2D = $Debug/AnimatedSprite2D
 @onready var state_machine: StateMachine = $StateMachine
 
+var wall_coyote_timer: Timer
 var coyote_timer: Timer
 var jump_buffer_timer: Timer
 var wall_grab_timer: Timer
 var glide_timer: Timer
+
+var is_sprinting: bool = false
+
+var toggle_sprint_on: bool = true
 
 var wall_normal: Vector3
 
@@ -32,6 +37,7 @@ var capsule: CapsuleShape3D
 
 # conner added this, sorry if it breaks something
 var freeze_control: bool = false
+var level_finished: bool = false
 
 enum Ability_Color {
 	BASE,
@@ -70,8 +76,13 @@ func _ready() -> void:
 	
 	glide_timer = Timer.new()
 	glide_timer.one_shot = true
-	glide_timer.wait_time = 2.0
+	glide_timer.wait_time = 2.5
 	add_child(glide_timer)
+	
+	wall_coyote_timer = Timer.new()
+	wall_coyote_timer.one_shot = true
+	wall_coyote_timer.wait_time = 0.15
+	add_child(wall_coyote_timer)
 	
 	curr_ability = Ability_Color.BASE
 	abilities = []
@@ -83,6 +94,13 @@ func _ready() -> void:
 			debug_manager.connect("toggle_auto_bhop", _on_toggle_auto_bhop)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if level_finished:
+		return
+	# Release mouse
+	if event.is_action_pressed("escape"):
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		UiManager.show_level_pause()
+		LevelManager.freeze_player()
 	if freeze_control:
 		return
 	
@@ -90,9 +108,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	# Release mouse
-	if event.is_action_pressed("escape"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	
+	if event.is_action_pressed("sprint_toggle_switch"):
+		toggle_sprint_on = not toggle_sprint_on
 	
 	if event is InputEventMouseMotion:
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
@@ -145,6 +164,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	wall_cooldown_timer = maxf(wall_cooldown_timer - delta, 0.0)
+	if is_on_floor():
+		wall_coyote_timer.stop()
 
 func _process(delta: float) -> void:
 	debug_velocity.text = "Vel: %.2f" % velocity.length()
@@ -170,10 +191,16 @@ func set_crouch_animation(crouched: bool) -> void:
 
 
 func can_wall_run() -> bool:
-	if is_on_floor() or wall_cooldown_timer > 0.0:
+	if is_on_floor() or wall_cooldown_timer > 0.0 or movement.wall_min_entry_speed > _flat(velocity).length():
 		return false
 	var normal := find_wall_normal()
-	return normal != Vector3.ZERO and has_wall_run_clearance(normal)
+	if normal == Vector3.ZERO or not has_wall_run_clearance(normal):
+		return false
+	return is_inputting_into_wall(normal)
+
+func _flat(v: Vector3) -> Vector3:
+	v.y = 0
+	return v
 
 func get_movement_direction() -> Vector3:
 	var input_dir := Input.get_vector(
@@ -335,3 +362,10 @@ func _change_sprite(color: Ability_Color) -> void:
 	if color == Ability_Color.BASE:
 		sprite.play("Default")
 	animation_player.play_backwards("Sprite Change")
+
+func is_inputting_into_wall(normal: Vector3) -> bool:
+	var flat_normal := Vector3(normal.x, 0.0, normal.z).normalized()
+	if flat_normal == Vector3.ZERO:
+		return false
+	print((get_movement_direction().dot(-flat_normal) > movement.wall_enter_input_threshold), " ", get_movement_direction(), " ", get_movement_direction().dot(-flat_normal))
+	return get_movement_direction().dot(-flat_normal) > movement.wall_enter_input_threshold

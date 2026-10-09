@@ -5,7 +5,7 @@ extends Node
 
 var player_time: float
 var stopwatch_on: bool = false
-var player_freeze: bool = false
+var level_failed: bool = false
 var current_level: Node
 
 var main: Node
@@ -35,7 +35,7 @@ func start_game() -> void:
 
 ## Loads the level at [param index] in the list, refusing indices that don't exist.
 func go_to_level(index: int) -> void:
-	player_freeze = false
+	level_failed = false
 	if not _is_valid_index(index):
 		push_error("LevelManager: no level at index %d" % index)
 		return
@@ -67,10 +67,10 @@ func go_to_level(index: int) -> void:
 	else:
 		if lev.has_green:
 			player.gain_ability(player.Ability_Color.GREEN, (lev.level_num == 3))
-		if lev.has_red:
-			player.gain_ability(player.Ability_Color.RED)
 		if lev.has_blue:
 			player.gain_ability(player.Ability_Color.BLUE)
+		if lev.has_red:
+			player.gain_ability(player.Ability_Color.RED)
 	await TransitionManager.end_transition()
 
 
@@ -81,6 +81,8 @@ func complete_level() -> void:
 	
 	get_level_references()
 	freeze_player()
+	if player:
+		player.level_finished = true
 	
 	var level: LevelData = LEVEL_LIST.levels[current_index]
 	level.is_complete = true
@@ -118,7 +120,7 @@ func _process(delta: float) -> void:
 	if stopwatch_on:
 		player_time += delta
 	
-	if player_freeze:
+	if level_failed:
 		if player and goal:
 			var target_pos: Vector3 = goal.target_sprite.global_transform.origin
 			var direction: Vector3 = player.camera.global_position.direction_to(target_pos)
@@ -130,16 +132,32 @@ func _process(delta: float) -> void:
 
 func freeze_player() -> void:
 	if state_machine:
-		state_machine.is_frozen = true
+		state_machine.is_frozen = not state_machine.is_frozen
 	
 	if player:
-		player.freeze_control = true
-		player_freeze = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		player.freeze_control = not player.freeze_control
+	
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	stopwatch_on = not stopwatch_on
 	
 	
 	#var target_pos: Vector3 = goal.target_sprite.global_transform.origin
 	#player.camera.look_at(target_pos, Vector3.UP)
+
+func level_fail() -> void:
+	if state_machine:
+		state_machine.is_frozen = true
+	
+	if player:
+		level_failed = true
+		player.level_finished = true
+	
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 
 func capture_mouse() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

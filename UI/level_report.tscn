@@ -175,6 +175,7 @@ alignment = 0
 script = ExtResource("3_b15rv")
 
 [node name="TargetImage" type="TextureRect" parent="." unique_id=1432798266]
+visible = false
 layout_mode = 0
 offset_left = 269.0
 offset_top = 126.0
@@ -182,6 +183,7 @@ offset_right = 397.0
 offset_bottom = 254.0
 
 [node name="DeathX" type="Label" parent="." unique_id=775867774]
+visible = false
 layout_mode = 0
 offset_left = 179.0
 offset_top = 161.0

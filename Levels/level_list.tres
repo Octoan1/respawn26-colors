@@ -6,11 +6,13 @@
 [ext_resource type="Resource" uid="uid://bfdlpt0scsnsi" path="res://Levels/LevelData/level_2.tres" id="3_17j7n"]
 [ext_resource type="Resource" uid="uid://b40vpuxol4yuo" path="res://Levels/LevelData/green_level.tres" id="4_sqx70"]
 [ext_resource type="Resource" uid="uid://pmpuir6btdud" path="res://Levels/LevelData/orange_1.tres" id="5_17j7n"]
+[ext_resource type="Resource" uid="uid://dnv1tmk6yhmfd" path="res://Levels/LevelData/blue_level.tres" id="6_esxee"]
 [ext_resource type="Resource" uid="uid://bwr4qe55wmlry" path="res://Levels/LevelData/indigo_1.tres" id="6_x7yge"]
 [ext_resource type="Resource" uid="uid://dhinokha6swk8" path="res://Levels/LevelData/red_level.tres" id="7_2uw8f"]
 [ext_resource type="Resource" uid="uid://d0ypwdmia8yu8" path="res://Levels/LevelData/yellow_1.tres" id="8_chebq"]
+[ext_resource type="Resource" uid="uid://bh3gi0m0xypri" path="res://Levels/LevelData/violet_1.tres" id="9_13bnm"]
 
 [resource]
 script = ExtResource("1_kp748")
-levels = Array[ExtResource("1_kurit")]([ExtResource("2_sqx70"), ExtResource("3_17j7n"), ExtResource("4_sqx70"), ExtResource("5_17j7n"), ExtResource("6_x7yge"), ExtResource("7_2uw8f"), ExtResource("8_chebq")])
+levels = Array[ExtResource("1_kurit")]([ExtResource("2_sqx70"), ExtResource("3_17j7n"), ExtResource("4_sqx70"), ExtResource("5_17j7n"), ExtResource("6_esxee"), ExtResource("6_x7yge"), ExtResource("7_2uw8f"), ExtResource("8_chebq"), ExtResource("9_13bnm")])
 metadata/_custom_type_script = "uid://b3d6cott8dn6n"

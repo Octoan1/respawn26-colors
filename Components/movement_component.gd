@@ -45,12 +45,18 @@ var _sprint_released_at: float = -999.0
 @export var wall_acceleration: float = 0.5
 @export var can_grab_wall: bool = false
 @export var wall_min_entry_speed: float = 0.0
-@export var wall_run_time: float = 2.5       # seconds before you lose the wall
+@export var wall_run_time: float = 2.0        # seconds on the wall (counts after the rise ends)
+@export var wall_slide_speed: float = 0.8     # slow slide speed right after the rise
+@export var wall_slide_max_speed: float = 3.0 # slide speed by the end of the timer (you slip faster)
+@export var wall_slide_accel: float = 30.0    # how quickly you settle to the slide speed
+@export var wall_run_slide_scale: float = 0.2   # fall-speed multiplier at full wall speed (1 = no reduction)
 @export var wall_slip_gravity: float = 14.0  # downward accel at the end of the run
 @export var wall_friction: float = 1.0       # m/s² bled off ONLY above wall_speed
 @export var wall_cooldown: float = 0.3       # re-attach delay after leaving a wall
 @export var wall_probe_distance := 0.9
 @export var wall_run_clearance: float = 0.15 # margin inside the body's top and bottom
+@export var wall_enter_input_threshold: float = 0.1
+@export var wall_run_boost: float = 3.0   # upward speed kick when you start running on the wall
 
 @export_category("Wall Camera")
 @export var wall_camera_tilt_deg: float = 12.0
@@ -325,3 +331,17 @@ func explode_at(point: Vector3) -> void:
 	dir = (dir + Vector3.UP * explosion_up_bias).normalized()
 
 	player.velocity += dir * explosion_force * falloff
+
+func apply_wall_slide(run_progress: float, delta: float, moving_factor: float = 0.0) -> void:
+	# Rising: normal gravity, so you get the full jump height
+	if player.velocity.y > 0.0:
+		player.velocity += player.get_gravity() * delta
+		return
+
+	# Falling: settle to a slow slide that speeds up as the timer runs out
+	var target := -lerpf(wall_slide_speed, wall_slide_max_speed, run_progress * run_progress)
+
+	# Moving along the wall reduces the fall speed
+	target *= lerpf(1.0, wall_run_slide_scale, moving_factor)
+
+	player.velocity.y = move_toward(player.velocity.y, target, wall_slide_accel * delta)

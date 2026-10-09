@@ -31,7 +31,7 @@ func physics_update(_delta: float) -> void:
 	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
 	var direction := (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		if Input.is_action_pressed("player_sprint"):
+		if (player.is_sprinting and player.toggle_sprint_on) or (not player.toggle_sprint_on and Input.is_action_pressed("player_sprint")):
 			Transitioned.emit(self,"RUN")
 		else:
 			Transitioned.emit(self,"WALK")

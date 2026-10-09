@@ -22,9 +22,6 @@ size = Vector3(12, 77, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_7k2vp"]
 size = Vector3(10.7421875, 1, 8.105103)
 
-[sub_resource type="BoxMesh" id="BoxMesh_wlm5q"]
-size = Vector3(3.7546387, 14.675537, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_532tp"]
 size = Vector3(8.863739, 1, 24.40034)
 
@@ -95,26 +92,6 @@ mesh = SubResource("BoxMesh_0t5j7")
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="LevelGeometry" unique_id=1062285729]
 transform = Transform3D(0.92386395, 0, -0.38272107, 0, 1, 0, 0.38272107, 0, 0.92386395, 1.9505467, 9.536743e-07, -11.46713)
 mesh = SubResource("BoxMesh_7k2vp")
-
-[node name="MeshInstance3D12" type="MeshInstance3D" parent="LevelGeometry" unique_id=878560076]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.253457, 4.328369, -24.856834)
-mesh = SubResource("BoxMesh_wlm5q")
-
-[node name="MeshInstance3D13" type="MeshInstance3D" parent="LevelGeometry" unique_id=1268739927]
-transform = Transform3D(0.7874919, 0, 0.61632496, 0, 1, 0, -0.61632496, 0, 0.7874919, 4.6521864, 1.4590282, -29.249834)
-mesh = SubResource("BoxMesh_wlm5q")
-
-[node name="MeshInstance3D14" type="MeshInstance3D" parent="LevelGeometry" unique_id=618554293]
-transform = Transform3D(0.8769263, 0, 0.480625, 0, 1, 0, -0.480625, 0, 0.8769263, 6.9660296, 0.5378132, -38.173553)
-mesh = SubResource("BoxMesh_wlm5q")
-
-[node name="MeshInstance3D22" type="MeshInstance3D" parent="LevelGeometry" unique_id=306814965]
-transform = Transform3D(0.056446016, 0, 0.9984057, 0, 1, 0, -0.9984057, 0, 0.056446016, -1.1652255, 2.1606312, -31.50715)
-mesh = SubResource("BoxMesh_wlm5q")
-
-[node name="MeshInstance3D15" type="MeshInstance3D" parent="LevelGeometry" unique_id=664146860]
-transform = Transform3D(-0.57967144, 0, 0.8148503, 0, 1, 0, -0.8148503, 0, -0.57967144, -6.785262, -2.2268171, -37.086407)
-mesh = SubResource("BoxMesh_wlm5q")
 
 [node name="MeshInstance3D16" type="MeshInstance3D" parent="LevelGeometry" unique_id=720071999]
 transform = Transform3D(0.799401, 0.3343689, 0.4991547, -0.02497262, 0.8485944, -0.5284544, -0.6002787, 0.40998176, 0.6867172, -5.6145353, -13.003804, -15.277065)

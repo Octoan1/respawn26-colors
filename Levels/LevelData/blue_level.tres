@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://dnv1tmk6yhmfd"]
+
+[ext_resource type="Script" uid="uid://of7uetyps83t" path="res://Levels/LevelData/level_data.gd" id="1_8674n"]
+[ext_resource type="PackedScene" uid="uid://dmvtx31pbh5es" path="res://Levels/blue_tutorial.tscn" id="1_r80dp"]
+[ext_resource type="Texture2D" uid="uid://dxn0y7y5uoji8" path="res://icon.svg" id="2_r80dp"]
+
+[resource]
+script = ExtResource("1_8674n")
+scene = ExtResource("1_r80dp")
+name = "Color Ability 2"
+color = "2000da"
+target_info = "From here on out, missions will be more difficult. You’re going to need another ability to carry them out. Fortunately, we sense a burgeoning, peaceful energy inside of you. Don’t let this feeling overwhelm you, and you’ll be ready for your next task."
+level_num = 5
+has_green = true
+has_blue = true
+s_rank_time = 10.0
+a_rank_time = 15.0
+b_rank_time = 20.0
+c_rank_time = 30.0
+d_rank_time = 99999.0
+metadata/_custom_type_script = "uid://of7uetyps83t"

@@ -7,9 +7,9 @@
 [resource]
 script = ExtResource("1_ku4he")
 scene = ExtResource("1_p1vo6")
-name = "OrangeCorp 1"
+name = "OrangeCorp"
 color = "ffa500"
-target_info = "OrangeCorp is one of the four companies that has taken control of the colors. Objective: Liberate every trace of the color Orange from them by working your way through the chain of command. Failure will not be tolerated. Liberate the colors. Free Orange from their control."
+target_info = "OrangeCorp is one of the four companies that has taken control of the colors. They’re using Orange to fake traffic cones and warning signs so nobody investigates them. You’re going to change that and liberate Orange. Remember your training. Failure cannot be tolerated. Liberate the colors. Free Orange from their control. "
 level_num = 4
 has_green = true
 s_rank_time = 12.0

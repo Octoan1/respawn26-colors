@@ -4,9 +4,11 @@ const LEVEL_SELECT = preload("uid://b4bgodk2ydk3r")
 const LEVEL_FINISH = preload("uid://1mvsvkkyyb8e")
 const LEVEL_BRIEF = preload("uid://cwequt0alhfgo")
 const LEVEL_FAIL = preload("uid://ca8mctmsyxsth")
+const LEVEL_PAUSE = preload("uid://dqwwkg7eks3vf")
 
 
 
+var level_pause_screen: Node
 var main_canvas: CanvasLayer
 
 ## Instantiates the title scene
@@ -85,3 +87,16 @@ func show_level_fail() -> void:
 	var level_fail_screen: Node = scene.instantiate()
 	
 	main_canvas.add_child(level_fail_screen)
+
+func show_level_pause() -> void:
+	get_canvas_layer()
+	
+	var scene: PackedScene = LEVEL_PAUSE
+	
+	if level_pause_screen:
+		level_pause_screen.free()
+	else:
+		level_pause_screen = scene.instantiate()
+		main_canvas.add_child(level_pause_screen)
+	
+	
