@@ -2,6 +2,8 @@ extends Area3D
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Player:
+		var curr_state: PlayerState = body.state_machine.current_state
+		curr_state.Transitioned.emit(curr_state, "IDLE")
 		#LevelManager.complete_level()
 		UiManager.show_level_fail()
 		LevelManager.level_fail()
