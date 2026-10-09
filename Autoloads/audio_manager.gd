@@ -10,12 +10,16 @@ var active_sfx : int = 0
 
 var music_player: AudioStreamPlayer
 
+const TRACK_1_COORPRATE_GLITCH = preload("uid://bmi3bvs74evj6")
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	music_player = AudioStreamPlayer.new()
 	music_player.bus = MUSIC_BUS
 	#music_player
 	add_child(music_player)
+	play_music(TRACK_1_COORPRATE_GLITCH)
+	music_player.volume_linear = .05
 
 #region VOLUME
 

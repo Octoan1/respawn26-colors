@@ -31,16 +31,16 @@ text = "Try sprinting into a dash"
 font_size = 70
 
 [sub_resource type="BoxMesh" id="BoxMesh_7k2vp"]
-size = Vector3(9, 1, 27.541245)
+size = Vector3(20, 1, 27.541245)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wlm5q"]
-size = Vector3(9, 9.219994, 10.226013)
+size = Vector3(20, 9.219994, 10.226013)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0t5j7"]
 size = Vector3(9, 1, 120.84235)
 
 [sub_resource type="BoxMesh" id="BoxMesh_532tp"]
-size = Vector3(9, 1, 1)
+size = Vector3(20, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6x18l"]
 size = Vector3(9, 1, 17.454163)
@@ -51,7 +51,7 @@ size = Vector3(9, 1, 17.454163)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Goal" parent="." unique_id=537695073 instance=ExtResource("3_3mhv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.083265185, 1.6061609, -266.1333)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.083265185, 1.6061609, -248.1333)
 
 [node name="DashText1" type="MeshInstance3D" parent="." unique_id=539263125]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92, -12.959)
@@ -64,12 +64,12 @@ mesh = SubResource("TextMesh_0urlm")
 surface_material_override/0 = ExtResource("3_rfktq")
 
 [node name="DashText5" type="MeshInstance3D" parent="." unique_id=315000180]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.504775, -98.7747)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.504775, -95.2747)
 mesh = SubResource("TextMesh_vi8hi")
 surface_material_override/0 = ExtResource("3_rfktq")
 
 [node name="DashText3" type="MeshInstance3D" parent="." unique_id=482400812]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.58, -162.32864)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.58, -144.32864)
 mesh = SubResource("TextMesh_77x7w")
 surface_material_override/0 = ExtResource("3_rfktq")
 
@@ -90,7 +90,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -43.263138)
 mesh = SubResource("BoxMesh_7k2vp")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="LevelGeometry" unique_id=1476695556]
-transform = Transform3D(1, 0, 0, 0, 0.989109, -0.14718525, 0, 0.14718525, 0.989109, 0, 0.91958237, -86.02404)
+transform = Transform3D(1, 0, 0, 0, 0.989109, -0.14718525, 0, 0.14718525, 0.989109, 2.5, 0.91958237, -82.52404)
 mesh = SubResource("BoxMesh_7k2vp")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="LevelGeometry" unique_id=618593333]
@@ -98,15 +98,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.2598863, -27.887747)
 mesh = SubResource("BoxMesh_wlm5q")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelGeometry" unique_id=1394323626]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -207.44923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -189.44923)
 mesh = SubResource("BoxMesh_0t5j7")
 
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="LevelGeometry" unique_id=2047073206]
+transform = Transform3D(1, 0, 0, 0, 0.93018603, 0.36708832, 0, -0.36708832, 0.93018603, 2.5, -2.0799203, -108.71791)
+mesh = SubResource("BoxMesh_7k2vp")
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="LevelGeometry" unique_id=1851029163]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9447534, -13.447942)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029174805, 0.9447534, -13.447942)
 mesh = SubResource("BoxMesh_532tp")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="LevelGeometry" unique_id=752746793]
-transform = Transform3D(-4.371139e-08, -0.99999994, 0, 1, -4.3711385e-08, 0, 0, 0, 0.99999994, -7.6872134, 6.3457623, -117.53949)
+transform = Transform3D(-4.371139e-08, -0.99999994, 0, 1, -4.3711385e-08, 0, 0, 0, 0.99999994, -7.6872134, 6.3457623, -110.53949)
 mesh = SubResource("BoxMesh_6x18l")
 
 [node name="DeathPlane" parent="." unique_id=1176538747 instance=ExtResource("3_syshm")]
