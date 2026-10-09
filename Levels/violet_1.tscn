@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="3_m2l8d"]
 [ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="4_0vl5w"]
 [ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.tres" id="4_lh345"]
+[ext_resource type="Material" uid="uid://4qeoco3w8u3u" path="res://Assets/Materials/Colors/ColorBlock/VioletBlock.tres" id="5_m2l8d"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ggyo5"]
 size = Vector3(20, 1, 17)
@@ -96,12 +97,14 @@ mesh = SubResource("BoxMesh_wlm5q")
 surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="HollowBuilding3" type="MeshInstance3D" parent="LevelGeometry" unique_id=1866564310]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24370575, -35.925278, -66.004295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.043705747, -35.925278, -66.004295)
+material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_0t5j7")
 surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="HollowBuilding4" type="MeshInstance3D" parent="LevelGeometry" unique_id=686422058]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24320555, 33.074722, -66.004295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.043205544, 33.074722, -66.004295)
+material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_0t5j7")
 surface_material_override/0 = ExtResource("4_lh345")
 
@@ -117,41 +120,49 @@ surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="HollowBuilding7" type="MeshInstance3D" parent="LevelGeometry" unique_id=472891620]
 transform = Transform3D(0.7197985, 0, 0.6941831, 0, 1, 0, -0.6941831, 0, 0.7197985, -71.20293, -18.500458, -36.31363)
+material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_0t5j7")
 surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="HollowBuilding8" type="MeshInstance3D" parent="LevelGeometry" unique_id=710283498]
 transform = Transform3D(0.7197985, 0, 0.6941831, 0, 1, 0, -0.6941831, 0, 0.7197985, -71.20256, 50.499542, -36.313984)
+material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_0t5j7")
 surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="MeshInstance3D19" type="MeshInstance3D" parent="LevelGeometry" unique_id=1141971834]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.616426, -36.81977, -156.03156)
+material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_532tp")
 surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="MeshInstance3D20" type="MeshInstance3D" parent="LevelGeometry" unique_id=1455980445]
 transform = Transform3D(0.7774132, 0, 0.62899023, 0, 1, 0, -0.62899023, 0, 0.7774132, 3.0694084, -28.224693, -166.13036)
+material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_532tp")
 surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="MeshInstance3D21" type="MeshInstance3D" parent="LevelGeometry" unique_id=1799324335]
 transform = Transform3D(-0.28305656, 0, 0.9591032, 0, 1, 0, -0.9591032, 0, -0.28305656, -12.700157, -20.313763, -162.41907)
+material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_532tp")
 surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="MeshInstance3D22" type="MeshInstance3D" parent="LevelGeometry" unique_id=25858300]
 transform = Transform3D(-1.1968602e-08, -0.27380967, -0.9617838, 1, -4.371139e-08, 0, -4.2040906e-08, -0.9617838, 0.27380967, -35.13982, 6.24117, -164.34705)
+material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_6x18l")
 surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="MeshInstance3D23" type="MeshInstance3D" parent="LevelGeometry" unique_id=961696092]
 transform = Transform3D(-1.1968602e-08, -0.27380967, -0.9617838, 1, -4.371139e-08, 0, -4.2040906e-08, -0.9617838, 0.27380967, -41.705685, 6.24117, -150.3158)
+material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_6x18l")
 surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="MeshInstance3D24" type="MeshInstance3D" parent="LevelGeometry" unique_id=843221624]
 transform = Transform3D(-1.1968602e-08, -0.27380967, -0.9617838, 1, -4.371139e-08, 0, -4.2040906e-08, -0.9617838, 0.27380967, -63.51815, 6.24117, -156.86394)
+material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_6x18l")
 surface_material_override/0 = ExtResource("4_lh345")
 
@@ -167,11 +178,13 @@ surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="LevelGeometry" unique_id=695143053]
 transform = Transform3D(0.69264585, 0, 0.72127783, 0, 1, 0, -0.72127783, 0, 0.69264585, -127.98957, 12.04455, -97.7993)
+material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_85pqs")
 surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="LevelGeometry" unique_id=1138434681]
 transform = Transform3D(0.7193398, 0, 0.6946584, 0, 1, 0, -0.6946584, 0, 0.7193398, -57.576977, 16.021805, -22.162565)
+material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_esbu2")
 surface_material_override/0 = ExtResource("4_lh345")
 

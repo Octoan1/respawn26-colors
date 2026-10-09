@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="3_va2bs"]
 [ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="4_6j1wv"]
 [ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.tres" id="4_va2bs"]
+[ext_resource type="Material" uid="uid://b38fssbuoiv48" path="res://Assets/Materials/Colors/ColorBlock/IndigoBlck.tres" id="5_imyrg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_imyrg"]
 size = Vector3(16, 1, 16.5)
@@ -69,6 +70,7 @@ surface_material_override/0 = ExtResource("4_va2bs")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelGeometry" unique_id=1675624774]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -24, -24)
+material_override = ExtResource("5_imyrg")
 mesh = SubResource("CylinderMesh_7k2vp")
 surface_material_override/0 = ExtResource("4_va2bs")
 
@@ -119,21 +121,25 @@ surface_material_override/0 = ExtResource("4_va2bs")
 
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="LevelGeometry" unique_id=1062285729]
 transform = Transform3D(0.92386395, 0, -0.38272107, 0, 1, 0, 0.38272107, 0, 0.92386395, 1.9505467, 9.536743e-07, -11.46713)
+material_override = ExtResource("5_imyrg")
 mesh = SubResource("BoxMesh_7k2vp")
 surface_material_override/0 = ExtResource("4_va2bs")
 
 [node name="MeshInstance3D16" type="MeshInstance3D" parent="LevelGeometry" unique_id=720071999]
 transform = Transform3D(0.799401, 0.3343689, 0.4991547, -0.02497262, 0.8485944, -0.5284544, -0.6002787, 0.40998176, 0.6867172, -5.6145353, -13.003804, -15.277065)
+material_override = ExtResource("5_imyrg")
 mesh = SubResource("BoxMesh_532tp")
 surface_material_override/0 = ExtResource("4_va2bs")
 
 [node name="MeshInstance3D17" type="MeshInstance3D" parent="LevelGeometry" unique_id=1777439111]
 transform = Transform3D(0.80212766, 0, 0.59715253, 0, 1, 0, -0.59715253, 0, 0.80212766, 9.699973, -19.976646, 5.4917617)
+material_override = ExtResource("5_imyrg")
 mesh = SubResource("BoxMesh_6x18l")
 surface_material_override/0 = ExtResource("4_va2bs")
 
 [node name="MeshInstance3D18" type="MeshInstance3D" parent="LevelGeometry" unique_id=1713440385]
 transform = Transform3D(0.80177563, 0, 0.59762514, 0, 1, 0, -0.59762514, 0, 0.80177563, 37.25272, -23.7047, 41.63042)
+material_override = ExtResource("5_imyrg")
 mesh = SubResource("BoxMesh_8qdt0")
 surface_material_override/0 = ExtResource("4_va2bs")
 

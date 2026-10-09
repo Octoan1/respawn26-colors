@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="4_b55c6"]
 [ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.tres" id="4_oraik"]
 [ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="5_qb52v"]
+[ext_resource type="Material" uid="uid://icglib7knm32" path="res://Assets/Materials/Colors/ColorBlock/OrangeBlock.tres" id="5_sq5ev"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7k2vp"]
 size = Vector3(9, 1, 7.55822)
@@ -61,16 +62,19 @@ surface_material_override/0 = ExtResource("4_oraik")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelGeometry" unique_id=1210668216]
 transform = Transform3D(1, 0, 0, 0, 0.99794173, -0.0641265, 0, 0.0641265, 0.99794173, 9.559445, 3.5793266, -44.266132)
+material_override = ExtResource("5_sq5ev")
 mesh = SubResource("BoxMesh_6x18l")
 surface_material_override/0 = ExtResource("4_oraik")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="LevelGeometry" unique_id=1022715092]
 transform = Transform3D(1, 0, 0, 0, 0.9934254, 0.11448144, 0, -0.11448144, 0.9934254, -4.537572, 4.201009, -49.50767)
+material_override = ExtResource("5_sq5ev")
 mesh = SubResource("BoxMesh_6x18l")
 surface_material_override/0 = ExtResource("4_oraik")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="LevelGeometry" unique_id=924094200]
 transform = Transform3D(-4.205055e-08, 0.2730331, 0.9620045, 1.1934656e-08, 0.9620045, -0.2730331, -0.99999994, 0, -4.371138e-08, 2.7273111, -6.9509907, -69.42174)
+material_override = ExtResource("5_sq5ev")
 mesh = SubResource("BoxMesh_6x18l")
 surface_material_override/0 = ExtResource("4_oraik")
 
@@ -136,41 +140,49 @@ surface_material_override/0 = ExtResource("4_oraik")
 
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="LevelGeometry" unique_id=32736658]
 transform = Transform3D(0.967092, -0.25442708, 0, 0.25442708, 0.967092, 0, 0, 0, 1, 59.09534, -11.515242, -69.066505)
+material_override = ExtResource("5_sq5ev")
 mesh = SubResource("BoxMesh_el7dy")
 surface_material_override/0 = ExtResource("4_oraik")
 
 [node name="MeshInstance3D12" type="MeshInstance3D" parent="LevelGeometry" unique_id=1231077025]
 transform = Transform3D(0.066109, -0.017392265, -0.9976608, 0.31830114, 0.9479787, 0.004565755, 0.94568175, -0.31785843, 0.0682059, 70.244446, -5.0453095, -54.867474)
+material_override = ExtResource("5_sq5ev")
 mesh = SubResource("BoxMesh_el7dy")
 surface_material_override/0 = ExtResource("4_oraik")
 
 [node name="MeshInstance3D13" type="MeshInstance3D" parent="LevelGeometry" unique_id=812684504]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.374504, -11.535948, -10.075336)
+material_override = ExtResource("5_sq5ev")
 mesh = SubResource("BoxMesh_85pqs")
 surface_material_override/0 = ExtResource("4_oraik")
 
 [node name="MeshInstance3D20" type="MeshInstance3D" parent="LevelGeometry" unique_id=1736695546]
 transform = Transform3D(0.98822105, -0.1530333, 6.689298e-09, 0, -4.371139e-08, -1, 0.1530333, 0.98822105, -4.3196515e-08, 84.99248, -3.8329916, 25.068872)
+material_override = ExtResource("5_sq5ev")
 mesh = SubResource("BoxMesh_esbu2")
 surface_material_override/0 = ExtResource("4_oraik")
 
 [node name="MeshInstance3D21" type="MeshInstance3D" parent="LevelGeometry" unique_id=993289257]
 transform = Transform3D(0.99846303, 0.05542195, -2.4225713e-09, -4.370707e-16, -4.3711385e-08, -1, -0.05542195, 0.99846303, -4.3644203e-08, 63.948532, -4.9795833, 27.868704)
+material_override = ExtResource("5_sq5ev")
 mesh = SubResource("BoxMesh_esbu2")
 surface_material_override/0 = ExtResource("4_oraik")
 
 [node name="MeshInstance3D24" type="MeshInstance3D" parent="LevelGeometry" unique_id=486551290]
 transform = Transform3D(0.9937118, 0.1119681, -4.8942805e-09, -4.370707e-16, -4.3711385e-08, -1, -0.1119681, 0.9937118, -4.3436515e-08, 42.821278, -5.3073006, 31.86269)
+material_override = ExtResource("5_sq5ev")
 mesh = SubResource("BoxMesh_esbu2")
 surface_material_override/0 = ExtResource("4_oraik")
 
 [node name="MeshInstance3D22" type="MeshInstance3D" parent="LevelGeometry" unique_id=2133190899]
 transform = Transform3D(-0.9993662, -0.0146827735, -0.032428898, 0.03481773, -0.21347749, -0.9763273, 0.0074124336, -0.9768375, 0.21385334, 52.913826, -1.2715178, -38.046135)
+material_override = ExtResource("5_sq5ev")
 mesh = SubResource("BoxMesh_esbu2")
 surface_material_override/0 = ExtResource("4_oraik")
 
 [node name="MeshInstance3D23" type="MeshInstance3D" parent="LevelGeometry" unique_id=735146339]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.1418, -23.7047, 90.26381)
+material_override = ExtResource("5_sq5ev")
 mesh = SubResource("BoxMesh_y3uyx")
 surface_material_override/0 = ExtResource("4_oraik")
 
