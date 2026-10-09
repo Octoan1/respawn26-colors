@@ -22,7 +22,7 @@ sky = SubResource("Sky_e312d")
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
+fog_light_color = Color(0.2601818, 0.29129165, 0.3517346, 1)
 fog_density = 1.0
 
 [sub_resource type="TextMesh" id="TextMesh_2buu0"]

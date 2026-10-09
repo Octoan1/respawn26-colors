@@ -64,7 +64,7 @@ sky = SubResource("Sky_e312d")
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.28851813, 0.28851795, 0.28851798, 1)
+fog_light_color = Color(0.19584018, 0.22394532, 0.18959594, 1)
 fog_density = 1.0
 
 [node name="GreenLevel" type="Node3D" unique_id=1440823683]
