@@ -76,5 +76,36 @@ theme_override_font_sizes/font_size = 32
 text = "Level Select"
 script = ExtResource("3_s15np")
 
+[node name="QuitButton" type="Button" parent="." unique_id=1065246438]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -76.0
+offset_right = 169.0
+grow_vertical = 0
+theme = ExtResource("2_pa5mj")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+script = ExtResource("3_s15np")
+
+[node name="SettingsButton" type="Button" parent="." unique_id=1432262505]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -169.0
+offset_top = -76.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_pa5mj")
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+script = ExtResource("3_s15np")
+
 [connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
