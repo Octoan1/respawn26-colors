@@ -12,10 +12,13 @@ extends Control
 const HOVER_WIDTH_EXTENSION: float = 100.0
 const TWEEN_DURATION: float = 0.2
 
+const LEVEL_FAIL = preload("uid://bmcv4tbcdnal8")
+
 func _ready() -> void:
 	level_select.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	main_menu.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	retry_button.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	AudioManager.play_sfx(LEVEL_FAIL)
 
 ## RETRY LEVEL
 func _on_retry_button_pressed() -> void:
