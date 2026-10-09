@@ -151,7 +151,7 @@ mesh = SubResource("TextMesh_2buu0")
 surface_material_override/0 = ExtResource("3_padpd")
 
 [node name="MovementText2" type="MeshInstance3D" parent="." unique_id=1107826407]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.900001, 9.690646, -29.159824)
+transform = Transform3D(0.98480767, 0, -0.17364812, 0, 1, 0, 0.17364812, 0, 0.98480767, 10.900001, 9.890646, -30.759823)
 mesh = SubResource("TextMesh_532tp")
 surface_material_override/0 = ExtResource("3_padpd")
 
@@ -263,7 +263,7 @@ mesh = SubResource("BoxMesh_12ws3")
 surface_material_override/0 = ExtResource("6_5epd2")
 
 [node name="MeshInstance3D21" type="MeshInstance3D" parent="LevelGeometry" unique_id=754655364]
-transform = Transform3D(0.9848077, 0, -0.17364818, 0, 1, 0, 0.17364818, 0, 0.9848077, 37.125137, -15.799997, -255.82556)
+transform = Transform3D(0.9396926, 0, -0.3420202, 0, 1, 0, 0.3420202, 0, 0.9396926, 41.52514, -15.799997, -253.42555)
 material_override = ExtResource("7_padpd")
 mesh = SubResource("BoxMesh_mgqcr")
 surface_material_override/0 = ExtResource("6_5epd2")
