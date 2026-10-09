@@ -7,10 +7,10 @@
 [resource]
 script = ExtResource("1_x423d")
 scene = ExtResource("1_xvrul")
-name = "VioletSoft 1"
+name = "VioletSoft"
 color = "Violet"
 target_info = "It isn’t just people. VioletSoft has poisoned any non-purple plants with its paint. Remember your mission. Liberate the colors. Free Violet from their control. "
-level_num = 12
+level_num = 9
 has_green = true
 has_blue = true
 has_red = true

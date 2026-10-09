@@ -7,10 +7,10 @@
 [resource]
 script = ExtResource("1_ar3l4")
 scene = ExtResource("1_cnvdh")
-name = "YellowInc 1"
+name = "YellowInc"
 color = "yellow"
 target_info = "IndigoCo abused thirst. YellowInc, the next company on our hitlist, abuses hunger. Bananas, Cheese, even Honey have been replaced with toxic paint. We believe in you, so believe in the mission. Liberate the colors. Free Yellow from their control."
-level_num = 10
+level_num = 8
 has_green = true
 has_blue = true
 has_red = true
