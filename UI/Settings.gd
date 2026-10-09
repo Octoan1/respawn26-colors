@@ -27,3 +27,4 @@ func _on_sfx_volume_slider_value_changed(value: float) -> void:
 
 func _on_mouse_sens_slider_value_changed(value: float) -> void:
 	SaveManager.mouse_sensitivity = value
+	SaveManager.save_game()

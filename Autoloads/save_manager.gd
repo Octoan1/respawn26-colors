@@ -36,6 +36,7 @@ func save_game() -> void:
 	
 	levels_complete = levels_beaten
 	save_data.levels_complete = levels_complete
+	save_data.mouse_sensitivity = mouse_sensitivity
 	# Write the data to the user's disk
 	ResourceSaver.save(save_data, SAVE_PATH)
 
@@ -68,6 +69,7 @@ func load_game() -> void:
 		#print(level_data.rank)
 	
 	levels_complete = save_data.levels_complete
+	mouse_sensitivity = save_data.mouse_sensitivity
 
 func clear_save_data() -> void:
 	# Create a temporary container for the data we want to save
@@ -83,7 +85,9 @@ func clear_save_data() -> void:
 		save_data.level_progress_list.append(progress)
 	
 	levels_complete = 0
+	mouse_sensitivity = 0.002
 	
 	save_data.levels_complete = levels_complete
+	save_data.mouse_sensitivity = mouse_sensitivity
 	# Write the data to the user's disk
 	ResourceSaver.save(save_data, SAVE_PATH)
