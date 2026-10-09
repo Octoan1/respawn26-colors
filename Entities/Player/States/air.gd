@@ -20,6 +20,13 @@ func physics_update(delta: float) -> void:
 	if player.is_on_floor():
 		Transitioned.emit(self, "LANDING")
 		return
+	
+		# Wall coyote-time jump
+	if Input.is_action_just_pressed("player_jump") and not player.wall_coyote_timer.is_stopped():
+		player.wall_coyote_timer.stop()
+		player.coyote_timer.stop()
+		Transitioned.emit(self, "WALL_JUMP")
+		return
 		
 	if player.curr_ability == player.Ability_Color.BLUE and Input.is_action_just_pressed("ability_activate") and player.ability_charges_b > 0:
 		player.ability_charges_b -= 1

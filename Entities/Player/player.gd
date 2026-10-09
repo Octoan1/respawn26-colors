@@ -15,6 +15,7 @@ class_name Player
 @onready var sprite: AnimatedSprite2D = $Debug/AnimatedSprite2D
 @onready var state_machine: StateMachine = $StateMachine
 
+var wall_coyote_timer: Timer
 var coyote_timer: Timer
 var jump_buffer_timer: Timer
 var wall_grab_timer: Timer
@@ -72,6 +73,11 @@ func _ready() -> void:
 	glide_timer.one_shot = true
 	glide_timer.wait_time = 2.0
 	add_child(glide_timer)
+	
+	wall_coyote_timer = Timer.new()
+	wall_coyote_timer.one_shot = true
+	wall_coyote_timer.wait_time = 0.15
+	add_child(wall_coyote_timer)
 	
 	curr_ability = Ability_Color.BASE
 	abilities = []
@@ -145,6 +151,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	wall_cooldown_timer = maxf(wall_cooldown_timer - delta, 0.0)
+	if is_on_floor():
+		wall_coyote_timer.stop()
 
 func _process(delta: float) -> void:
 	debug_velocity.text = "Vel: %.2f" % velocity.length()
