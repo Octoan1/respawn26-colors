@@ -10,6 +10,10 @@
 text = "Press 'LMB' + 'W/A/S/D' to Dash"
 font_size = 60
 
+[sub_resource type="TextMesh" id="TextMesh_c4qo0"]
+text = "Press '1' to switch to your new ability"
+font_size = 80
+
 [sub_resource type="TextMesh" id="TextMesh_0urlm"]
 text = "Dashing directly after jumping 
 will propel you very far"
@@ -56,6 +60,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.083265185, 1.6061609, -248.
 [node name="DashText1" type="MeshInstance3D" parent="." unique_id=539263125]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92, -12.959)
 mesh = SubResource("TextMesh_rfktq")
+surface_material_override/0 = ExtResource("3_rfktq")
+
+[node name="DashText6" type="MeshInstance3D" parent="." unique_id=1947345901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92, -5.9369955)
+mesh = SubResource("TextMesh_c4qo0")
 surface_material_override/0 = ExtResource("3_rfktq")
 
 [node name="DashText2" type="MeshInstance3D" parent="." unique_id=1325533807]
@@ -107,6 +116,10 @@ mesh = SubResource("BoxMesh_7k2vp")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="LevelGeometry" unique_id=1851029163]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029174805, 0.9447534, -13.447942)
+mesh = SubResource("BoxMesh_532tp")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="LevelGeometry" unique_id=687558459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.029174805, 0.9447534, -6.4586654)
 mesh = SubResource("BoxMesh_532tp")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="LevelGeometry" unique_id=752746793]
