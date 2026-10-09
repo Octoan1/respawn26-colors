@@ -67,7 +67,7 @@ func update(delta: float) -> void:
 	run_sfx_timer -= delta
 	
 	if run_sfx_timer <= 0.0:
-		run_sfx_timer = .2 - (.001 * player.velocity.x)
+		run_sfx_timer = .22 - (.001 * player.velocity.x * player.velocity.z * player.velocity.y)
 		AudioManager.play_sfx(RUNSFX[randi_range(0, 2)], randf_range(.9,1.1))
 
 func physics_update(delta: float) -> void:

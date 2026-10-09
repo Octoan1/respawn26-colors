@@ -17,7 +17,7 @@ func update(_delta: float) -> void:
 	walk_sfx_timer -= _delta
 	
 	if walk_sfx_timer <= 0.0:
-		walk_sfx_timer = .325
+		walk_sfx_timer = .325 - (.001 * player.velocity.x * player.velocity.z * player.velocity.y)
 		AudioManager.play_sfx(WALKSFX[randi_range(0, 2)], randf_range(.6,1.0))
 
 func physics_update(delta: float) -> void:

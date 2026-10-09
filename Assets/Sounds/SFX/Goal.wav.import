@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dyptwuywo2c45"
-path="res://.godot/imported/UIClick.wav-d13f297966014bbc57e507a7cf506eac.sample"
+uid="uid://bkfivtvlo3s7s"
+path="res://.godot/imported/Goal.wav-d4650b56929b6cab2d0713ed9d57da6e.sample"
 
 [deps]
 
-source_file="res://Assets/Sounds/SFX/UIClick.wav"
-dest_files=["res://.godot/imported/UIClick.wav-d13f297966014bbc57e507a7cf506eac.sample"]
+source_file="res://Assets/Sounds/SFX/Goal.wav"
+dest_files=["res://.godot/imported/Goal.wav-d4650b56929b6cab2d0713ed9d57da6e.sample"]
 
 [params]
 
