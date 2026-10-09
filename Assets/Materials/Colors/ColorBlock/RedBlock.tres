@@ -1,17 +1,10 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://bhfyccytq4v4o"]
 
-[sub_resource type="Shader" id="Shader_xhn6p"]
-code = "shader_type spatial;
-render_mode unshaded;
-
-uniform vec4 base_color : source_color = vec4(0.11, 0.11, 0.11, 1.0);
-
-void fragment() {
-	ALBEDO = base_color.rgb;
-}
-"
+[ext_resource type="Shader" uid="uid://ben2vk0hqh1fv" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.gdshader" id="1_u8fmj"]
 
 [resource]
 render_priority = 0
-shader = SubResource("Shader_xhn6p")
+shader = ExtResource("1_u8fmj")
 shader_parameter/base_color = Color(1, 0, 0, 1)
+shader_parameter/texture_scale = 0.08
+shader_parameter/texture_strength = 1.0
