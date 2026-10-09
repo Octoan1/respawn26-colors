@@ -322,7 +322,7 @@ func can_stand() -> bool:
 	return not test_move(global_transform, Vector3.UP * extra)
 
 func _change_sprite(color: Ability_Color) -> void:
-	if color == curr_ability:
+	if color == curr_ability and sprite.animation != "Default":
 		return
 	animation_player.play("Sprite Change")
 	await animation_player.animation_finished 
