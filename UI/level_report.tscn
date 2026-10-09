@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://iyw5ibxvylro" path="res://UI/level_report.gd" id="1_ocora"]
 [ext_resource type="Theme" uid="uid://cm882kskewj27" path="res://UI/black_text_theme.tres" id="2_et546"]
+[ext_resource type="Script" uid="uid://by8dgyuih7g7s" path="res://UI/MenuButton.gd" id="3_b15rv"]
 
 [node name="LevelReport" type="Control" unique_id=530919330]
 layout_mode = 3
@@ -124,6 +125,7 @@ theme = ExtResource("2_et546")
 theme_override_font_sizes/font_size = 30
 text = "Next Mission"
 alignment = 0
+script = ExtResource("3_b15rv")
 
 [node name="RetryButton" type="Button" parent="." unique_id=1931802112]
 custom_minimum_size = Vector2(300, 50)
@@ -139,6 +141,7 @@ theme = ExtResource("2_et546")
 theme_override_font_sizes/font_size = 30
 text = "Retry Mission"
 alignment = 0
+script = ExtResource("3_b15rv")
 
 [node name="LevelSelect" type="Button" parent="." unique_id=1637361229]
 custom_minimum_size = Vector2(300, 50)
@@ -154,6 +157,7 @@ theme = ExtResource("2_et546")
 theme_override_font_sizes/font_size = 30
 text = "Mission Select"
 alignment = 0
+script = ExtResource("3_b15rv")
 
 [node name="MainMenu" type="Button" parent="." unique_id=651776748]
 custom_minimum_size = Vector2(300, 50)
@@ -168,6 +172,7 @@ theme = ExtResource("2_et546")
 theme_override_font_sizes/font_size = 30
 text = "Main Menu"
 alignment = 0
+script = ExtResource("3_b15rv")
 
 [node name="TargetImage" type="TextureRect" parent="." unique_id=1432798266]
 layout_mode = 0

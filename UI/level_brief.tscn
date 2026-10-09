@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://piivupywbhao" path="res://UI/level_brief.gd" id="1_reudq"]
 [ext_resource type="Theme" uid="uid://cm882kskewj27" path="res://UI/black_text_theme.tres" id="2_reudq"]
+[ext_resource type="Script" uid="uid://by8dgyuih7g7s" path="res://UI/MenuButton.gd" id="3_mkrhp"]
 
 [node name="LevelBrief" type="Control" unique_id=315586572]
 layout_mode = 3
@@ -74,6 +75,7 @@ theme = ExtResource("2_reudq")
 theme_override_font_sizes/font_size = 30
 text = "Begin"
 alignment = 0
+script = ExtResource("3_mkrhp")
 
 [node name="BackButton" type="Button" parent="FullBrief/Background" unique_id=1528358804]
 custom_minimum_size = Vector2(300, 75)
@@ -88,6 +90,7 @@ theme = ExtResource("2_reudq")
 theme_override_font_sizes/font_size = 30
 text = "Back"
 alignment = 0
+script = ExtResource("3_mkrhp")
 
 [node name="FlavorText" type="Label" parent="FullBrief" unique_id=1110766682]
 layout_mode = 1

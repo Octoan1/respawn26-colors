@@ -3,6 +3,8 @@ extends Control
 @export var buttons_per_row: int = 4
 const WHITE_TEXT_THEME = preload("uid://biqu4o348eq17")
 const BLACK_TEXT_THEME = preload("uid://cm882kskewj27")
+const MB = preload("uid://by8dgyuih7g7s")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,6 +30,7 @@ func populate_button_data() -> void:
 		
 		# create a button for each level
 		var button: Button = Button.new()
+		button.set_script(MB)
 		button.pressed.connect(go_to_level.bind(level_num))
 		
 		

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://clete1wqwp4en" path="res://UI/title_ui.gd" id="1_2itqh"]
 [ext_resource type="Theme" uid="uid://biqu4o348eq17" path="res://UI/white_text_theme.tres" id="2_pa5mj"]
 [ext_resource type="Texture2D" uid="uid://5nipjtutgcbm" path="res://Assets/GreyboxTextures/greybox_light_grid.png" id="3_jgd3k"]
+[ext_resource type="Script" uid="uid://by8dgyuih7g7s" path="res://UI/MenuButton.gd" id="3_s15np"]
 
 [node name="Title" type="Control" unique_id=1249127804]
 layout_mode = 3
@@ -63,6 +64,7 @@ offset_bottom = 474.0
 theme = ExtResource("2_pa5mj")
 theme_override_font_sizes/font_size = 32
 text = "START"
+script = ExtResource("3_s15np")
 
 [node name="LevelSelect" type="Button" parent="." unique_id=1718504403]
 layout_mode = 0
@@ -73,6 +75,7 @@ offset_bottom = 568.0
 theme = ExtResource("2_pa5mj")
 theme_override_font_sizes/font_size = 32
 text = "Level Select"
+script = ExtResource("3_s15np")
 
 [node name="GreyboxLightGrid" type="Sprite2D" parent="." unique_id=1888194593]
 visible = false

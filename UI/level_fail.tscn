@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://biqu4o348eq17" path="res://UI/white_text_theme.tres" id="1_b71ck"]
 [ext_resource type="Script" uid="uid://cleqd0oyf1p5w" path="res://UI/level_fail.gd" id="1_p1p2a"]
+[ext_resource type="Script" uid="uid://by8dgyuih7g7s" path="res://UI/MenuButton.gd" id="3_dmvp7"]
 
 [node name="LevelFail" type="Control" unique_id=712425203]
 layout_mode = 3
@@ -26,6 +27,7 @@ theme = ExtResource("1_b71ck")
 theme_override_font_sizes/font_size = 60
 text = "Retry Mission"
 alignment = 0
+script = ExtResource("3_dmvp7")
 
 [node name="LevelSelect" type="Button" parent="." unique_id=915429445]
 custom_minimum_size = Vector2(600, 100)
@@ -41,6 +43,7 @@ theme = ExtResource("1_b71ck")
 theme_override_font_sizes/font_size = 60
 text = "Mission Select"
 alignment = 0
+script = ExtResource("3_dmvp7")
 
 [node name="MainMenu" type="Button" parent="." unique_id=1851818971]
 custom_minimum_size = Vector2(600, 100)
@@ -55,6 +58,7 @@ theme = ExtResource("1_b71ck")
 theme_override_font_sizes/font_size = 60
 text = "Main Menu"
 alignment = 0
+script = ExtResource("3_dmvp7")
 
 [node name="Label1" type="Label" parent="." unique_id=2091136574]
 layout_mode = 1
