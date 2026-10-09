@@ -7,10 +7,10 @@
 [resource]
 script = ExtResource("1_1e6fq")
 scene = ExtResource("1_lsowg")
-name = "IndigoCo 1"
+name = "IndigoCo"
 color = "4b0082"
-target_info = "The next company is IndigoCo. Same story, but they’ve got a hold of Indigo. Until you take action, the color Indigo will continue to be exploited and monopolized. Liberate the colors. Free Indigo from their control."
-level_num = 7
+target_info = "The next company is IndigoCo. They’re tricking people into thinking paint is water and polluting them. Until you take action, the color Indigo will continue to be exploited and monopolized. Liberate the colors. Free Indigo from their control."
+level_num = 6
 has_green = true
 has_blue = true
 s_rank_time = 10.0
