@@ -3,6 +3,7 @@ extends Node
 # Path to save the file on the player's device
 const SAVE_PATH = "user://savegame.tres"
 var levels_complete: int = 0
+var mouse_sensitivity: float = 0.002
 
 # for every level_data resource in the level_list resource (which contains an array of level_data resources)
 # save info from each level:

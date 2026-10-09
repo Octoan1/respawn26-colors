@@ -50,3 +50,12 @@ func update_title_text() -> void:
 	# violet world complete
 	if SaveManager.levels_complete >= 9:
 		rich_text_label.text = "Operation [color=da0100]R[/color][color=orange]O[/color][color=yellow]Y[/color][color=2dea01]G[/color][color=2000da]B[/color][color=indigo]I[/color][color=violet]V[/color]"
+
+
+func _on_quit_button_pressed() -> void:
+	SaveManager.save_game()
+	get_tree().quit()
+
+
+func _on_settings_button_pressed() -> void:
+	UiManager.go_to_settings()
