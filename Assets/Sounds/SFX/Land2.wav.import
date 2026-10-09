@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Land2.wav-c14d42d6e09ac82cae7b7b850b84d744.sa
 [params]
 
 force/8_bit=false
-force/mono=false
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false

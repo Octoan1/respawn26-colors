@@ -2,6 +2,8 @@ extends Area3D
 @onready var target_sprite: Sprite3D = $TargetSprite
 var player: Player
 
+const GOAL = preload("uid://bkfivtvlo3s7s")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -22,6 +24,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if body is Player:
 		var curr_state: PlayerState = player.state_machine.current_state
 		curr_state.Transitioned.emit(curr_state, "IDLE")
+		AudioManager.play_sfx(GOAL)
 		LevelManager.complete_level()
 
 func give_player(ref: Player) -> void:

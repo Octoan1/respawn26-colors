@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dyptwuywo2c45"
-path="res://.godot/imported/UIClick.wav-d13f297966014bbc57e507a7cf506eac.sample"
+uid="uid://bn1y50ycc78gq"
+path="res://.godot/imported/CrouchUp.wav-ff496f128f806107669f7ac6101b896d.sample"
 
 [deps]
 
-source_file="res://Assets/Sounds/SFX/UIClick.wav"
-dest_files=["res://.godot/imported/UIClick.wav-d13f297966014bbc57e507a7cf506eac.sample"]
+source_file="res://Assets/Sounds/SFX/CrouchUp.wav"
+dest_files=["res://.godot/imported/CrouchUp.wav-ff496f128f806107669f7ac6101b896d.sample"]
 
 [params]
 

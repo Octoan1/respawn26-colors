@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Walk2.wav-d25df2fa863b90526fd9296541c5b55e.sa
 [params]
 
 force/8_bit=false
-force/mono=false
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false

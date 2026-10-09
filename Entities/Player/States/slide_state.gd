@@ -3,6 +3,7 @@ extends PlayerState
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var camera_3d: Camera3D = %Camera3D
 
+const SLIDE_INITIAL = preload("uid://bjv2tpgfxic3d")
 const SLIDESFX = preload("uid://b26uh7audsn6e")
 var slide_sfx_timer = 0.0
 var slide_sfx_player = AudioManager.create_sfx_adv(SLIDESFX, 1.0, 1.2)
@@ -17,6 +18,8 @@ func enter() -> void:
 	_air_time = 0.0
 	camera_3d.trigger_slide_lurch()
 	player.movement.start_slide()
+	
+	AudioManager.play_sfx(SLIDE_INITIAL,randf_range(.1, .3), .3)
 
 func exit() -> void:
 	player.movement.end_slide()

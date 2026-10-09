@@ -72,7 +72,7 @@ func stop_music() -> void:
 
 #region SFX
 
-func play_sfx(stream: AudioStream, pitch_scale: float = 1.0) -> void:
+func play_sfx(stream: AudioStream, pitch_scale: float = 1.0, volume: float = 1.0) -> void:
 	if active_sfx >= MAX_SFX:
 		return
 
@@ -80,6 +80,7 @@ func play_sfx(stream: AudioStream, pitch_scale: float = 1.0) -> void:
 	player.stream = stream
 	player.bus = SFX_BUS
 	player.pitch_scale = pitch_scale
+	player.volume_linear = volume
 
 	add_child(player)
 
