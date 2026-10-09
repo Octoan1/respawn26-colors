@@ -15,6 +15,7 @@ class_name Player
 @onready var sprite: AnimatedSprite2D = $Debug/AnimatedSprite2D
 @onready var state_machine: StateMachine = $StateMachine
 
+var wall_coyote_timer: Timer
 var coyote_timer: Timer
 var jump_buffer_timer: Timer
 var wall_grab_timer: Timer
@@ -72,6 +73,11 @@ func _ready() -> void:
 	glide_timer.one_shot = true
 	glide_timer.wait_time = 2.5
 	add_child(glide_timer)
+	
+	wall_coyote_timer = Timer.new()
+	wall_coyote_timer.one_shot = true
+	wall_coyote_timer.wait_time = 0.15
+	add_child(wall_coyote_timer)
 	
 	curr_ability = Ability_Color.BASE
 	abilities = []
@@ -145,6 +151,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	wall_cooldown_timer = maxf(wall_cooldown_timer - delta, 0.0)
+	if is_on_floor():
+		wall_coyote_timer.stop()
 
 func _process(delta: float) -> void:
 	debug_velocity.text = "Vel: %.2f" % velocity.length()
@@ -170,10 +178,16 @@ func set_crouch_animation(crouched: bool) -> void:
 
 
 func can_wall_run() -> bool:
-	if is_on_floor() or wall_cooldown_timer > 0.0:
+	if is_on_floor() or wall_cooldown_timer > 0.0 or movement.wall_min_entry_speed > _flat(velocity).length():
 		return false
 	var normal := find_wall_normal()
-	return normal != Vector3.ZERO and has_wall_run_clearance(normal)
+	if normal == Vector3.ZERO or not has_wall_run_clearance(normal):
+		return false
+	return is_inputting_into_wall(normal)
+
+func _flat(v: Vector3) -> Vector3:
+	v.y = 0
+	return v
 
 func get_movement_direction() -> Vector3:
 	var input_dir := Input.get_vector(
@@ -335,3 +349,9 @@ func _change_sprite(color: Ability_Color) -> void:
 	if color == Ability_Color.BASE:
 		sprite.play("Default")
 	animation_player.play_backwards("Sprite Change")
+
+func is_inputting_into_wall(normal: Vector3) -> bool:
+	var flat_normal := Vector3(normal.x, 0.0, normal.z).normalized()
+	if flat_normal == Vector3.ZERO:
+		return false
+	return get_movement_direction().dot(-flat_normal) > movement.wall_enter_input_threshold

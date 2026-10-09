@@ -7,6 +7,7 @@ func setup() -> void:
 	pass
 
 func enter() -> void: 
+	player.wall_coyote_timer.stop()
 	var m := player.movement
 
 	var normal := player.wall_normal

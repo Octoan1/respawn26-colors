@@ -67,10 +67,10 @@ func go_to_level(index: int) -> void:
 	else:
 		if lev.has_green:
 			player.gain_ability(player.Ability_Color.GREEN, (lev.level_num == 3))
-		if lev.has_red:
-			player.gain_ability(player.Ability_Color.RED)
 		if lev.has_blue:
 			player.gain_ability(player.Ability_Color.BLUE)
+		if lev.has_red:
+			player.gain_ability(player.Ability_Color.RED)
 	await TransitionManager.end_transition()
 
 
