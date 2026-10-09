@@ -15,7 +15,8 @@ func setup() -> void:
 	super()
 
 func enter() -> void:
-	pass
+	if player.toggle_sprint_on:
+		player.is_sprinting = true
 	
 func exit() -> void:
 	pass
@@ -61,6 +62,8 @@ func physics_update(delta: float) -> void:
 
 	var input_dir := Input.get_vector("player_left", "player_right", "player_forwards", "player_backwards")
 	if input_dir.y >= 0.0:
+		if player.toggle_sprint_on:
+			player.is_sprinting = false
 		Transitioned.emit(self, "WALK")
 		return
 	
@@ -69,17 +72,19 @@ func physics_update(delta: float) -> void:
 		Transitioned.emit(self, "CROUCH")
 		player.set_crouch_animation(true)
 
-	
-	# Sprint released -> walk
-	if Input.is_action_just_released("player_sprint"):
-		player.movement.remember_sprint_release()
-		Transitioned.emit(self, "WALK")
-		return
+	if not player.toggle_sprint_on:
+		# Sprint released -> walk
+		if Input.is_action_just_released("player_sprint"):
+			player.movement.remember_sprint_release()
+			Transitioned.emit(self, "WALK")
+			return
 	
 	var direction := player.get_movement_direction()
 	
 	# no direction -> no input -> transition idle
 	if direction == Vector3.ZERO:
+		if player.toggle_sprint_on:
+			player.is_sprinting = false
 		Transitioned.emit(self, "IDLE")
 		return
 
@@ -92,3 +97,7 @@ func physics_update(delta: float) -> void:
 	)
 	
 	player.move_and_slide()
+
+func _flat(v: Vector3) -> Vector3:
+	v.y = 0.0
+	return v

@@ -45,7 +45,7 @@ var _sprint_released_at: float = -999.0
 @export var wall_acceleration: float = 0.5
 @export var can_grab_wall: bool = false
 @export var wall_min_entry_speed: float = 0.0
-@export var wall_run_time: float = 1.0        # seconds on the wall (counts after the rise ends)
+@export var wall_run_time: float = 2.0        # seconds on the wall (counts after the rise ends)
 @export var wall_slide_speed: float = 0.8     # slow slide speed right after the rise
 @export var wall_slide_max_speed: float = 3.0 # slide speed by the end of the timer (you slip faster)
 @export var wall_slide_accel: float = 30.0    # how quickly you settle to the slide speed
@@ -55,7 +55,7 @@ var _sprint_released_at: float = -999.0
 @export var wall_cooldown: float = 0.3       # re-attach delay after leaving a wall
 @export var wall_probe_distance := 0.9
 @export var wall_run_clearance: float = 0.15 # margin inside the body's top and bottom
-@export var wall_enter_input_threshold: float = 0.5
+@export var wall_enter_input_threshold: float = 0.1
 @export var wall_run_boost: float = 3.0   # upward speed kick when you start running on the wall
 
 @export_category("Wall Camera")

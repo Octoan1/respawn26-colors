@@ -21,6 +21,10 @@ var jump_buffer_timer: Timer
 var wall_grab_timer: Timer
 var glide_timer: Timer
 
+var is_sprinting: bool = false
+
+var toggle_sprint_on: bool = true
+
 var wall_normal: Vector3
 
 var wall_cooldown_timer: float = 0.0
@@ -105,6 +109,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	
+	
+	if event.is_action_pressed("sprint_toggle_switch"):
+		toggle_sprint_on = not toggle_sprint_on
 	
 	if event is InputEventMouseMotion:
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
@@ -360,4 +367,5 @@ func is_inputting_into_wall(normal: Vector3) -> bool:
 	var flat_normal := Vector3(normal.x, 0.0, normal.z).normalized()
 	if flat_normal == Vector3.ZERO:
 		return false
+	print((get_movement_direction().dot(-flat_normal) > movement.wall_enter_input_threshold), " ", get_movement_direction(), " ", get_movement_direction().dot(-flat_normal))
 	return get_movement_direction().dot(-flat_normal) > movement.wall_enter_input_threshold

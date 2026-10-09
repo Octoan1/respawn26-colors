@@ -1,10 +1,10 @@
 extends PlayerState
 
-@export var look_into_wall_threshold := 0.5
+@export var look_into_wall_threshold := 0.3
 @export var wall_turn_speed := 4.0
 @export var max_turn_per_frame := 0.12
 @export var look_away_threshold := 0.3
-@export var hold_into_wall_threshold := 0.3
+@export var hold_into_wall_threshold := 1.0 #for checking if should detach
 @export var detach_grace := 0.2
 @export var backward_time_scale := 2.5
 @export var backward_scale_smoothing := 10.0
@@ -64,6 +64,9 @@ func enter() -> void:
 	detach_timer = 0.0
 	contact_lost_time = 0.0
 	time_scale = 1.0
+	
+	if player.velocity.y < 0.0:
+		player.velocity.y = 0.0
 
 
 func exit() -> void:
