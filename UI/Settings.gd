@@ -15,6 +15,7 @@ func _on_back_button_pressed() -> void:
 
 func _on_delete_save_button_pressed() -> void:
 	SaveManager.clear_save_data()
+	SaveManager.load_game()
 
 
 func _on_music_volume_slider_value_changed(value: float) -> void:

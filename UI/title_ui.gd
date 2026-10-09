@@ -8,10 +8,14 @@ func _ready() -> void:
 	update_title_text()
 
 func _on_start_game_pressed() -> void:
+	SaveManager.save_game()
 	if SaveManager.levels_complete == LevelManager.LEVEL_LIST.levels.size():
 		UiManager.go_to_level_brief(SaveManager.levels_complete-1, "menu")
+		return
 	else:
 		UiManager.go_to_level_brief(SaveManager.levels_complete, "menu")
+	
+	
 	
 	#LevelManager.start_game()
 	#queue_free()

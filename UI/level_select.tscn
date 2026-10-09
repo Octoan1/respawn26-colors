@@ -76,4 +76,20 @@ theme_override_font_sizes/font_size = 32
 text = "Main Menu"
 script = ExtResource("3_q0b5w")
 
+[node name="UnlockLevels" type="CheckBox" parent="." unique_id=1032474916]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_qgm14")
+theme_override_font_sizes/font_size = 32
+text = "Unlock Levels"
+
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
