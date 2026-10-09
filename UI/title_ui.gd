@@ -1,5 +1,6 @@
 extends Control
 @onready var rich_text_label: RichTextLabel = $RichTextLabel
+@onready var start_game: Button = $StartGame
 
 
 # Called when the node enters the scene tree for the first time.
@@ -7,7 +8,11 @@ func _ready() -> void:
 	update_title_text()
 
 func _on_start_game_pressed() -> void:
-	UiManager.go_to_level_brief(0, "menu")
+	if SaveManager.levels_complete == LevelManager.LEVEL_LIST.levels.size():
+		UiManager.go_to_level_brief(SaveManager.levels_complete-1, "menu")
+	else:
+		UiManager.go_to_level_brief(SaveManager.levels_complete, "menu")
+	
 	#LevelManager.start_game()
 	#queue_free()
 
@@ -17,6 +22,10 @@ func _on_level_select_pressed() -> void:
 	#queue_free()
 
 func update_title_text() -> void:
+	if SaveManager.levels_complete != 0:
+		start_game.text = "Continue"
+	
+	
 	rich_text_label.text = "Operation ROYGBIV"
 	
 	# green ability unlocked
