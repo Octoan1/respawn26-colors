@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="1_2buu0"]
 [ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="2_s0mph"]
-[ext_resource type="Material" uid="uid://dwbubdyewarvs" path="res://Assets/Materials/Colors/ColorBlock/WhiteBlock.tres" id="3_padpd"]
+[ext_resource type="Material" uid="uid://d3irnpw0d80da" path="res://Assets/Materials/Colors/ColorBlock/full_white_mat.tres" id="3_padpd"]
 [ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="4_i1m50"]
 [ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="5_4nliy"]
 [ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.tres" id="6_5epd2"]
@@ -22,7 +22,7 @@ sky = SubResource("Sky_e312d")
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.21656412, 0.29163662, 0.41816238, 1)
+fog_light_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
 fog_density = 1.0
 
 [sub_resource type="TextMesh" id="TextMesh_2buu0"]

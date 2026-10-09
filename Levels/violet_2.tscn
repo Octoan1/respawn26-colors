@@ -4,9 +4,26 @@
 [ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="2_0h1mr"]
 [ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="3_r0yyg"]
 [ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="4_d5c5e"]
+[ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.tres" id="5_0h1mr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7k2vp"]
 size = Vector3(40, 281.11182, 40)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s845p"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0h1mr"]
+sky_material = SubResource("ProceduralSkyMaterial_s845p")
+
+[sub_resource type="Environment" id="Environment_r0yyg"]
+background_mode = 2
+sky = SubResource("Sky_0h1mr")
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.28851813, 0.28851795, 0.28851798, 1)
+fog_density = 1.0
 
 [node name="Violet2" type="Node3D" unique_id=368369671]
 
@@ -31,135 +48,176 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -52.40152, 0)
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Decoration" unique_id=836389211]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 386.16974, 50.660294, 109.93581)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Decoration" unique_id=570788010]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 253.0028, -6.8223114, 274.0304)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Decoration" unique_id=1926342870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 352.28674, -6.8223114, 197.05692)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Decoration" unique_id=1594460773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 297.75854, -60.513397, 147.61032)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D36" type="MeshInstance3D" parent="Decoration" unique_id=912054758]
 transform = Transform3D(-0.80596083, 0, -0.5919689, 0, 1, 0, 0.5919689, 0, -0.80596083, 380.7703, 50.660294, -53.886658)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D39" type="MeshInstance3D" parent="Decoration" unique_id=603143502]
 transform = Transform3D(-0.80596083, 0, -0.5919689, 0, 1, 0, 0.5919689, 0, -0.80596083, 302.09387, -44.44371, -23.076263)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D37" type="MeshInstance3D" parent="Decoration" unique_id=73408701]
 transform = Transform3D(-0.80596083, 0, -0.5919689, 0, 1, 0, 0.5919689, 0, -0.80596083, 356.50565, -6.8223114, -144.16054)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D38" type="MeshInstance3D" parent="Decoration" unique_id=480747029]
 transform = Transform3D(-0.80596083, 0, -0.5919689, 0, 1, 0, 0.5919689, 0, -0.80596083, 429.7241, -60.513397, -136.58752)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="Decoration" unique_id=767222552]
 transform = Transform3D(-0.448793, 0, -0.89363575, 0, 1, 0, 0.89363575, 0, -0.448793, -281.51273, 110.65364, 309.5046)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="Decoration" unique_id=2140256706]
 transform = Transform3D(-0.448793, 0, -0.89363575, 0, 1, 0, 0.89363575, 0, -0.448793, -368.38913, -6.8223724, 116.85739)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="Decoration" unique_id=1675637872]
 transform = Transform3D(-0.448793, 0, -0.89363575, 0, 1, 0, 0.89363575, 0, -0.448793, -344.16083, -6.8223724, 240.12622)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D9" type="MeshInstance3D" parent="Decoration" unique_id=2036272149]
 transform = Transform3D(-0.448793, 0, -0.89363575, 0, 1, 0, 0.89363575, 0, -0.448793, -275.5017, -60.51346, 213.58917)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D26" type="MeshInstance3D" parent="Decoration" unique_id=459816338]
 transform = Transform3D(-0.448793, 0, -0.89363575, 0, 1, 0, 0.89363575, 0, -0.448793, -311.20242, -153.17386, 119.31802)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D27" type="MeshInstance3D" parent="Decoration" unique_id=607807999]
 transform = Transform3D(-0.448793, 0, -0.89363575, 0, 1, 0, 0.89363575, 0, -0.448793, -411.49875, -55.97534, 31.489742)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D28" type="MeshInstance3D" parent="Decoration" unique_id=543926659]
 transform = Transform3D(-0.9921556, 0, -0.12500903, 0, 1, 0, 0.12500903, 0, -0.9921556, -465.97507, -6.822342, -188.10144)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D29" type="MeshInstance3D" parent="Decoration" unique_id=1585175519]
 transform = Transform3D(-0.9921556, 0, -0.12500903, 0, 1, 0, 0.12500903, 0, -0.9921556, -436.16653, -153.17383, -139.23607)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D30" type="MeshInstance3D" parent="Decoration" unique_id=594352002]
 transform = Transform3D(-0.9921556, 0, -0.12500903, 0, 1, 0, 0.12500903, 0, -0.9921556, -419.0867, -55.97531, -271.45346)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D31" type="MeshInstance3D" parent="Decoration" unique_id=711223244]
 transform = Transform3D(0.45349342, 0, 0.8912597, 0, 1, 0, -0.8912597, 0, 0.45349342, 32.422455, -6.822342, -624.3506)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D32" type="MeshInstance3D" parent="Decoration" unique_id=71884116]
 transform = Transform3D(0.45349342, 0, 0.8912597, 0, 1, 0, -0.8912597, 0, 0.45349342, -24.750477, -153.17383, -627.11237)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D33" type="MeshInstance3D" parent="Decoration" unique_id=929205805]
 transform = Transform3D(0.45349342, 0, 0.8912597, 0, 1, 0, -0.8912597, 0, 0.45349342, 75.08183, -55.97531, -538.7571)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="Decoration" unique_id=688843006]
 transform = Transform3D(-0.93817973, 0, 0.34614846, 0, 1, 0, -0.34614846, 0, -0.93817973, -351.84567, 50.660202, -345.0395)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="Decoration" unique_id=1802687616]
 transform = Transform3D(-0.93817973, 0, 0.34614846, 0, 1, 0, -0.34614846, 0, -0.93817973, -170.11006, -6.822403, -452.89413)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D12" type="MeshInstance3D" parent="Decoration" unique_id=1704468896]
 transform = Transform3D(-0.93817973, 0, 0.34614846, 0, 1, 0, -0.34614846, 0, -0.93817973, -289.90048, -6.822403, -415.04617)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D13" type="MeshInstance3D" parent="Decoration" unique_id=304157309]
 transform = Transform3D(-0.93817973, 0, 0.34614846, 0, 1, 0, -0.34614846, 0, -0.93817973, -255.85912, -60.51349, -349.78156)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D14" type="MeshInstance3D" parent="Decoration" unique_id=1780203761]
 transform = Transform3D(-0.56530005, 0, 0.8248855, 0, 1, 0, -0.8248855, 0, -0.56530005, 234.51678, 50.66017, -393.46234)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="Decoration" unique_id=1922690125]
 transform = Transform3D(-0.56530005, 0, 0.8248855, 0, 1, 0, -0.8248855, 0, -0.56530005, 445.1552, -6.8224335, -376.3775)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D16" type="MeshInstance3D" parent="Decoration" unique_id=65027680]
 transform = Transform3D(-0.56530005, 0, 0.8248855, 0, 1, 0, -0.8248855, 0, -0.56530005, 325.53577, -6.8224335, -414.76227)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D34" type="MeshInstance3D" parent="Decoration" unique_id=1331315751]
 transform = Transform3D(0.36681375, 0, 0.9302945, 0, 1, 0, -0.9302945, 0, 0.36681375, 176.60854, 19.651993, -434.62567)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D35" type="MeshInstance3D" parent="Decoration" unique_id=2105386459]
 transform = Transform3D(0.36681375, 0, 0.9302945, 0, 1, 0, -0.9302945, 0, 0.36681375, 141.41927, 19.651993, -555.2238)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D40" type="MeshInstance3D" parent="Decoration" unique_id=470860424]
 transform = Transform3D(-0.67077583, 0, 0.74166024, 0, 1, 0, -0.74166024, 0, -0.67077583, -129.28171, -104.73854, 371.8611)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D41" type="MeshInstance3D" parent="Decoration" unique_id=1698385432]
 transform = Transform3D(-0.67077583, 0, 0.74166024, 0, 1, 0, -0.74166024, 0, -0.67077583, -34.100838, -153.89151, 362.5513)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D42" type="MeshInstance3D" parent="Decoration" unique_id=27293628]
 transform = Transform3D(-0.9722961, 0, -0.23375311, 0, 1, 0, 0.23375311, 0, -0.9722961, 158.51913, -47.256027, 265.4554)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D44" type="MeshInstance3D" parent="Decoration" unique_id=1532247791]
 transform = Transform3D(-0.7381701, 0, 0.6746148, 0, 1, 0, -0.6746148, 0, -0.7381701, -25.81314, -78.264206, 294.705)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
 
 [node name="MeshInstance3D17" type="MeshInstance3D" parent="Decoration" unique_id=929321645]
 transform = Transform3D(-0.56530005, 0, 0.8248855, 0, 1, 0, -0.8248855, 0, -0.56530005, 315.57275, -60.51352, -341.83066)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("5_0h1mr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1266441911]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=741446332]
+environment = SubResource("Environment_r0yyg")

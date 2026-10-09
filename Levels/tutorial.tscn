@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="1_gdvy0"]
 [ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="2_hga2d"]
-[ext_resource type="Material" uid="uid://dwbubdyewarvs" path="res://Assets/Materials/Colors/ColorBlock/WhiteBlock.tres" id="3_e312d"]
+[ext_resource type="Material" uid="uid://d3irnpw0d80da" path="res://Assets/Materials/Colors/ColorBlock/full_white_mat.tres" id="3_e312d"]
 [ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="3_mscth"]
 [ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="4_e312d"]
 [ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.tres" id="6_mscth"]
@@ -11,12 +11,12 @@
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Sky" id="Sky_e312d"]
+[sub_resource type="Sky" id="Sky_j0mkc"]
 sky_material = SubResource("ProceduralSkyMaterial_mscth")
 
 [sub_resource type="Environment" id="Environment_j0mkc"]
 background_mode = 2
-sky = SubResource("Sky_e312d")
+sky = SubResource("Sky_j0mkc")
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1

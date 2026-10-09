@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cw7fospdday3t" path="res://Game/goal.tscn" id="2_afqkt"]
 [ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="3_n0jt5"]
 [ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="4_7i2dl"]
+[ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.tres" id="4_afqkt"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dgq3b"]
 size = Vector3(8.376221, 1, 14)
@@ -29,6 +30,22 @@ size = Vector3(8.401367, 3.2113037, 16.741882)
 [sub_resource type="BoxMesh" id="BoxMesh_el7dy"]
 size = Vector3(16.896912, 6.124878, 1)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfqto"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_afqkt"]
+sky_material = SubResource("ProceduralSkyMaterial_tfqto")
+
+[sub_resource type="Environment" id="Environment_n0jt5"]
+background_mode = 2
+sky = SubResource("Sky_afqkt")
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.28851813, 0.28851795, 0.28851798, 1)
+fog_density = 1.0
+
 [node name="Level2" type="Node3D" unique_id=1972966065]
 
 [node name="Player" parent="." unique_id=493457226 instance=ExtResource("1_tfqto")]
@@ -43,66 +60,89 @@ script = ExtResource("3_n0jt5")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LevelGeometry" unique_id=109218916]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77941465, 0, -3.5)
 mesh = SubResource("BoxMesh_dgq3b")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelGeometry" unique_id=1516341803]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.47, 8.5, -15.883)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="LevelGeometry" unique_id=36065960]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.037, 8.5, -10.685)
 mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="LevelGeometry" unique_id=2059933752]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7288132, 3.978908, 2.853)
 mesh = SubResource("BoxMesh_wlm5q")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="LevelGeometry" unique_id=1196419435]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20986938, -0.39713836, -33.944836)
 mesh = SubResource("BoxMesh_0t5j7")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="LevelGeometry" unique_id=1261673907]
 transform = Transform3D(0.73458123, 0, -0.6785208, 0, 1, 0, 0.6785208, 0, 0.73458123, 4.634106, 0.5565777, -42.252373)
 mesh = SubResource("BoxMesh_532tp")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="LevelGeometry" unique_id=1897593684]
 transform = Transform3D(0.24667296, 0, -0.96909875, 0, 1, 0, 0.96909875, 0, 0.24667296, 12.408772, 1.3983941, -45.53269)
 mesh = SubResource("BoxMesh_532tp")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="LevelGeometry" unique_id=25479343]
 transform = Transform3D(-0.7118081, 0, -0.702374, 0, 1, 0, 0.702374, 0, -0.7118081, 20.770718, 1.8331704, -41.28258)
 mesh = SubResource("BoxMesh_532tp")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D14" type="MeshInstance3D" parent="LevelGeometry" unique_id=1068304494]
 transform = Transform3D(-0.9762533, 0, 0.21663241, 0, 1, 0, -0.21663241, 0, -0.9762533, 20.737684, 2.8710425, -31.829262)
 mesh = SubResource("BoxMesh_532tp")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D9" type="MeshInstance3D" parent="LevelGeometry" unique_id=476612079]
 transform = Transform3D(0.7316344, 0, -0.68169725, 0, 1, 0, 0.68169725, 0, 0.7316344, -5.432, -14, -43.63)
 mesh = SubResource("BoxMesh_6x18l")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="LevelGeometry" unique_id=129006815]
 transform = Transform3D(0.34727234, 0, -0.9377643, 0, 1, 0, 0.9377643, 0, 0.34727234, 5.368, -14, -52.139)
 mesh = SubResource("BoxMesh_6x18l")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="LevelGeometry" unique_id=649548626]
 transform = Transform3D(-0.52283263, 0, -0.85243547, 0, 1, 0, 0.85243547, 0, -0.52283263, 22.791035, -14, -52.421207)
 mesh = SubResource("BoxMesh_6x18l")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="LevelGeometry" unique_id=194270107]
 transform = Transform3D(-0.99908006, 0, -0.042885832, 0, 1, 0, 0.042885832, 0, -0.99908006, 32.264404, -14, -36.501595)
 mesh = SubResource("BoxMesh_6x18l")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D12" type="MeshInstance3D" parent="LevelGeometry" unique_id=1720691693]
 transform = Transform3D(-0.9891206, 0, -0.14710742, 0, 1, 0, 0.14710742, 0, -0.9891206, 9.111086, -13.999998, -32.0784)
 mesh = SubResource("BoxMesh_6x18l")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D13" type="MeshInstance3D" parent="LevelGeometry" unique_id=1210502163]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.030052, 1.1142306, -9.775061)
 mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="MeshInstance3D16" type="MeshInstance3D" parent="LevelGeometry" unique_id=1557611205]
 transform = Transform3D(0.49511984, 0, 0.8688246, 0, 1, 0, -0.8688246, 0, 0.49511984, 23.167793, 6.2261124, -23.93792)
 mesh = SubResource("BoxMesh_el7dy")
+surface_material_override/0 = ExtResource("4_afqkt")
 
 [node name="DeathPlane" parent="." unique_id=1176538747 instance=ExtResource("4_7i2dl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1546637350]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=740014343]
+environment = SubResource("Environment_n0jt5")
