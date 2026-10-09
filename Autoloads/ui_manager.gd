@@ -5,8 +5,7 @@ const LEVEL_FINISH = preload("uid://1mvsvkkyyb8e")
 const LEVEL_BRIEF = preload("uid://cwequt0alhfgo")
 const LEVEL_FAIL = preload("uid://ca8mctmsyxsth")
 const LEVEL_PAUSE = preload("uid://dqwwkg7eks3vf")
-
-
+const SETTINGS = preload("uid://bwfpi66f5kti3")
 
 var level_pause_screen: Node
 var main_canvas: CanvasLayer
@@ -99,4 +98,16 @@ func show_level_pause() -> void:
 		level_pause_screen = scene.instantiate()
 		main_canvas.add_child(level_pause_screen)
 	
+
+func go_to_settings() -> void:
+	get_canvas_layer()
 	
+	var scene: PackedScene = SETTINGS
+	var settings_screen: Node = scene.instantiate()
+	
+	await TransitionManager.play_transition()
+	
+	LevelManager.cleanup_main()
+	main_canvas.add_child(settings_screen)
+	
+	await TransitionManager.end_transition()

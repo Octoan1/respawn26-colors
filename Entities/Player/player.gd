@@ -92,6 +92,8 @@ func _ready() -> void:
 	if debug_manager and debug_manager.has_signal("toggle_auto_bhop"):
 		if not debug_manager.is_connected("toggle_auto_bhop", _on_toggle_auto_bhop):
 			debug_manager.connect("toggle_auto_bhop", _on_toggle_auto_bhop)
+	
+	mouse_sensitivity = SaveManager.mouse_sensitivity
 
 func _unhandled_input(event: InputEvent) -> void:
 	if level_finished:

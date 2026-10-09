@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://bwfpi66f5kti3"]
+
+[ext_resource type="Script" uid="uid://b4entglchcfoi" path="res://UI/Settings.gd" id="1_wgjsl"]
+[ext_resource type="Theme" uid="uid://biqu4o348eq17" path="res://UI/white_text_theme.tres" id="2_hnc8t"]
+[ext_resource type="Script" uid="uid://by8dgyuih7g7s" path="res://UI/MenuButton.gd" id="3_fb0e8"]
+
+[node name="Settings" type="Control" unique_id=1249127804]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wgjsl")
+
+[node name="ScreenBG" type="ColorRect" parent="." unique_id=1481548434]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+
+[node name="GameTitle" type="Label" parent="." unique_id=559757465]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -369.0
+offset_top = 12.0
+offset_right = 370.0
+offset_bottom = 107.0
+grow_horizontal = 2
+theme = ExtResource("2_hnc8t")
+theme_override_font_sizes/font_size = 124
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="." unique_id=1065246438]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -76.0
+offset_right = 169.0
+grow_vertical = 0
+theme = ExtResource("2_hnc8t")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+script = ExtResource("3_fb0e8")
+
+[node name="DeleteSaveButton" type="Button" parent="." unique_id=1432262505]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -169.0
+offset_top = -76.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_hnc8t")
+theme_override_font_sizes/font_size = 32
+text = "Delete Save"
+script = ExtResource("3_fb0e8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1073994002]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=793960249]
+custom_minimum_size = Vector2(600, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1744813564]
+layout_mode = 2
+theme = ExtResource("2_hnc8t")
+theme_override_font_sizes/font_size = 50
+text = "Master Volume"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="VBoxContainer/HBoxContainer" unique_id=2045894129]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("2_hnc8t")
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1379455212]
+custom_minimum_size = Vector2(600, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=535029638]
+layout_mode = 2
+theme = ExtResource("2_hnc8t")
+theme_override_font_sizes/font_size = 50
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2" unique_id=857831238]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("2_hnc8t")
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=1679683838]
+custom_minimum_size = Vector2(600, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=1467024778]
+layout_mode = 2
+theme = ExtResource("2_hnc8t")
+theme_override_font_sizes/font_size = 50
+text = "SFX Volume"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="VBoxContainer/HBoxContainer3" unique_id=701854849]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("2_hnc8t")
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer" unique_id=1339996225]
+custom_minimum_size = Vector2(600, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4" unique_id=1616397842]
+layout_mode = 2
+theme = ExtResource("2_hnc8t")
+theme_override_font_sizes/font_size = 50
+text = "Mouse Sensitivity"
+
+[node name="MouseSensSlider" type="HSlider" parent="VBoxContainer/HBoxContainer4" unique_id=1883057342]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("2_hnc8t")
+min_value = 0.001
+max_value = 0.01
+step = 0.001
+value = 0.002
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="DeleteSaveButton" to="." method="_on_delete_save_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer3/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer4/MouseSensSlider" to="." method="_on_mouse_sens_slider_value_changed"]
