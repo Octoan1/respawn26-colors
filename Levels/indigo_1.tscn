@@ -49,7 +49,7 @@ sky = SubResource("Sky_va2bs")
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.28851813, 0.28851795, 0.28851798, 1)
+fog_light_color = Color(0.31552547, 0.26562253, 0.36780375, 1)
 fog_density = 1.0
 
 [node name="Indigo1" type="Node3D" unique_id=921304641]

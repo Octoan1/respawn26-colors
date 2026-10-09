@@ -17,7 +17,10 @@ size = Vector3(40, 281.11182, 40)
 size = Vector3(15, 128, 40)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0t5j7"]
-size = Vector3(12, 59, 40)
+size = Vector3(9, 59, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m2l8d"]
+size = Vector3(10, 129.3, 0.8)
 
 [sub_resource type="BoxMesh" id="BoxMesh_532tp"]
 size = Vector3(8, 49, 8)
@@ -33,9 +36,6 @@ size = Vector3(1, 15.588226, 36.72339)
 
 [sub_resource type="BoxMesh" id="BoxMesh_85pqs"]
 size = Vector3(20.142578, 1, 28.609863)
-
-[sub_resource type="BoxMesh" id="BoxMesh_esbu2"]
-size = Vector3(9, 10, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_y3uyx"]
 size = Vector3(12.402588, 114.65408, 59.11331)
@@ -53,7 +53,7 @@ sky = SubResource("Sky_lh345")
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.28851813, 0.28851795, 0.28851798, 1)
+fog_light_color = Color(0.3340113, 0.2525719, 0.37919402, 1)
 fog_density = 1.0
 
 [node name="Violet1" type="Node3D" unique_id=368369671]
@@ -130,6 +130,12 @@ material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_0t5j7")
 surface_material_override/0 = ExtResource("4_lh345")
 
+[node name="HollowBuilding9" type="MeshInstance3D" parent="LevelGeometry" unique_id=856713547]
+transform = Transform3D(0.7197985, 0, 0.6941831, 0, 1, 0, -0.6941831, 0, 0.7197985, -57.296574, 15.54954, -21.905933)
+material_override = ExtResource("5_m2l8d")
+mesh = SubResource("BoxMesh_m2l8d")
+surface_material_override/0 = ExtResource("4_lh345")
+
 [node name="MeshInstance3D19" type="MeshInstance3D" parent="LevelGeometry" unique_id=1141971834]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.616426, -36.81977, -156.03156)
 material_override = ExtResource("5_m2l8d")
@@ -180,12 +186,6 @@ surface_material_override/0 = ExtResource("4_lh345")
 transform = Transform3D(0.69264585, 0, 0.72127783, 0, 1, 0, -0.72127783, 0, 0.69264585, -127.98957, 12.04455, -97.7993)
 material_override = ExtResource("5_m2l8d")
 mesh = SubResource("BoxMesh_85pqs")
-surface_material_override/0 = ExtResource("4_lh345")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="LevelGeometry" unique_id=1138434681]
-transform = Transform3D(0.7193398, 0, 0.6946584, 0, 1, 0, -0.6946584, 0, 0.7193398, -57.576977, 16.021805, -22.162565)
-material_override = ExtResource("5_m2l8d")
-mesh = SubResource("BoxMesh_esbu2")
 surface_material_override/0 = ExtResource("4_lh345")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="LevelGeometry" unique_id=607498645]

@@ -45,7 +45,7 @@ sky = SubResource("Sky_rlh71")
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.28851813, 0.28851795, 0.28851798, 1)
+fog_light_color = Color(0.26710412, 0.24318936, 0.15436098, 1)
 fog_density = 1.0
 
 [node name="Yellow1" type="Node3D" unique_id=400540194]
