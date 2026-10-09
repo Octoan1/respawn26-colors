@@ -70,7 +70,7 @@ func _ready() -> void:
 	
 	glide_timer = Timer.new()
 	glide_timer.one_shot = true
-	glide_timer.wait_time = 2.0
+	glide_timer.wait_time = 2.5
 	add_child(glide_timer)
 	
 	curr_ability = Ability_Color.BASE
