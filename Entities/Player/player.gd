@@ -33,6 +33,7 @@ var capsule: CapsuleShape3D
 
 # conner added this, sorry if it breaks something
 var freeze_control: bool = false
+var level_finished: bool = false
 
 enum Ability_Color {
 	BASE,
@@ -89,6 +90,13 @@ func _ready() -> void:
 			debug_manager.connect("toggle_auto_bhop", _on_toggle_auto_bhop)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if level_finished:
+		return
+	# Release mouse
+	if event.is_action_pressed("escape"):
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		UiManager.show_level_pause()
+		LevelManager.freeze_player()
 	if freeze_control:
 		return
 	
@@ -96,9 +104,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	# Release mouse
-	if event.is_action_pressed("escape"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 	
 	if event is InputEventMouseMotion:
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
