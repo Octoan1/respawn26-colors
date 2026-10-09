@@ -170,10 +170,16 @@ func set_crouch_animation(crouched: bool) -> void:
 
 
 func can_wall_run() -> bool:
-	if is_on_floor() or wall_cooldown_timer > 0.0:
+	if is_on_floor() or wall_cooldown_timer > 0.0 or movement.wall_min_entry_speed > _flat(velocity).length():
 		return false
 	var normal := find_wall_normal()
-	return normal != Vector3.ZERO and has_wall_run_clearance(normal)
+	if normal == Vector3.ZERO or not has_wall_run_clearance(normal):
+		return false
+	return is_inputting_into_wall(normal)
+
+func _flat(v: Vector3) -> Vector3:
+	v.y = 0
+	return v
 
 func get_movement_direction() -> Vector3:
 	var input_dir := Input.get_vector(
@@ -335,3 +341,9 @@ func _change_sprite(color: Ability_Color) -> void:
 	if color == Ability_Color.BASE:
 		sprite.play("Default")
 	animation_player.play_backwards("Sprite Change")
+
+func is_inputting_into_wall(normal: Vector3) -> bool:
+	var flat_normal := Vector3(normal.x, 0.0, normal.z).normalized()
+	if flat_normal == Vector3.ZERO:
+		return false
+	return get_movement_direction().dot(-flat_normal) > movement.wall_enter_input_threshold

@@ -120,7 +120,7 @@ func physics_update(delta: float) -> void:
 	run_time += delta * time_scale
 	var input_world := player.get_movement_direction()
 
-	if _should_detach(delta) or run_time >= m.wall_run_time or m.get_horizontal_speed() < m.wall_min_entry_speed:
+	if _should_detach(delta) or run_time >= m.wall_run_time or m.get_horizontal_speed() < 0.0:
 		Transitioned.emit(self, "PUSH_OFF_WALL"); return
 
 	# Use the input's projection onto the wall tangent. This prevents camera
