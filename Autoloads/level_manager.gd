@@ -1,6 +1,7 @@
 extends Node
 #const LEVEL_LIST: LevelList = preload("res://levels/level_list.tres")
-@onready var LEVEL_LIST: LevelList = preload("res://Levels/level_list.tres")
+#@onready var LEVEL_LIST: LevelList = preload("res://Levels/level_list.tres")
+var LEVEL_LIST: LevelList = null
 #const LEVEL_LIST: LevelList = preload("uid://c2qh6vlm3bgnl")
 
 var player_time: float
@@ -22,6 +23,7 @@ Put that level data resource into the LevelList resource
 """
 
 func _ready() -> void:
+	LEVEL_LIST = load("res://Levels/level_list.tres")
 	for child in get_tree().root.get_children():
 		if child.name == "Main":
 			main = child

@@ -8,12 +8,19 @@ func _ready() -> void:
 	update_title_text()
 
 func _on_start_game_pressed() -> void:
-	SaveManager.save_game()
-	if SaveManager.levels_complete == LevelManager.LEVEL_LIST.levels.size():
-		UiManager.go_to_level_brief(SaveManager.levels_complete-1, "menu")
+	var save_mgr = get_node_or_null("/root/SaveManager")
+	var level_mgr = get_node_or_null("/root/LevelManager")
+	
+	if save_mgr == null or level_mgr == null or level_mgr.get("LEVEL_LIST") == null:
+		printerr("Autoload error fallback triggered.")
+		UiManager.go_to_level_brief(0, "menu")
 		return
+	
+	var level_list = level_mgr.get("LEVEL_LIST")
+	if save_mgr.levels_complete == level_list.levels.size():
+		UiManager.go_to_level_brief(save_mgr.levels_complete - 1, "menu")
 	else:
-		UiManager.go_to_level_brief(SaveManager.levels_complete, "menu")
+		UiManager.go_to_level_brief(save_mgr.levels_complete, "menu")
 	
 	
 	
@@ -26,6 +33,10 @@ func _on_level_select_pressed() -> void:
 	#queue_free()
 
 func update_title_text() -> void:
+	var save_mgr = get_node_or_null("/root/SaveManager")
+	if save_mgr == null:
+		return
+	
 	if SaveManager.levels_complete != 0:
 		start_game.text = "Continue"
 	
