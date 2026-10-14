@@ -4,10 +4,7 @@ extends PlayerState
 @onready var camera_3d: Camera3D = %Camera3D
 
 const SLIDE_INITIAL = preload("uid://bjv2tpgfxic3d")
-const SLIDESFX = preload("uid://b26uh7audsn6e")
 var slide_sfx_timer = 0.0
-var slide_sfx_player = AudioManager.create_sfx_adv(SLIDESFX, 1.0, 1.2)
-
 
 func setup() -> void:
 	super()
@@ -23,7 +20,7 @@ func enter() -> void:
 
 func exit() -> void:
 	player.movement.end_slide()
-	slide_sfx_player.stop()
+	AudioManager.SLIDESFX.stop()
 	slide_sfx_timer = 0.0
 	#print("SFX STOP")
 	
@@ -32,8 +29,8 @@ func update(delta: float) -> void:
 	
 	if slide_sfx_timer <= 0.0:
 		slide_sfx_timer = 5.22
-		slide_sfx_player.pitch_scale = randf_range(.6,1.0)
-		slide_sfx_player.play()
+		AudioManager.SLIDESFX.pitch_scale = randf_range(.6,1.0)
+		AudioManager.SLIDESFX.play()
 		#print("SFX PLAY")
 
 func physics_update(delta: float) -> void:

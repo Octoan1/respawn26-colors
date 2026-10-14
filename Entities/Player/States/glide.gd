@@ -2,10 +2,9 @@ extends PlayerState
 
 var x: float
 
-const BLUE_ABILITY = preload("uid://eke213ljamr3")
-const BLUE_ABILITY_INITIAL = preload("uid://dq06a5um2ncde")
+var BLUE_ABILITY_INITIAL_SFX = preload("uid://dq06a5um2ncde")
+
 var glide_sfx_timer = 0.0
-var glide_sfx_player = AudioManager.create_sfx_adv(BLUE_ABILITY, 1.0, .2)
 
 func setup() -> void:
 	super()
@@ -21,8 +20,8 @@ func enter() -> void:
 	await player.sprite.animation_finished
 	player.sprite.play_backwards("Blue Float")
 	
-	AudioManager.play_sfx(BLUE_ABILITY_INITIAL)
-	glide_sfx_timer = BLUE_ABILITY_INITIAL.get_length()
+	AudioManager.play_sfx(BLUE_ABILITY_INITIAL_SFX)
+	glide_sfx_timer = BLUE_ABILITY_INITIAL_SFX.get_length()
 	
 func exit() -> void:
 	player.movement.can_grab_wall = false
@@ -30,7 +29,7 @@ func exit() -> void:
 	await player.sprite.animation_finished
 	player.sprite.play("Blue Idle")
 	
-	glide_sfx_player.stop()
+	AudioManager.BLUE_ABILITY.stop()
 	glide_sfx_timer = 0.0
 
 func update(delta: float) -> void:
@@ -38,8 +37,8 @@ func update(delta: float) -> void:
 	
 	if glide_sfx_timer <= 0.0:
 		glide_sfx_timer = 8.36
-		glide_sfx_player.pitch_scale = randf_range(.8,1.0)
-		glide_sfx_player.play()
+		AudioManager.BLUE_ABILITY.pitch_scale = randf_range(.8,1.0)
+		AudioManager.BLUE_ABILITY.play()
 		#print("SFX PLAY")
 
 func physics_update(delta: float) -> void:

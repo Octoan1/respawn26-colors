@@ -10,7 +10,12 @@ var active_sfx : int = 0
 
 var music_player: AudioStreamPlayer
 
+# Music Tracks
 const TRACK_1_COORPRATE_GLITCH = preload("uid://bmi3bvs74evj6")
+
+# Repeating SFX
+var BLUE_ABILITY = create_sfx_adv(preload("uid://eke213ljamr3"), 1.0, .2)
+var SLIDESFX = create_sfx_adv(preload("uid://b26uh7audsn6e"), 1.0, .8)
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -73,8 +78,8 @@ func stop_music() -> void:
 #region SFX
 
 func play_sfx(stream: AudioStream, pitch_scale: float = 1.0, volume: float = 1.0) -> void:
-	if active_sfx >= MAX_SFX:
-		return
+	#if active_sfx >= MAX_SFX:
+		#return
 
 	var player := AudioStreamPlayer.new()
 	player.stream = stream
