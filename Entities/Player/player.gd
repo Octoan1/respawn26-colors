@@ -94,6 +94,11 @@ func _ready() -> void:
 			debug_manager.connect("toggle_auto_bhop", _on_toggle_auto_bhop)
 	
 	mouse_sensitivity = SaveManager.mouse_sensitivity
+	
+	if AudioManager:
+		AudioManager.BLUE_ABILITY.stop()
+		AudioManager.SLIDESFX.stop()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if level_finished:
