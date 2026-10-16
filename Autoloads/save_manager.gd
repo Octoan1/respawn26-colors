@@ -163,3 +163,45 @@ func unlock_all_levels() -> void:
 	save_data.master_volume = master_volume
 	
 	ResourceSaver.save(save_data, SAVE_PATH)
+
+func reset_settings() -> void:
+	var levels_beaten: int = 0
+	
+	#print("saving game")
+	# Create a temporary container for the data we want to save
+	var save_data: SaveData = SaveData.new()
+	
+	var level_mgr = get_node_or_null("/root/LevelManager")
+	
+	if level_mgr and level_mgr.LEVEL_LIST:
+		for level_data in level_mgr.LEVEL_LIST.levels:
+			var progress: LevelProgress = LevelProgress.new()
+			progress.best_time = level_data.best_time
+			progress.is_complete = level_data.is_complete
+			progress.rank = level_data.rank
+			
+			save_data.level_progress_list.append(progress)
+			
+			if level_data.is_complete:
+				levels_beaten += 1
+	
+	# Loop through each level in your main list and extract the progress
+	#for level_data in LevelManager.LEVEL_LIST.levels:
+		#var progress: LevelProgress = LevelProgress.new()
+		#progress.best_time = level_data.best_time
+		#progress.is_complete = level_data.is_complete
+		#progress.rank = level_data.rank
+		#
+		#save_data.level_progress_list.append(progress)
+		#
+		#if level_data.is_complete:
+			#levels_beaten += 1
+		
+	
+	levels_complete = levels_beaten
+	save_data.levels_complete = levels_complete
+	save_data.mouse_sensitivity = 0.002
+	save_data.fullscreen_on = false
+	save_data.master_volume = 0.5
+	# Write the data to the user's disk
+	ResourceSaver.save(save_data, SAVE_PATH)
