@@ -16,6 +16,8 @@ func _process(_delta: float) -> void:
 	pass
 
 func populate_button_data() -> void:
+	remove_buttons()
+	
 	for level_num in range(LevelManager.LEVEL_LIST.levels.size()):
 		var level_data: LevelData = LevelManager.LEVEL_LIST.levels[level_num]
 		
@@ -107,3 +109,12 @@ func go_to_level(level_num: int) -> void:
 
 func _on_menu_button_pressed() -> void:
 	UiManager.go_to_title()
+
+func remove_buttons() -> void:
+	for item in level_columns.get_children():
+		item.free()
+
+func _on_unlock_levels_pressed() -> void:
+	SaveManager.unlock_all_levels()
+	SaveManager.load_game()
+	populate_button_data()
