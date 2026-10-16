@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://cis5o60bfq1bj"]
+
+[ext_resource type="PackedScene" uid="uid://l2cyu1a1x0rq" path="res://Entities/Player/player.tscn" id="1_otl33"]
+[ext_resource type="Script" uid="uid://b3kjwirr5p0uv" path="res://Levels/GenericLevelScript.gd" id="3_s17ri"]
+[ext_resource type="Material" uid="uid://pn1fg55kk547" path="res://Assets/Materials/Colors/ColorBlock/ColorBlock.tres" id="4_pp2o6"]
+[ext_resource type="PackedScene" uid="uid://dgdsb103syu6y" path="res://Levels/death_plane.tscn" id="6_snj8l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7k2vp"]
+size = Vector3(9, 1, 7.55822)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8qdt0"]
+size = Vector3(13, 12, 94.51291)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jv6lb"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_oraik"]
+sky_material = SubResource("ProceduralSkyMaterial_jv6lb")
+
+[sub_resource type="Environment" id="Environment_sq5ev"]
+background_mode = 2
+sky = SubResource("Sky_oraik")
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+fog_density = 1.0
+
+[node name="Orange1" type="Node3D" unique_id=1440823683]
+
+[node name="Player" parent="." unique_id=493457226 instance=ExtResource("1_otl33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="LevelGeometry" type="Node3D" parent="." unique_id=1535937367]
+script = ExtResource("3_s17ri")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelGeometry" unique_id=132703302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.313488)
+mesh = SubResource("BoxMesh_7k2vp")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="LevelGeometry" unique_id=2094605244]
+transform = Transform3D(0.027038436, -0.77061737, -0.6367242, 0.032694735, 0.63729805, -0.76992357, 0.99909955, 2.220446e-16, 0.04242667, 365.4402, 5.5, -164.85017)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="LevelGeometry" unique_id=413700139]
+transform = Transform3D(-0.92149603, 0.31750733, 0.22368298, 0.2739751, 0.93962026, -0.20506436, -0.27528653, -0.12768245, -0.9528456, 365.27573, -36.227173, -72.17215)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="LevelGeometry" unique_id=802235443]
+transform = Transform3D(-0.81734794, 0.3398557, 0.46523136, 0.27397507, 0.93962014, -0.20506434, -0.50683314, -0.040147163, -0.8611088, 365.27573, 7.4417496, -305.9874)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="LevelGeometry" unique_id=557379789]
+transform = Transform3D(-0.030790675, 0.70180815, -0.71170026, -0.18953088, 0.6950202, 0.69355977, 0.98139185, 0.15624413, 0.11161411, 347.26563, 14.034554, -193.18488)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="LevelGeometry" unique_id=624708945]
+transform = Transform3D(-0.63894767, 0.75231194, 0.16053846, 0.71913624, 0.5100762, 0.47187427, 0.2731098, 0.4169519, -0.86692685, -60.46855, 11.261017, -170.729)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="LevelGeometry" unique_id=602861390]
+transform = Transform3D(-0.6824081, -0.4189049, 0.599031, 0.6818548, -0.66012657, 0.3151308, 0.26342636, 0.6234999, 0.7361079, 178.43857, -63.350533, -64.473145)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="LevelGeometry" unique_id=647011367]
+transform = Transform3D(-0.6824081, -0.4189049, 0.599031, 0.6818548, -0.66012657, 0.3151308, 0.26342636, 0.6234999, 0.7361079, 178.43857, -63.350533, -64.473145)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D27" type="MeshInstance3D" parent="LevelGeometry" unique_id=1494903887]
+transform = Transform3D(-0.5931095, 0.6275227, 0.5044173, 0.38665208, -0.32753155, 0.8621042, 0.70620227, 0.70635605, -0.04837081, 178.43857, -63.350533, -162.93227)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="LevelGeometry" unique_id=2059365790]
+transform = Transform3D(-0.99297893, -0.11047791, 0.042284034, 0.011148233, -0.44325748, -0.89632505, 0.11776689, -0.8895603, 0.44137692, 180.72325, -82.46918, -31.167866)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="LevelGeometry" unique_id=580418572]
+transform = Transform3D(-0.6697322, -0.71445185, 0.20252705, -0.47989336, 0.20826687, -0.85224843, 0.5667107, -0.6679695, -0.4823438, 182.94444, -92.188774, 14.467108)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="LevelGeometry" unique_id=2030316284]
+transform = Transform3D(-0.68240803, -0.41890478, 0.5990309, -0.26393974, -0.6230025, -0.73634505, 0.68165606, -0.6605958, 0.31457633, 178.43857, 52.65734, -6.713803)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="LevelGeometry" unique_id=683479093]
+transform = Transform3D(-0.99297893, -0.11047791, 0.042284027, -0.117775254, 0.8898939, -0.44070178, 0.011059549, -0.44258755, -0.89665735, 180.72325, 40.192116, -25.841839)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="LevelGeometry" unique_id=1731818756]
+transform = Transform3D(-0.67063004, -0.7137713, 0.20195511, 0.15057409, -0.39757207, -0.9051321, 0.7263488, -0.57659954, 0.37409943, 204.3007, -8.718985, 58.30225)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D28" type="MeshInstance3D" parent="LevelGeometry" unique_id=1811153573]
+transform = Transform3D(0.34262946, 0.7755852, 0.5301629, -0.5958375, -0.2569057, 0.76090574, 0.7263488, -0.57659954, 0.3740994, 204.3007, 57.975143, 98.18933)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="LevelGeometry" unique_id=1821445801]
+transform = Transform3D(-0.02568304, -0.45214707, -0.8915736, 0.41885528, 0.8049394, -0.42027766, 0.90768987, -0.38423434, 0.16871116, 152.59877, 43.356865, -180.20242)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D29" type="MeshInstance3D" parent="LevelGeometry" unique_id=2019987939]
+transform = Transform3D(-0.40199706, -0.7484265, -0.5275005, 0.5290852, 0.28032202, -0.8009299, 0.74730694, -0.60106415, 0.28329292, 152.59877, 43.356865, -245.64478)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="LevelGeometry" unique_id=209910566]
+transform = Transform3D(0.21356374, 0.8767533, -0.43092254, 0.9000896, -0.005114481, 0.4356755, 0.37977603, -0.48091304, -0.7902485, 193.71454, 82.661224, -197.17342)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="LevelGeometry" unique_id=624463752]
+transform = Transform3D(-0.3164255, 0.86494446, 0.38954598, 0.64872336, 0.49691656, -0.5763956, -0.69212186, 0.07032126, -0.71834695, 149.86406, -44.86196, -213.05067)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="LevelGeometry" unique_id=1837059434]
+transform = Transform3D(-0.33768612, 0.7480555, 0.57129776, 0.60800815, 0.6366885, -0.47429308, -0.7185362, 0.1871914, -0.6698247, -109.802574, 26.922625, -54.524933)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="LevelGeometry" unique_id=510616728]
+transform = Transform3D(-0.36471394, -0.67531514, 0.64104116, 0.8969355, -0.069971964, 0.43658942, -0.24998052, 0.7342026, 0.63123393, -110.52225, 26.922632, -27.433796)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="LevelGeometry" unique_id=1901197727]
+transform = Transform3D(0.6095651, 0.66176176, -0.43646598, -0.75317574, 0.3117025, -0.57928234, -0.24729925, 0.6818455, 0.68842566, -87.5276, 25.451204, 4.870594)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="LevelGeometry" unique_id=557704278]
+transform = Transform3D(0.64151824, -0.04203159, 0.76595527, 0.59665984, -0.60022175, -0.5326637, 0.48213196, 0.7987282, -0.35997477, 26.962887, 38.719624, 188.44438)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="LevelGeometry" unique_id=354828153]
+transform = Transform3D(0.17633171, -0.84887946, -0.4983079, 0.60351205, 0.4931605, -0.62655133, 0.7776119, -0.19025394, 0.5992687, 0.22630787, 34.414223, 189.47714)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="LevelGeometry" unique_id=638250227]
+transform = Transform3D(0.3583391, -0.54407537, -0.75866675, -0.7121186, -0.6847931, 0.15474434, -0.603722, 0.48480988, -0.6328347, -27.134829, 6.162611, 194.74084)
+mesh = SubResource("BoxMesh_8qdt0")
+surface_material_override/0 = ExtResource("4_pp2o6")
+
+[node name="DeathPlane" parent="." unique_id=1176538747 instance=ExtResource("6_snj8l")]
+transform = Transform3D(1, 0, 0, 0, 0.85845613, -0.512887, 0, 0.512887, 0.85845613, 0, -25.534708, -31.948635)
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1127618955]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1100186015]
+environment = SubResource("Environment_sq5ev")
