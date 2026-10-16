@@ -7,6 +7,7 @@ const SAVE_PATH = "user://savegame.res"
 @export var mouse_sensitivity: float = 0.002
 @export var level_progress_list: Array[LevelProgress] = []
 @export var fullscreen_on: bool = false
+@export var master_volume: float = 0.5
 
 # for every level_data resource in the level_list resource (which contains an array of level_data resources)
 # save info from each level:
@@ -55,6 +56,7 @@ func save_game() -> void:
 	save_data.levels_complete = levels_complete
 	save_data.mouse_sensitivity = mouse_sensitivity
 	save_data.fullscreen_on = fullscreen_on
+	save_data.master_volume = master_volume
 	# Write the data to the user's disk
 	ResourceSaver.save(save_data, SAVE_PATH)
 
@@ -93,11 +95,14 @@ func load_game() -> void:
 	levels_complete = save_data.levels_complete
 	mouse_sensitivity = save_data.mouse_sensitivity
 	fullscreen_on = save_data.fullscreen_on
+	master_volume = save_data.master_volume
 	
 	if fullscreen_on == true:
 		get_window().mode = Window.MODE_FULLSCREEN
 	else:
 		get_window().mode = Window.MODE_WINDOWED
+	
+	AudioManager.set_master_volume(master_volume)
 
 func clear_save_data() -> void:
 	# Create a temporary container for the data we want to save

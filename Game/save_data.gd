@@ -5,3 +5,4 @@ extends Resource
 @export var levels_complete: int = 0
 @export var mouse_sensitivity: float = 0.002
 @export var fullscreen_on: bool = false
+@export var master_volume: float = 0.5
