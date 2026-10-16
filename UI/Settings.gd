@@ -29,3 +29,11 @@ func _on_sfx_volume_slider_value_changed(value: float) -> void:
 func _on_mouse_sens_slider_value_changed(value: float) -> void:
 	SaveManager.mouse_sensitivity = value
 	SaveManager.save_game()
+
+
+func _on_fullscreen_check_box_toggled(toggled_on: bool) -> void:
+	if toggled_on == true:
+		get_window().mode = Window.MODE_FULLSCREEN
+	else:
+		get_window().mode = Window.MODE_WINDOWED
+	SaveManager.save_game()

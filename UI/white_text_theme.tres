@@ -15,6 +15,9 @@ bg_color = Color(0.76862746, 0.76862746, 0.76862746, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7a58j"]
 bg_color = Color(1, 1, 1, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_au8t7"]
+bg_color = Color(0.76862746, 0.76862746, 0.76862746, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jrb8"]
 content_margin_left = 10.0
 content_margin_top = 10.0
@@ -41,7 +44,9 @@ Button/styles/disabled = SubResource("StyleBoxFlat_qgm14")
 Button/styles/focus = SubResource("StyleBoxFlat_pwgs4")
 Button/styles/hover = SubResource("StyleBoxFlat_q0b5w")
 Button/styles/normal = SubResource("StyleBoxFlat_7a58j")
-CheckBox/colors/checkbox_unchecked_color = Color(0, 0, 1, 1)
+CheckBox/colors/checkbox_checked_color = Color(0.76862746, 0.76862746, 0.76862746, 1)
+CheckBox/colors/checkbox_unchecked_color = Color(0.85490197, 0.003921569, 0, 1)
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_au8t7")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_6jrb8")
 HSlider/styles/slider = SubResource("StyleBoxFlat_wlm5q")
 Label/colors/font_color = Color(0.76862746, 0.76862746, 0.76862746, 1)
